@@ -1,0 +1,47 @@
+.register-user {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .register-user h2 {
+    text-align: center;
+  }
+  
+  .register-user form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register-user .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .register-user label {
+    font-weight: bold;
+  }
+  
+  .register-user input[type="text"],
+  .register-user input[type="email"],
+  .register-user input[type="password"] {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .register-user .error-message {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  .register-user button[type="submit"] {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .register-user button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+                                                                                   
