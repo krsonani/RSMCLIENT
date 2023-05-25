@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ManagerCategoryCrudComponent } from './manager-category-crud/manager-category-crud.component';
+import { DashbordComponent } from './dashbord/dashbord.component';
+import { TableComponent } from './table/table.component';
+import { AddTableComponent } from './add-table/add-table.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,9 @@ import { ManagerCategoryCrudComponent } from './manager-category-crud/manager-ca
     LoginComponent,
     RegisterComponent,
     ManagerCategoryCrudComponent
+    DashbordComponent,
+    TableComponent,
+    AddTableComponent,
   ],
   imports: [
     BrowserModule,
