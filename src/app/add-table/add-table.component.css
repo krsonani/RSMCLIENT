@@ -1,0 +1,45 @@
+.add-table-form {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .add-table-form h2 {
+    text-align: center;
+  }
+  
+  .add-table-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-table-form .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .add-table-form label {
+    font-weight: bold;
+  }
+  
+  .add-table-form input[type="number"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .add-table-form button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .add-table-form button:hover {
+    background-color: #45a049;
+  }
+  
