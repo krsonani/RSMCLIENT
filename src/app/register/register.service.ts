@@ -14,6 +14,7 @@ url = "http://localhost:8081"
     
   }
 
+
    addUser(payload : Register ){
     return this.http.post<any>(this.url+"/verifyNewUserOtp",payload);
 

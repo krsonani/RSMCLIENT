@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomerprofileComponent } from './customerprofile/customerprofile.component';
 import { ManagerCategoryCrudComponent } from './manager-category-crud/manager-category-crud.component';
 import { AddTableComponent } from './add-table/add-table.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
@@ -10,6 +11,10 @@ const routes: Routes = [
   {
     path:"register",
     component:RegisterComponent
+  },
+  {
+    path:"profile",
+    component:CustomerprofileComponent
   },
   {
     path:"managerCategoryCrud",

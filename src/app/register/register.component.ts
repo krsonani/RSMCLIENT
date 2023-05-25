@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
   errorOtp:string='';
  
   constructor(private service : RegisterService,private rout :Router) { }
-
   ngOnInit(): void {
   }
 
@@ -79,7 +78,7 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  validateForm():boolean {
+  validateForm(): boolean {
     this.errors = {};
 
     if (this.userForm.name.trim() === '') {
@@ -100,16 +99,13 @@ export class RegisterComponent implements OnInit {
 
     if (this.userForm.password.trim() === '') {
       this.errors.password = 'Password is required';
-    }else if(!this.isValidPassword(this.userForm.password))
-    {
+    } else if (!this.isValidPassword(this.userForm.password)) {
       this.errors.password = 'Password is should be like Krunal@123';
     }
 
-    if(this.confirmPassword.trim()==='')
-    {
+    if (this.confirmPassword.trim() === '') {
       this.errors.confirmPassword = 'Confirm Password is required';
-    }else if(this.confirmPassword.trim() !== this.userForm.password.trim())
-    {
+    } else if (this.confirmPassword.trim() !== this.userForm.password.trim()) {
       this.errors.confirmPassword = 'Confirm Password is not matching';
     }
     if (this.userForm.otp.trim() === '' && this.confirmOtp!==false) {
@@ -121,11 +117,10 @@ export class RegisterComponent implements OnInit {
       console.log('Form is valid');
     }
 
+
       else
     return false;
       
-    
-    
   }
 
   private isValidEmail(email: string): boolean {
