@@ -1,0 +1,68 @@
+.addCategory {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.addCategory h2 {
+  text-align: center;
+}
+
+.addCategory form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addCategory .form-group {
+  margin-bottom: 3px;
+}
+
+.addCategory label {
+  font-weight: bold;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.addCategory input[type="text"] {
+  width: 100%;
+  padding: 5px;
+}
+
+.addCategory .error {
+  color: red;
+}
+
+.addCategory button[type="submit"] {
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.addCategory button[type="submit"]:hover {
+  background-color: #45a049;
+}
+                                                                                  
+/* for table component */
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto; /* Add this line to center align the table */
+}
+
+.category-table th,
+.category-table td {
+  padding: 8px;
+  text-align: center; /* Update text alignment to center */
+  border-bottom: 1px solid #ddd;
+}
+
+.category-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}

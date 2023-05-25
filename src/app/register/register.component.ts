@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Register } from './register';
 import { RegisterService } from './register.service';
 
@@ -9,33 +10,72 @@ import { RegisterService } from './register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  userForm: Register = {
-    name: '',
-    email: '',
-    phoneNum: '',
-    password: ''
+  userForm :Register = {
+      name:'',
+      email:'',
+    phoneNum:'',
+    password:'',
+    otp:'',
 
   }
-  confirmPassword: String = '';
-  errors: any = {};
-
-  constructor(private service: RegisterService) { }
-
+  confirmPassword:String='';
+  confirmOtp:boolean=false;
+  errors: any={} ;
+  errorOtp:string='';
+ 
+  constructor(private service : RegisterService,private rout :Router) { }
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    if (this.validateForm()) {
-      var res = this.service.addUser(this.userForm).subscribe();
-      this.userForm = {
-        name: '',
-        email: '',
-        phoneNum: '',
-        password: '',
-      }
+  onSubmit()
+  {
 
-      console.log(res);
+    if(this.validateForm())
+    {
+        this.service.addUser(this.userForm).subscribe({
+        next:(res)=>{
+        console.log(res);
+        if(res.status === "201")
+        {
+        this.rout.navigate(["/login"]);
+        }
+        else
+        {
+         this.errorOtp="Wrong Otp";
+        }
+        },
+        error:(err)=>{
+          console.log(err);
+          
+        }
+       });
+        
+       
+        
     }
+       
+  }
+
+  sendOtp()
+  {
+    if(this.validateForm())
+    {
+      
+       this.service.sendOtp(this.userForm.email).subscribe({
+        next:(res)=>{
+          console.log(res);
+         
+        },
+        error:(err)=>{
+          console.log(err);
+          
+        }
+       });
+      console.log(this.userForm.email);
+      
+      this.confirmOtp=true;
+    }
+
   }
 
   validateForm(): boolean {
@@ -68,15 +108,19 @@ export class RegisterComponent implements OnInit {
     } else if (this.confirmPassword.trim() !== this.userForm.password.trim()) {
       this.errors.confirmPassword = 'Confirm Password is not matching';
     }
+    if (this.userForm.otp.trim() === '' && this.confirmOtp!==false) {
+      this.errors.otp = 'Otp is required';
+    }
+   
     if (Object.keys(this.errors).length === 0) {
       return true;
       console.log('Form is valid');
     }
-    else
-      return false;
 
 
-
+      else
+    return false;
+      
   }
 
   private isValidEmail(email: string): boolean {
@@ -95,6 +139,7 @@ export class RegisterComponent implements OnInit {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
   }
+
 }
 
 
