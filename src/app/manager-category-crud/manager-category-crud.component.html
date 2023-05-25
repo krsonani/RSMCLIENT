@@ -1,0 +1,37 @@
+<div class="addCategory">
+    <h2>Add New Category</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="categoryName">Category Name:</label>
+          <div class="input-container">
+            <input id="categoryName" type="text" name="categoryName" [(ngModel)]="userForm.cname" required>
+            <button type="submit">Add</button>
+          </div>
+        </div>
+        <div class="error" *ngIf="errorCategoryName">
+          {{ errorCategoryName }}
+        </div>
+    </form>
+
+    <br/>
+    <!-- conditional rendering working -->
+    <div *ngIf="!isCategoriesEmpty()">
+      <table class="category-table">
+        <thead>
+          <tr>
+            <th>SNo</th>
+            <th>Category Name</th>
+            <th>Remove Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categories; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ category.cname }}</td>
+            <td><button (click)="onClick(category.id)">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+</div>
