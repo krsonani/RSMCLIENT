@@ -1,0 +1,15 @@
+<div class="add-table-form">
+    <h2>Add Table</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" [(ngModel)]="addTable.quantity" required>
+      </div>
+      <div class="form-group">
+        <label for="capacity">Capacity:</label>
+        <input type="number" id="capacity" name="capacity" [(ngModel)]="addTable.capacity" required>
+      </div>
+      <button type="submit">Add</button>
+    </form>
+  </div>
+  
