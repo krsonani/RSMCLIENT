@@ -14,7 +14,7 @@ url = "http://localhost:8081"
     
   }
 
-   addUser(payload : Register ){
+  addUser(payload : Register ){
     return this.http.post(this.url+"/addUser",payload)
     
   }

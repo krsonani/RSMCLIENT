@@ -9,38 +9,36 @@ import { RegisterService } from './register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  userForm :Register = {
-      name:'',
-      email:'',
-    phoneNum:'',
-    password:''
+  userForm: Register = {
+    name: '',
+    email: '',
+    phoneNum: '',
+    password: ''
 
   }
-  confirmPassword:String='';
+  confirmPassword: String = '';
   errors: any = {};
- 
-  constructor(private service : RegisterService) { }
+
+  constructor(private service: RegisterService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit()
-  {
-      if(this.validateForm())
-      {
-        var res = this.service.addUser(this.userForm).subscribe();
-        this.userForm={
-          name:'',
-          email:'',
-        phoneNum:'',
-        password:'',
+  onSubmit() {
+    if (this.validateForm()) {
+      var res = this.service.addUser(this.userForm).subscribe();
+      this.userForm = {
+        name: '',
+        email: '',
+        phoneNum: '',
+        password: '',
       }
-      
-        console.log(res);
-      }    
+
+      console.log(res);
+    }
   }
 
-  validateForm():boolean {
+  validateForm(): boolean {
     this.errors = {};
 
     if (this.userForm.name.trim() === '') {
@@ -61,27 +59,24 @@ export class RegisterComponent implements OnInit {
 
     if (this.userForm.password.trim() === '') {
       this.errors.password = 'Password is required';
-    }else if(!this.isValidPassword(this.userForm.password))
-    {
+    } else if (!this.isValidPassword(this.userForm.password)) {
       this.errors.password = 'Password is should be like Krunal@123';
     }
 
-    if(this.confirmPassword.trim()==='')
-    {
+    if (this.confirmPassword.trim() === '') {
       this.errors.confirmPassword = 'Confirm Password is required';
-    }else if(this.confirmPassword.trim() !== this.userForm.password.trim())
-    {
+    } else if (this.confirmPassword.trim() !== this.userForm.password.trim()) {
       this.errors.confirmPassword = 'Confirm Password is not matching';
     }
     if (Object.keys(this.errors).length === 0) {
       return true;
       console.log('Form is valid');
     }
-      else
-    return false;
-      
-    
-    
+    else
+      return false;
+
+
+
   }
 
   private isValidEmail(email: string): boolean {

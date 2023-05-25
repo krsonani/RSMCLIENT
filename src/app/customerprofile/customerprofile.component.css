@@ -1,0 +1,44 @@
+
+  div {
+    width: auto;
+    height: 400px;
+    margin: 100px 300px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #f6efdcab;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  table {
+    /* border: 1px solid black; */
+    padding: 0px 50px;
+    width: 100%;
+  }
+  
+  td {
+    /* border: 1px solid black; */
+    font-size: 20px;
+    padding: 10px;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  input {
+    border: 1px solid #380000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-size: large;
+  }
+
+  button{
+    margin:15px 0px;
+    padding:10px;
+    border: 0.5px solid #380000;
+    background-color: #f1e2bf;
+  }
