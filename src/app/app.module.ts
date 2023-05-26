@@ -12,17 +12,21 @@ import { ManagerCategoryCrudComponent } from './manager-category-crud/manager-ca
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { TableComponent } from './table/table.component';
 import { AddTableComponent } from './add-table/add-table.component';
+import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    CustomerprofileComponent
-    ManagerCategoryCrudComponent
+    CustomerprofileComponent,
+    ManagerCategoryCrudComponent,
     DashbordComponent,
     TableComponent,
     AddTableComponent,
+    CustomerupdateprofileComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
