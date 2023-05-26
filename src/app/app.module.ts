@@ -17,6 +17,7 @@ import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.
 import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
 import { CartComponent } from './cart/cart.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FoodMenuComponent } from './food-menu/food-menu.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule
     
   ],
   providers: [],

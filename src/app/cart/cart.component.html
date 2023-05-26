@@ -1,6 +1,6 @@
 <div class="cart-container">
     <h1>Shopping Cart</h1>
-    <table class="cart-table">
+    <table class="cart-table" *ngIf="orderItem.totalPrice != 0; else elseBlock">
         <thead>
             <tr>
                 <th>Product</th>
@@ -10,27 +10,29 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let item of cartItems">
+        <tbody *ngFor="let item of cartItems">
+            <tr class="cart-items" *ngIf="item && item.quantity >= 1">
                 <td>{{ item.name }}</td>
                 <td>{{ item.price }}</td>
                 <td>
                     <div class="quantity-container">
-                        <button (click)="decreaseQuantity(item)">-</button>
-                        <input type="text" [(ngModel)]="item.quantity" disabled>
+                        <button [ngClass]="{ 'disabled-button': item.quantity === 1}" (click)="decreaseQuantity(item)">-</button>
+                        <button type="text" disabled>{{ item.quantity }}</button>
                         <button (click)="increaseQuantity(item)">+</button>
                     </div>
                 </td>
                 <td>{{ item.price * item.quantity }}</td>
                 <td>
-                    <button (click)="removeItem()">Remove</button>
+                    <button class="item-remove" (click)="removeItem(item)">Remove</button>
                 </td>
             </tr>
         </tbody>
+        <div class="cart-summary">
+            <p>Total Price: {{ orderItem.totalPrice }}   </p>
+            <button (click)="placeOrder()">Place Order</button>
+        </div>
     </table>
-    <div class="cart-summary">
-        <p>Total Items: </p>
-        <p>Total Price: </p>
-        <button (click)="checkout()">Checkout</button>
-    </div>
+    <ng-template #elseBlock>
+        <h2>Cart is Empty</h2>
+    </ng-template>
 </div>
