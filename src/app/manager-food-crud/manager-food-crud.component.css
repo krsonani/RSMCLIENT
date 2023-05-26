@@ -1,0 +1,42 @@
+.food-registration {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.food-registration h2 {
+  text-align: center;
+}
+
+.food-registration .form-group {
+  margin-bottom: 20px;
+}
+
+.food-registration label {
+  display: block;
+  font-weight: bold;
+}
+
+.food-registration input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 5px;
+}
+
+.food-registration .error {
+  color: red;
+}
+
+.food-registration button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.food-registration button:hover {
+  background-color: #45a049;
+}

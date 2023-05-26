@@ -6,6 +6,7 @@ import { AddTableComponent } from './add-table/add-table.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.component';
 import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
 import { CartComponent } from './cart/cart.component';
 
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path:"managerCategoryCrud",
     component:ManagerCategoryCrudComponent
+  },
+  {
+    path:"managerFoodCrud",
+    component:ManagerFoodCrudComponent
   },
   {
     path:"cart",
