@@ -29,4 +29,14 @@ export class TableService {
       })
     })
   }
+
+  deleteTable(id:string)
+  {
+    return this.http.get<any>(this.url+`/removeTable/${id}`,{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    })
+  }
 }
