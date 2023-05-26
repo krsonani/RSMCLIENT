@@ -17,7 +17,7 @@ export class FoodMenuComponent implements OnInit {
   foodlist: any;
   
 
-  
+  addToCartFoods:any[] = []; 
 
   ngOnInit(): void {
     this.mccs.getAllCategories().subscribe({
@@ -43,6 +43,16 @@ export class FoodMenuComponent implements OnInit {
   addToCart(food : any){
     console.log(food);
     food.addedToCart = !food.addedToCart;
+
+    this.addToCartFoods = [...this.addToCartFoods, food];
+    console.log(this.addToCartFoods);
+  }
+
+  removeFromCart(food : any){
+    food.addedToCart = !food.addedToCart;
+
+    this.addToCartFoods = this.addToCartFoods.filter(foodObj => food.fid != foodObj.fid);
+    console.log(this.addToCartFoods);
   }
 
   compareCategoryName(c1: string, c2:string): boolean{
