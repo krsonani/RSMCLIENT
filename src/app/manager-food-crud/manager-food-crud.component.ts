@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ManagerCategoryCrudService } from '../manager-category-crud/manager-category-crud.service';
 import { ManagerFoodCrud } from './manager-food-crud';
 import { ManagerFoodCrudService } from './manager-food-crud.service';
 
@@ -17,24 +18,46 @@ export class ManagerFoodCrudComponent implements OnInit {
     categoryId : 0
   }
 
+  categoryList : any;
+  successMsg : string = '';
+
   errors: any={} ;
 
-  constructor(private service : ManagerFoodCrudService) { }
+  constructor(private service : ManagerFoodCrudService, private mcc : ManagerCategoryCrudService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mcc.getAllCategories().subscribe({
+      next:(res)=>{
+        this.categoryList = res;
+        console.log(res);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    });    
+  }
 
   onSubmit(){
 
     if(this.validateForm()){
 
-      var res = this.service.addNewFood(this.userForm).subscribe();
-      this.userForm = {
-        fname:'',
-        fimage:'',
-        description:'',
-        price:0.0,
-        categoryId : 0
-      };
+      var res = this.service.addNewFood(this.userForm).subscribe({
+        next:(res)=>{
+
+          this.userForm = {
+            fname:'',
+            fimage:'',
+            description:'',
+            price:0.0,
+            categoryId : 0
+          };
+          
+          this.successMsg = res.msg;
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      });
     }
   }
 

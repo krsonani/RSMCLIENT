@@ -16,6 +16,7 @@ import { DaywiseorderComponent } from './daywiseorder/daywiseorder.component';
 import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.component';
 import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
 import { CartComponent } from './cart/cart.component';
+import { FoodMenuComponent } from './food-menu/food-menu.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CartComponent } from './cart/cart.component';
     ManagerFoodCrudComponent,
     CustomerupdateprofileComponent,
     CartComponent,
+    FoodMenuComponent,
   ],
   imports: [
     BrowserModule,

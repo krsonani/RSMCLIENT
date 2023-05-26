@@ -33,15 +33,16 @@
       <label for="foodCategory">Category:</label>
       <select id="foodCategory" name="foodCategory" [(ngModel)]="userForm.categoryId" required>
         <!-- <option value="">Select Category</option> -->
-        <option value="1">Appetizer</option>
-        <option value="2">Main Course</option>
-        <option value="3">Dessert</option>
-        <option value="4">Beverage</option>
+          <option *ngFor="let category of categoryList" [value]="category.cid">{{category.cname}}</option>
       </select>
       <div class="error" *ngIf="errors.cid">
         {{ errors.cid }}
       </div>
     </div>
+
+    <div *ngIf="successMsg" class="success-msg">{{successMsg}}</div>
+
     <button type="submit">Add Food</button>
   </form>
 </div>
+

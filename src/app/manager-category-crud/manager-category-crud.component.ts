@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import { ManagerCategoryCrud } from './manager-category-crud';
 import { ManagerCategoryCrudService } from './manager-category-crud.service';
 
@@ -23,19 +22,27 @@ export class ManagerCategoryCrudComponent implements OnInit{
     return !this.categories || this.categories.length === 0;
   }
 
-  constructor(private service : ManagerCategoryCrudService,private rout:Router) { }
+  constructor(private service : ManagerCategoryCrudService) { }
 
   ngOnInit(): void {
     this.showAllCategories();
+    console.log("inside ngOnInit");
+    
   }
 
   onSubmit(){
 
     if(this.validateForm()){
 
-      var res = this.service.addNewCategory(this.userForm).subscribe();
-      this.userForm.cname = '';
-      this.showAllCategories();
+      var res = this.service.addNewCategory(this.userForm).subscribe({
+        next:(res)=>{
+          this.userForm.cname = '';
+          this.showAllCategories();
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      });
     }
   }
 
@@ -56,16 +63,21 @@ export class ManagerCategoryCrudComponent implements OnInit{
 
   onClick(id : Number){
     console.log("inside onCLick");
-    var res = this.service.removeCategoryById(id).subscribe();
-   this.rout.navigate(['/managerCategoryCrud'])
-   
+    var res = this.service.removeCategoryById(id).subscribe({
+        next:(res)=>{
+          this.showAllCategories();
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      }
+    );
   }
 
   showAllCategories(){
     this.service.getAllCategories().subscribe({
       next:(res)=>{
         console.log(res);
-        
         this.categories = res;
       },
       error:(err)=>{
