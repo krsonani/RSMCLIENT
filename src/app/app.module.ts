@@ -16,6 +16,7 @@ import { DaywiseorderComponent } from './daywiseorder/daywiseorder.component';
 import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.component';
 import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
 import { CartComponent } from './cart/cart.component';
+import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ManagerFoodCrudComponent,
     CustomerupdateprofileComponent,
     CartComponent,
+    FoodMenuComponent,
   ],
   imports: [
     BrowserModule,

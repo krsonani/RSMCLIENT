@@ -29,6 +29,7 @@ select {
 }
 
 .food-registration button {
+  margin-top: 12px;
   padding: 8px 16px;
   background-color: #4CAF50;
   color: white;
@@ -39,4 +40,12 @@ select {
 
 .food-registration button:hover {
   background-color: #45a049;
+}
+
+.food-registration .success-msg
+{
+  color: green;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
 }

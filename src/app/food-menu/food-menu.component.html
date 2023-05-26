@@ -1,0 +1,38 @@
+<div class="category-container">
+    <div *ngFor="let category of categories" class="category">
+      <div class="category-header" (click)="toggleCategory(category)">
+        <h2>{{ category.cname }}</h2>
+        <span [class.expanded]="category.expanded">+</span>
+      </div>
+      <div [ngClass]="[ category.expanded ? 'category-foodBlock' : 'category-foodNone']">
+
+        <div class="container">
+            <div class="row justify-content-center" *ngFor="let food of foodlist">
+                <!-- <div class="col-12 col-sm-6 col-md-4" *ngFor="let food of foodlist"> -->
+                <div class="col-12 col-sm-6 col-md-4" *ngIf="compareCategoryName(category.cname, food.category.cname)">
+                    <div class="card mt-2">
+                        <img class="card-img-top" src="{{food.fimage}}" alt="Card image cap">
+                        <div class="card-body">
+                          <p class="card-text"> <b>{{food.fname}}</b> </p>
+                          <p class="card-text"> <i>{{food.description}}</i> </p>
+                          <p class="card-text">Price: {{food.price}}</p>
+                          <div>
+                            <button class="btn btn-primary"  (click)="addToCart(food)" *ngIf="!food.addedToCart">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                              </button>
+                          </div>
+                          <div>
+                            <button class="btn btn-danger" (click)="addToCart(food)" *ngIf="food.addedToCart">
+                                <i class="fas fa-shopping-cart"></i> Added to Cart
+                              </button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
