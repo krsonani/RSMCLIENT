@@ -8,6 +8,8 @@
         <li (click)="content='updateProfile'"><i class="fas fa-user"></i> updateProfile</li>
         <li (click)="content='addtable'"><i class="fas fa-user"></i>  addtable</li>
         <li (click)="content='viewtable'"><i class="fas fa-user"></i>  viewtable</li>
+        <li (click)="content='addCategory'"><i class="fas fa-user"></i> AddCategory</li>
+        <li (click)="content='addFood'"><i class="fas fa-user"></i> AddFood</li>
         <li><a href="#" ><i class="fas fa-trash"></i> Delete Account</a></li>
         <li><a  (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
       </ul>
@@ -37,7 +39,7 @@
       </div>
       </div>
       <div>
-        <app-table *ngIf="content === 'viewtable'" [typeUser]="typeUser" [noOfCustomer]="noOfCustomer" ></app-table>
+        <app-table *ngIf="content === 'viewtable'" [typeUser]="typeUser" [noOfCustomer]="noOfCustomer" (content)="receiveContent($event)" (activeTable)="receiveActiveTable($event)" ></app-table>
       </div>
       <div>
         <app-add-table *ngIf="content === 'addtable'"></app-add-table>
@@ -56,6 +58,12 @@
       </div>
       <div>
         <app-food-menu *ngIf="content === 'foodManue'"></app-food-menu>
+      </div>
+      <div>
+        <app-manager-category-crud *ngIf="content === 'addCategory'" ></app-manager-category-crud>
+      </div>
+      <div>
+        <app-manager-food-crud *ngIf="content === 'addFood'"></app-manager-food-crud>
       </div>
     </div>
   </div>

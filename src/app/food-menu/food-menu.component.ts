@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ManagerCategoryCrudService } from '../manager-category-crud/manager-category-crud.service';
 import { FoodMenuService } from './food-menu.service';
 
@@ -14,6 +15,7 @@ export class FoodMenuComponent implements OnInit {
   categories: any;
 
   foodlist: any;
+  
 
   
 
