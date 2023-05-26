@@ -1,27 +1,64 @@
+<div>
 <div class="table" >
-    <div class="table-item" *ngFor="let item of tableItems">
-      <div class="table-item__cell" *ngIf="item.available" (click)="addTableIds(item.tid)">
-        <p>Tid: {{ item.tid }}</p>
-        <p>capacity: {{ item.capacity }}</p>
+    <div class="table-item" *ngFor="let item of tableItems"  [ngClass]="{'table-itemAvil':(item.available && (typeUser === 'CUSTOMER' && item.capacity >= noOfCustomer)) || (item.available &&  typeUser === 'MANAGER') }">
+      <div class="table-item__cell" *ngIf="item.available && typeUser==='MANAGER' "  (click)="addTableIds(item.tid)" [ngClass]="{ 'highlight': isHighlighted && isActivte===item.tid}">
+        <p class="p-0 py-2 my-2">Tid: {{item.tid}}</p>
+        <p class="p-0 py-2 my-2">capacity: {{ item.capacity }}</p>
       </div>
-      <div class="table-item__cellNa" *ngIf="!item.available">
-        <p>Tid: {{ item.tid }}</p>
-        <p>capacity: {{ item.capacity }}</p>
+      <div class="table-item__cellNa" *ngIf="!item.available && typeUser==='MANAGER'" (click)="addNaTableIds(item.tid)" [ngClass]="{ 'naHighlight': isNaHighlighted && isNaActivte===item.tid}">
+        <p class="p-0 py-2 my-2">Tid: {{ item.tid}}</p>
+        <p class="p-0 py-2 my-2">capacity: {{ item.capacity }}</p>
       </div>
+      <div class="table-item__cell" *ngIf="item.available && typeUser==='CUSTOMER' && item.capacity >= noOfCustomer "  (click)="addTableIds(item.tid)" [ngClass]="{ 'highlight': isHighlighted && isActivte===item.tid}">
+        <p class="p-0 py-2 my-2">Tid: {{item.tid}}</p>
+        <p class="p-0 py-2 my-2">capacity: {{ item.capacity }}</p>
+      </div>
+      <div class="table-item__cellNa" *ngIf="!item.available  && typeUser==='CUSTOMER'">
+        <p class="p-0 py-2 my-2">Tid: {{ item.tid}}</p>
+        <p class="p-0 py-2 my-2">capacity: {{ item.capacity }}</p>
+      </div>
+      <div class="table-item__cellNa" *ngIf=" item.capacity < noOfCustomer&& item.available  && typeUser==='CUSTOMER'">
+        <p class="p-0 py-2 my-2">Tid: {{ item.tid}}</p>
+        <p class="p-0 py-2 my-2">capacity: {{ item.capacity }}</p>
+    </div>
+</div>
+</div>
+  <div class="buttonBar" *ngIf="showToggle">
+    <div class="buttonStyle">
+      <div class="pricebar-toggle" *ngIf="typeUser==='MANAGER'">
+        <div class="toggle-text"> ON </div>
+        <label class="switch">
+          <input type="checkbox" />
+          <span
+            class="slider round"
+            (click)="onToggle()"
+          ></span>
+        </label>
+        <div class="toggle-text"> OFF </div>
+    </div>
+    <div *ngIf="typeUser==='MANAGER'">
+      <button class="btn btn-danger" (click)="tabelDelete()" >Delete</button>
+    </div>
+    <div *ngIf="typeUser==='CUSTOMER'">
+      <button class="btn btn-success" (click)="bookTable()">bookTable</button>
+    </div>
     </div>
   </div>
-  <div>
-    <div class="pricebar-toggle">
-      <div class="toggle-text"> ON </div>
-      <label class="switch">
-        <input type="checkbox" />
-        <span
-          class="slider round"
-          (click)="onToggle()"
-        ></span>
-      </label>
-      <div class="toggle-text"> OFF </div>
+  <div class="buttonBar" *ngIf="showNaToggle && typeUser ==='MANAGER'">
+    <div class="buttonStyle">
+      <div class="pricebar-toggle" >
+        <div class="toggle-text"> OFF </div>
+        <label class="switch">
+          <input type="checkbox" />
+          <span
+            class="slider round"
+            (click)="onNaToggle()"
+          ></span>
+        </label>
+        <div class="toggle-text"> ON </div>
+    </div>
+    </div>
   </div>
-  </div>
+</div>
 
   
