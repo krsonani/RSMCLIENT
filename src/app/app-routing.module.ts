@@ -6,6 +6,7 @@ import { AddTableComponent } from './add-table/add-table.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { DaywiseorderComponent } from './daywiseorder/daywiseorder.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path:"addtable",
     component:AddTableComponent
+  },
+  {
+    path:"dayWiseOrder",
+    component:DaywiseorderComponent
   }
 ];
 

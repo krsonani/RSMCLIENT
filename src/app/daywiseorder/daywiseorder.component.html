@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <title>Todays Orders</title>
+
+</head>
+
+<body>
+  <div *ngIf="roleType=='MANAGER'">
+  <h1 style="text-align:center;" >Todays Orders</h1>
+  <h1 style="text-align:center;"> DATE :{{ now }}</h1>
+</div>
+<div *ngIf="roleType=='CUSTOMER'">
+  <h1 style="text-align:center;" >Your Order History</h1>
+</div>
+
+  <div>
+    <table id="orders">
+      <thead>
+        <tr>
+          <th>Sr Id</th>
+          <th>Orders</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todaysOrder of todaysOrders;let i = index">
+          <td>{{i+1}}</td>
+          <span *ngFor="let foodquantity of todaysOrder.foodMap | keyvalue; let i = index">
+            <span *ngFor="let foodname of todaysOrder.foodList; let j = index">
+              <td *ngIf="i==j">
+                {{foodname.fname}} x{{foodquantity.value}}
+              </td>
+            </span>
+          </span>
+          <td>{{todaysOrder.totalPrice}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
