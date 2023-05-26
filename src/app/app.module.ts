@@ -12,6 +12,7 @@ import { ManagerCategoryCrudComponent } from './manager-category-crud/manager-ca
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { TableComponent } from './table/table.component';
 import { AddTableComponent } from './add-table/add-table.component';
+import { DaywiseorderComponent } from './daywiseorder/daywiseorder.component';
 import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.component';
 import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
 import { CartComponent } from './cart/cart.component';
@@ -26,6 +27,7 @@ import { CartComponent } from './cart/cart.component';
     DashbordComponent,
     TableComponent,
     AddTableComponent,
+    DaywiseorderComponent,
     ManagerFoodCrudComponent,
     CustomerupdateprofileComponent,
     CartComponent,
