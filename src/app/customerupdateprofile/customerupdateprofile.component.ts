@@ -15,7 +15,7 @@ export class CustomerupdateprofileComponent implements OnInit {
   constructor(private service : CustomerupdateprofileService, private route:Router) { }
 
   userProfile : Updateprofile = {
-    uids:0,
+    uids:-1,
     name: '',
     email: '',
     phoneNum: '',
