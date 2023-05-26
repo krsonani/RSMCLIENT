@@ -17,7 +17,7 @@
       </div>
       <!-- Content Area -->
       <div>
-        <app-table *ngIf="content === 'viewtable'"></app-table>
+        <app-table *ngIf="content === 'viewtable'" [childInput]="parentData" (childOutput)="receiveDataFromChild($event)" ></app-table>
       </div>
       <div>
         <app-add-table *ngIf="content === 'addtable'"></app-add-table>

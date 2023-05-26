@@ -24,10 +24,19 @@
     font-weight: bold;
   }
   
-  .add-table-form input[type="number"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+
+  .form-input {
+    width: 175px !important;
+    padding: 5px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 3px !important;
+  }
+
+  .form-select {
+    width: 187px !important;
+    padding: 5px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 3px !important;
   }
   
   .add-table-form button {
@@ -43,3 +52,10 @@
     background-color: #45a049;
   }
   
+  .success-msg
+  {
+    color: green;
+    margin-left:70px;
+    font-size: 16px;
+    font-weight: 600;
+  }

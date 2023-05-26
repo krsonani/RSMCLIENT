@@ -1,5 +1,5 @@
 export interface Addtable {
 
-    quantity:number;
-    capacity:number
+    quantity:string;
+    capacity:string
 }

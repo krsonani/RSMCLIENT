@@ -7,6 +7,8 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.component';
+import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -18,12 +20,20 @@ const routes: Routes = [
     component:CustomerprofileComponent
   },
   {
+    path:"updateprofile",
+    component:CustomerupdateprofileComponent
+  },
+  {
     path:"managerCategoryCrud",
     component:ManagerCategoryCrudComponent
   },
   {
     path:"managerFoodCrud",
     component:ManagerFoodCrudComponent
+  },
+  {
+    path:"cart",
+    component:CartComponent
   },
   {
     path:"login",
@@ -33,10 +43,6 @@ const routes: Routes = [
     path:"dashbord",
     component:DashbordComponent
   },
-  {
-    path:"addtable",
-    component:AddTableComponent
-  }
 ];
 
 @NgModule({
