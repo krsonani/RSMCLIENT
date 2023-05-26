@@ -18,8 +18,8 @@ import { AddTableComponent } from './add-table/add-table.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    CustomerprofileComponent
-    ManagerCategoryCrudComponent
+    CustomerprofileComponent,
+    ManagerCategoryCrudComponent,
     DashbordComponent,
     TableComponent,
     AddTableComponent,

@@ -28,10 +28,6 @@ const routes: Routes = [
     path:"dashbord",
     component:DashbordComponent
   },
-  {
-    path:"addtable",
-    component:AddTableComponent
-  }
 ];
 
 @NgModule({
