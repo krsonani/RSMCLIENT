@@ -1,9 +1,11 @@
 <div class="dashboard-container">
     <div class="sidebar">
       <ul>
-        <li><i class="fas fa-history"></i> Order History</li>
-        <li><a routerLink="/cart"><i class="fas fa-shopping-cart"></i> Cart</a></li>
-        <li><a routerLink="/profile"><i class="fas fa-user"></i> Profile</a></li>
+        <li (click)="content=''"><i class="fas fa-history"></i> Welcome</li>
+        <li (click)="content='order'"><i class="fas fa-history"></i> Order History</li>
+        <li (click)="content='cart'"><i class="fas fa-shopping-cart"></i> Cart</li>
+        <li (click)="content='profile'"><i class="fas fa-user"></i> Profile</li>
+        <li (click)="content='updateProfile'"><i class="fas fa-user"></i> updateProfile</li>
         <li (click)="content='addtable'"><i class="fas fa-user"></i>  addtable</li>
         <li (click)="content='viewtable'"><i class="fas fa-user"></i>  viewtable</li>
         <li><a href="#" ><i class="fas fa-trash"></i> Delete Account</a></li>
@@ -12,15 +14,45 @@
     </div>
   
     <div class="content">
-      <div class="header">
-        <h2>Welcome, {{ username }}!</h2>
-      </div>
       <!-- Content Area -->
+      <div *ngIf="content === ''">
+        <!-- <label name="noOfCustomer">Enter the no. of Customer</label>
+        <input  type="text" name="noOfCustomer" [(ngModel)]="noOfCustomer">
+        <button (click)="content='viewtable'">submit</button> -->
+        <div class="container wel-con">
+          <h1>Welcome ,{{username}}</h1>
+          <p class="wel-text">Please enter the number of people to proceed:</p>
+          <div class="form-group d-flex">
+              <input type="text" id="number-of-people" [(ngModel)]="noOfCustomer" class="mx-2">
+              <button (click)="content='viewtable'" class="btn btn-secondary mx-2 px-4">submit</button>
+          </div>
+          <div class="quote">
+              <p>"Good food is the foundation of genuine happiness."</p>
+              <p>"There is no sincerer love than the love of food." </p>
+          </div>
+          <div class="experience">
+              <p>We take pride in our years of experience in providing exceptional service:</p>
+              <p>Over 20 years of dedicated service to our valued customers!</p>
+          </div>
+      </div>
+      </div>
       <div>
-        <app-table *ngIf="content === 'viewtable'" [childInput]="parentData" (childOutput)="receiveDataFromChild($event)" ></app-table>
+        <app-table *ngIf="content === 'viewtable'" [typeUser]="typeUser" [noOfCustomer]="noOfCustomer" ></app-table>
       </div>
       <div>
         <app-add-table *ngIf="content === 'addtable'"></app-add-table>
+      </div>
+      <div>
+        <app-customerprofile *ngIf="content === 'profile'"></app-customerprofile>
+      </div>
+      <div>
+        <app-cart *ngIf="content === 'cart'" ></app-cart>
+      </div>
+      <div>
+        <app-customerupdateprofile *ngIf="content === 'updateProfile'" ></app-customerupdateprofile>
+      </div>
+      <div>
+        <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
       </div>
     </div>
   </div>

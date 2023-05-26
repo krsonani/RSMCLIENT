@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component,  Input, OnChanges, OnInit } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { TableService } from './table.service';
 
@@ -7,23 +7,23 @@ import { TableService } from './table.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit,OnChanges {
+export class TableComponent implements OnInit {
 
  tableItems:any[]=[];
  tableIds:string[]=[];
-  @Input() childInput: boolean=true;
-  @Output() childOutput: EventEmitter<boolean> = new EventEmitter<boolean>();
+ showToggle:boolean=false;
+ showNaToggle:boolean=false;
+ isHighlighted: boolean = false;
+ isNaHighlighted:boolean=false;
+ isActivte:string=''  ;
+ isNaActivte:string=''  ;
+ naTableIds:string[]=[];
+ previousActivte:string='';
+ previousNa:string='';
+ toggle:boolean=true;
+ @Input() typeUser:string='';
+ @Input() noOfCustomer:number=0;
   constructor(private service : TableService,private cdr : ChangeDetectorRef) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.showTable();
-    this.tableIds=[];
-
-  }
-  childData: boolean=true;
-
-  sendDataToParent() {
-    this.childOutput.emit(this.childData);
-  }
 
   ngOnInit(): void {
   this.showTable()
@@ -42,9 +42,78 @@ export class TableComponent implements OnInit,OnChanges {
   }
   addTableIds(id:string)
   {
-    this.tableIds = [...this.tableIds,id]
+    this.isActivte=id;
+    this.toggleHighlight(id)
+    this.showToggleChange(id)
+    console.log(this.isActivte);
+    console.log(this.isHighlighted);
+    this.tableIds = [id]
     console.log(this.tableIds);
+    this.previousActivte=id;
     
+  }
+  addNaTableIds(id:string)
+  {
+       this.isNaActivte=id;
+       this.showNaToggleChange(id);
+       this.toggleNaHighlight(id);
+       this.naTableIds = [id];
+       this.previousNa=id;
+
+  }
+ showToggleChange(id:string)
+ {
+  if(this.previousActivte===id )
+  {
+    this.showToggle=!this.showToggle;
+    this.isNaHighlighted=false;
+  }else
+  {
+    this.showToggle =true;
+    this.showNaToggle=false;
+    this.isNaHighlighted=false;
+  }
+  console.log(this.showToggle);
+
+ }
+
+ showNaToggleChange(id:string)
+ {
+  if(this.previousNa===id )
+  {
+    this.showNaToggle=!this.showNaToggle;
+    this.isHighlighted=false;
+  }else
+  {
+    this.showNaToggle =true;
+    this.showToggle =false;
+    this.isHighlighted=false;
+  }
+  console.log(this.showNaToggle);
+
+ }
+
+  toggleHighlight(id:string) {
+    if(this.previousActivte===id )
+    {
+      this.isHighlighted = !this.isHighlighted;
+    }else
+    {
+      this.isHighlighted =true;
+      
+    }
+  }
+
+    toggleNaHighlight(id:string) {
+      if(this.previousNa===id )
+      {
+        this.isNaHighlighted = !this.isNaHighlighted;
+      }else
+      {
+        this.isNaHighlighted =true;
+        
+      }
+
   }
 
   onToggle()
@@ -52,13 +121,51 @@ export class TableComponent implements OnInit,OnChanges {
     this.service.changeStatus(this.tableIds).subscribe({
       next:(res)=>{
             console.log(res);
-            this.childData=!this.childInput;
-            this.sendDataToParent();
+            this.showTable();
+            this.showToggle=false;
       },error:(err)=>{
           console.log(err);
           
       }
     });
+  }
+  onNaToggle()
+  {
+    this.service.changeStatus(this.naTableIds).subscribe({
+      next:(res)=>{
+            console.log(res);
+            this.showNaToggle=false;
+            this.showTable();
+            
+      },error:(err)=>{
+          console.log(err);
+          
+      }
+    });
+  }
+
+  tabelDelete()
+  {
+    this.service.deleteTable(this.isActivte).subscribe({
+      next:(res)=>{
+          console.log(res);
+          this.showToggle= false;
+          this.showTable();
+          
+      },error:(err)=>{
+          console.log(err);
+          
+      }
+    })
+
+  }
+
+  bookTable()
+  {
+    
+    console.log(this.isActivte);
+    this.onToggle();
+    
   }
 
 }
