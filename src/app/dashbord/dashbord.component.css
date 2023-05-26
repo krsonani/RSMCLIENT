@@ -2,69 +2,74 @@
 
 .dashboard-container {
   display: flex;
-  height: 100vh;
 }
 
-.sidebar {
+.dashboard-container .sidebar {
   width: 200px;
   background-color: #333;
   color: #fff;
   padding: 20px;
+  height: 100vh;
+  position:fixed;
 }
 
-.sidebar ul {
+.dashboard-container .sidebar ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.sidebar li {
+.dashboard-container .sidebar li {
   margin-bottom: 10px;
 }
 
-.sidebar a {
+.dashboard-container .sidebar a {
   display: flex;
   align-items: center;
   color: #fff;
   text-decoration: none;
 }
 
-.sidebar a i {
+.dashboard-container .sidebar a i {
   margin-right: 10px;
 }
 
-.content {
+.dashboard-container .content {
   flex: 1;
   padding: 20px;
+  padding-left: 100px;
   background-color: #f5f5f5;
+  overflow: scroll;
+  height:93vh;
+  margin-left: 200px;
 }
 
-.header {
+.dashboard-container .header {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
 }
 
-.header h2 {
+.dashboard-container .header h2 {
   margin: 0;
 }
 
-.fa-history:before {
+.dashboard-container .fa-history:before {
   content: '\f1da';
 }
 
-.fa-shopping-cart:before {
+.dashboard-container .fa-shopping-cart:before {
   content: '\f07a';
 }
 
-.fa-user:before {
+.dashboard-container .fa-user:before {
   content: '\f007';
 }
 
-.fa-trash:before {
+.dashboard-container .fa-trash:before {
   content: '\f2ed';
 }
 
-.fa-sign-out-alt:before {
+.dashboard-container .fa-sign-out-alt:before {
   content: '\f2f5';
 }

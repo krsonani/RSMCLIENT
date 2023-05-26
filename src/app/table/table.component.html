@@ -1,8 +1,27 @@
-<div class="table">
+<div class="table" >
     <div class="table-item" *ngFor="let item of tableItems">
-      <div class="table-item__cell">
-        <p>ID: {{ item.id }}</p>
+      <div class="table-item__cell" *ngIf="item.available" (click)="addTableIds(item.tid)">
+        <p>Tid: {{ item.tid }}</p>
+        <p>capacity: {{ item.capacity }}</p>
+      </div>
+      <div class="table-item__cellNa" *ngIf="!item.available">
+        <p>Tid: {{ item.tid }}</p>
+        <p>capacity: {{ item.capacity }}</p>
       </div>
     </div>
   </div>
+  <div>
+    <div class="pricebar-toggle">
+      <div class="toggle-text"> ON </div>
+      <label class="switch">
+        <input type="checkbox" />
+        <span
+          class="slider round"
+          (click)="onToggle()"
+        ></span>
+      </label>
+      <div class="toggle-text"> OFF </div>
+  </div>
+  </div>
+
   

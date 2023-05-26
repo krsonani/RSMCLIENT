@@ -10,9 +10,10 @@ import { AddtableService } from './addtable.service';
 export class AddTableComponent implements OnInit {
 
   addTable:Addtable={
-    quantity:0,
-    capacity:0
+    quantity:'',
+    capacity:'2'
   }
+  msg:string='';
   constructor(private service : AddtableService) { }
 
   ngOnInit(): void {
@@ -23,7 +24,11 @@ export class AddTableComponent implements OnInit {
     this.service.addTable(this.addTable).subscribe({
       next:(res)=>{
           console.log(res);
-          
+          this.msg="Table added succesfully";
+          this.addTable={
+            quantity:'',
+            capacity:'2'
+          }
       },error:(err)=>{
         console.log(err);
         
