@@ -6,6 +6,8 @@ import { AddTableComponent } from './add-table/add-table.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -17,8 +19,16 @@ const routes: Routes = [
     component:CustomerprofileComponent
   },
   {
+    path:"updateprofile",
+    component:CustomerupdateprofileComponent
+  },
+  {
     path:"managerCategoryCrud",
     component:ManagerCategoryCrudComponent
+  },
+  {
+    path:"cart",
+    component:CartComponent
   },
   {
     path:"login",
