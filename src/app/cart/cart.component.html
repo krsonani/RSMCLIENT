@@ -1,0 +1,36 @@
+<div class="cart-container">
+    <h1>Shopping Cart</h1>
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cartItems">
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                    <div class="quantity-container">
+                        <button (click)="decreaseQuantity(item)">-</button>
+                        <input type="text" [(ngModel)]="item.quantity" disabled>
+                        <button (click)="increaseQuantity(item)">+</button>
+                    </div>
+                </td>
+                <td>{{ item.price * item.quantity }}</td>
+                <td>
+                    <button (click)="removeItem()">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="cart-summary">
+        <p>Total Items: </p>
+        <p>Total Price: </p>
+        <button (click)="checkout()">Checkout</button>
+    </div>
+</div>

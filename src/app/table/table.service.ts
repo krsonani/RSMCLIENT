@@ -19,4 +19,14 @@ export class TableService {
       })
     });
   }
+
+  changeStatus(table:any)
+  {
+    return this.http.post<any>(this.url+"/toggleTableStatus",table,{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    })
+  }
 }

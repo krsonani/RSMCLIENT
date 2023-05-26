@@ -13,6 +13,9 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { TableComponent } from './table/table.component';
 import { AddTableComponent } from './add-table/add-table.component';
 import { DaywiseorderComponent } from './daywiseorder/daywiseorder.component';
+import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.component';
+import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { DaywiseorderComponent } from './daywiseorder/daywiseorder.component';
     TableComponent,
     AddTableComponent,
     DaywiseorderComponent,
+    ManagerFoodCrudComponent,
+    CustomerupdateprofileComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
