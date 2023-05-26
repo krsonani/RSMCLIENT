@@ -11,13 +11,8 @@ export class DashbordComponent implements OnInit {
 
   username: string;
   content:string='';
-  parentData: boolean=true;
-  receiveDataFromChild(childData: boolean) {
-    console.log('Data received from child:', childData);
-    this.parentData = childData;
-    console.log(this.parentData);
-    
-  }
+  typeUser:string='';
+  noOfCustomer:number=4;
 
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
@@ -34,6 +29,9 @@ export class DashbordComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.username=res.name;
+        this.typeUser=res.role.type;
+        console.log(this.typeUser);
+        
       },error:(err)=>{
         console.log(err);
       }
