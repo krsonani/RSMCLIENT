@@ -1,0 +1,47 @@
+<div class="food-registration">
+  <h2>Add New Food</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="foodName">Food Name:</label>
+      <input id="foodName" type="text" name="foodName" [(ngModel)]="userForm.fname" required>
+      <div class="error" *ngIf="errors.fname">
+        {{ errors.fname }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="foodImage">Food Image:</label>
+      <input id="foodImage" type="text" name="foodImage" [(ngModel)]="userForm.fimage" required>
+      <div class="error" *ngIf="errors.fimage">
+        {{ errors.fimage }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="foodDescription">Food Description:</label>
+      <textarea id="foodDescription" name="foodDescription" [(ngModel)]="userForm.description" required></textarea>
+      <div class="error" *ngIf="errors.description">
+        {{ errors.description }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="foodPrice">Price:</label>
+      <input id="foodPrice" type="number" name="foodPrice" min="1" [(ngModel)]="userForm.price" required>
+      <div class="error" *ngIf="errors.price">
+        {{ errors.price }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="foodCategory">Category:</label>
+      <select id="foodCategory" name="foodCategory" [(ngModel)]="userForm.categoryId" required>
+        <!-- <option value="">Select Category</option> -->
+        <option value="1">Appetizer</option>
+        <option value="2">Main Course</option>
+        <option value="3">Dessert</option>
+        <option value="4">Beverage</option>
+      </select>
+      <div class="error" *ngIf="errors.cid">
+        {{ errors.cid }}
+      </div>
+    </div>
+    <button type="submit">Add Food</button>
+  </form>
+</div>

@@ -14,13 +14,19 @@ export class ManagerCategoryCrudService {
   addNewCategory(payload : ManagerCategoryCrud){
     console.log(payload);
     
-    return this.http.post(this.url+"/addCategory",payload);
+    return this.http.post<any>(this.url+"/addCategory",payload);
   }
 
   removeCategoryById(id : Number){
     console.log(id);
     console.log(this.url+"/removeCategory/"+id);
     
-    return this.http.delete(this.url+"/removeCategory/"+id);
+    return this.http.delete<any>(this.url+"/removeCategory/"+id);
   }
+
+  getAllCategories(){
+    
+    return this.http.get<any>(this.url+"/getAllCategory");
+  }
+
 }

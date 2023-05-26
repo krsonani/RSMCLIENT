@@ -6,6 +6,7 @@ import { AddTableComponent } from './add-table/add-table.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path:"managerCategoryCrud",
     component:ManagerCategoryCrudComponent
+  },
+  {
+    path:"managerFoodCrud",
+    component:ManagerFoodCrudComponent
   },
   {
     path:"login",

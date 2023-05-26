@@ -52,13 +52,13 @@
 .category-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0 auto; /* Add this line to center align the table */
+  margin: 0 auto;
 }
 
 .category-table th,
 .category-table td {
   padding: 8px;
-  text-align: center; /* Update text alignment to center */
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
