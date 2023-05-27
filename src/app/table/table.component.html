@@ -26,7 +26,7 @@
         <p class="p-0 py-2 my-2">Tid: {{ item.tid}}</p>
         <p class="p-0 py-2 my-2">capacity: {{ item.capacity }}</p>
     </div>
-</div>
+    </div>
 </div>
   <div class="buttonBar" *ngIf="showToggle">  
     <div class="buttonStyle">
@@ -72,5 +72,21 @@
     </div>
   </div>
 </div>
+</div>
+
+<div *ngIf="goForWaitingToManager">
+  <div class="container wel-con">
+    <h1 class="px-5">Hello, Thank you for waiting  </h1>
+    <p class="wel-text">Table will be allocated to you shortly by manager:</p>
+    <div class="form-group">
+    <div class="quote">
+      <p>"Patience is bitter, but its fruit is sweet"</p>
+      <p>"you can check waiting status by clicking below Queue status icon " </p>
+    </div>
+  </div>
+  <button mat-fab class="floating-icon"  (click)="onClickOfFloatingIcon()">
+    <mat-icon>Queue Status</mat-icon>
+  </button>
+</div >
 
   

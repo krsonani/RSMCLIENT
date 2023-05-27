@@ -26,12 +26,11 @@ export class DashbordComponent implements OnInit {
   {
     this.content=content;
     console.log(content);
-    
   }
-  receiveActiveTable(activeTable:string)
+  receiveActiveTable(activeTable:string[])
   {
-    this.activeTable=[...this.activeTable,activeTable]
-    console.log("active table"+activeTable);
+    this.activeTable=activeTable;
+    console.log(activeTable);
   }
 
 

@@ -195,3 +195,73 @@ a:visited{
 }
 
 /* yaha tak */
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin-top: 70px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.wel-con h1 {
+  text-align: center;
+  color: #333;
+}
+
+.wel-con p {
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.wel-con .form-group {
+  margin-bottom: 20px;
+}
+
+.wel-con label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.wel-text
+{
+  font-weight: bold;
+  color: #555;
+  font-size: 18px;
+  text-align: center;
+}
+.wel-con input[type="text"] {
+  width: 100%;
+  padding: 10px;
+}
+
+.wel-con .quote {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.wel-con .quote p {
+  font-style: italic;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #777;
+}
+
+.wel-con .experience {
+  text-align: center;
+}
+
+.wel-con .experience p {
+  font-weight: bold;
+  color: #555;
+}
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Cart } from './cart';
 import { CartService } from './cart.service';
 import { Order } from './order';
@@ -14,6 +14,8 @@ export class CartComponent implements OnInit {
   constructor(private service:CartService) { }
 
   cartItems:any;
+  @Input() activeTable:string[]=[];
+  @Input() userid:string='';
 
   orderItem: Order = {
       userid:2,

@@ -26,11 +26,12 @@ export class TableComponent implements OnInit {
  goForWaitingToManager:boolean=false;
  count:number=0;
  toShowWaitingQueuLogo:boolean=false;
+ booktableIds:string[]=[];
  @Input() typeUser:string='';
  @Input() noOfCustomer:number=0;
  @Input() userid:string='';
  @Output() content=new EventEmitter<string>();;
- @Output() activeTable=new EventEmitter<string>();
+ @Output() activeTable=new EventEmitter<string[]>();
  
   constructor(private service : TableService,private cdr : ChangeDetectorRef) { }
 
@@ -38,11 +39,14 @@ export class TableComponent implements OnInit {
   if(!this.goForWaitingWithManager())
   {
     this.showTable()
+  }else
+  {
+  // add waiting queue cheking function
   }
   }
   sendContent() {
     this.content.emit('foodManue');
-    this.activeTable.emit(this.isActivte)
+    this.activeTable.emit(this.booktableIds)
   }
 
    checkingAvailibilityOfTable(tables:any[])
@@ -211,6 +215,7 @@ export class TableComponent implements OnInit {
   {
     
     console.log(this.isActivte);
+    this.booktableIds = [...this.booktableIds, this.isActivte];
     this.onToggle();
     this.sendContent();
     
