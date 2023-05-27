@@ -13,19 +13,20 @@ export class CartComponent implements OnInit {
 
   constructor(private service:CartService) { }
 
-  cartItems:any;
+  //cartItems:any;
   @Input() activeTable:string[]=[];
   @Input() userid:string='';
+  @Input() cartItems:any[]=[];
 
   orderItem: Order = {
-      userid:2,
-      tableIds:[1],
-      foodids:[1],
-      foodItem:{
-        "1":3
-      },
+      userid:'',
+      tableIds:[],
+      foodids:[],
+      foodItem:new Map<number,number>(),
       totalPrice: 0
   };
+
+  
 
   calculateTotal(){
     // console.log(this.cartItems.length);
@@ -33,23 +34,21 @@ export class CartComponent implements OnInit {
     for (let index = 0; index < this.cartItems.length; index++) {
     
         this.orderItem.totalPrice += (this.cartItems[index].quantity * this.cartItems[index].price);
-        console.log(this.orderItem.totalPrice);
+        // console.log(this.orderItem.totalPrice);
 
     }
-    console.log(this.orderItem.totalPrice);
+    // console.log(this.orderItem.totalPrice);
   }
 
   ngOnInit(): void {   
     console.log("init called");
-    this.cartItems=localStorage.getItem("foodList");
-    this.cartItems=JSON.parse(this.cartItems);
     console.log(this.cartItems);
     
-
+    console.log(this.activeTable);
     //calculate inital Total Price
     this.calculateTotal();
 
-    //get food testing
+    //get food testing   
     
   }
 
@@ -76,6 +75,14 @@ export class CartComponent implements OnInit {
 
 
   placeOrder(){
+    this.orderItem.userid=this.userid;
+    this.orderItem.tableIds=this.activeTable;
+    for(let item of this.cartItems){
+      this.orderItem.foodids.push(item.fid);
+      this.orderItem.foodItem.set(item.fid,item.quantity);
+    }
+    console.log(this.orderItem);
+
     this.service.addOrder(this.orderItem).subscribe({
       next:(res)=>{
         console.log(res);

@@ -17,6 +17,7 @@ export class DashbordComponent implements OnInit {
   activeTable:string[]=[];
   selectFoodItem:any;
   userid:string='';
+  cartItems:any;
 
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
@@ -32,7 +33,10 @@ export class DashbordComponent implements OnInit {
     this.activeTable=activeTable;
     console.log(activeTable);
   }
-
+  initializeCartItems(cartItems:any[]){
+    this.cartItems=cartItems;
+    console.log(this.cartItems);
+  }
 
 
   logout() {

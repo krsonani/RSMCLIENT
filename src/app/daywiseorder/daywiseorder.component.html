@@ -8,7 +8,7 @@
 <body>
   <div *ngIf="roleType=='MANAGER'">
     <h1 style="text-align:center;">Todays Orders</h1>
-    <h1 style="text-align:center;"> DATE :{{ now }}</h1>
+    <h4 style="text-align:center;"> DATE :{{ now }}</h4>
   </div>
   <div *ngIf="roleType=='CUSTOMER'">
     <h1 style="text-align:center;">Your Order History</h1>
@@ -37,7 +37,7 @@
                 </td>
               </span>
             </span>
-            <td>{{todaysOrder.totalPrice}}</td>
+            <td>Rs. {{todaysOrder.totalPrice}}</td>
           </tr>
         </ng-container>
       </tbody>
@@ -76,7 +76,7 @@
                         </td>
                       </span>
                     </span>
-                    <td>{{todaysOrder.totalPrice}}</td>
+                    <td>Rs. {{todaysOrder.totalPrice}}</td>
                   </tr>
                 </ng-container>
 
@@ -84,13 +84,14 @@
               
             </table>
             <p>
-              Total Price : {{ currentOrdertotalPrice }}
+              Total Price : Rs. {{ currentOrdertotalPrice }}
             </p>
 
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- need to set a sweetalert when Pay button is clicked -->
           <button type="button" class="btn btn-primary" (click)="billPayed()" data-dismiss="modal">Pay</button>
         </div>
       </div>
@@ -102,6 +103,11 @@
   <!-- Orders with Bill Already Generated -->
   <div>
     <h4 *ngIf="roleType=='CUSTOMER'">Past Orders</h4> <!--title to be viewed by Customer only-->
+    
+    <h4 *ngIf="roleType=='MANAGER'">
+      Total Transactions : Rs. {{ pastOrdertotalPrice }}
+    </h4>
+    <br>
     <table id="orders">
       <thead>
         <tr>
@@ -121,18 +127,12 @@
                 </td>
               </span>
             </span>
-            <td>{{todaysOrder.totalPrice}}</td>
+            <td>Rs. {{todaysOrder.totalPrice}}</td>
           </tr>
         </ng-container>
       </tbody>
     </table>
-    <h4 *ngIf="roleType=='MANAGER'">
-      Total Transactions : {{ pastOrdertotalPrice }}
-    </h4>
   </div>
-
-  <!-- modal for generated bill -->
-  <!-- Button trigger modal -->
 
 
 </body>
