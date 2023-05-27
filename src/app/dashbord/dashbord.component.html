@@ -1,16 +1,15 @@
 <div class="dashboard-container">
   <div class="sidebar">
     <ul>
-      <li (click)="content=''"><i class="fas fa-history"></i> Welcome</li>
+      <li (click)="content=''"><i class="fas fa-history"></i>Home</li>
       <li (click)="content='order'"><i class="fas fa-history"></i> Order History</li>
       <li (click)="content='cart'"><i class="fas fa-shopping-cart"></i> Cart</li>
       <li (click)="content='profile'"><i class="fas fa-user"></i> Profile</li>
+      <li (click)="content='foodManue'"><i class="fas fa-user"></i> Food Manue</li>
       <li (click)="content='updateProfile'"><i class="fas fa-user"></i> updateProfile</li>
       <li (click)="content='addtable'"><i class="fas fa-user"></i> addtable</li>
-      <li (click)="content='viewtable'"><i class="fas fa-user"></i> viewtable</li>
       <!-- added for view -->
       <li (click)="content='tableHandle'"><i class="fas fa-user"></i> Wating User View</li>
-      <li><a href="#"><i class="fas fa-trash"></i> Delete Account</a></li>
       <li><a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
   </div>
@@ -26,7 +25,7 @@
         <p class="wel-text">Please enter the number of people to proceed:</p>
         <div class="form-group d-flex">
           <input type="text" id="number-of-people" [(ngModel)]="noOfCustomer" class="mx-2">
-          <button (click)="addToQueue()" class="btn btn-secondary mx-2 px-4">submit</button>
+          <button (click)="goToViewTable()" *ngIf="activeTable.length === 0" class="btn btn-secondary mx-2 px-4">submit</button>
         </div>
         <div class="quote">
           <p>"Good food is the foundation of genuine happiness."</p>
@@ -57,12 +56,13 @@
         <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
       </div>
       <div>
-        <app-food-menu *ngIf="content === 'foodManue'"></app-food-menu>
+        <app-food-menu *ngIf="content === 'foodManue'" [activeTable]="activeTable"></app-food-menu>
 
       </div>
     <!-- added for view -->
     <div>
       <app-manager-table-handling *ngIf="content === 'tableHandle'" [typeUser]="typeUser" (content)="receiveContent($event)"></app-manager-table-handling>
     </div>
+    
   </div>
 </div>

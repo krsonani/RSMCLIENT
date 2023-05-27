@@ -41,6 +41,8 @@ export class TableComponent implements OnInit {
     this.showTable()
   }else
   {
+    this.addTableToQueue();
+
   // add waiting queue cheking function
   }
   }
