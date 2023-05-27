@@ -12,13 +12,15 @@ export class DashbordComponent implements OnInit {
   username: string;
   content:string='';
   typeUser:string='';
-  noOfCustomer:number=4;
+  noOfCustomer:number=2;
   surplusUsers:any;
   activeTable:string[]=[];
   selectFoodItem:any;
   userid:string='';
   cartItems:any;
   interval:any = '';
+
+  trial:any ='';
 
 
   constructor(private service : DashbordService,private rout : Router) {
