@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component,  Input, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component,  EventEmitter,  Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { TableService } from './table.service';
 
@@ -23,11 +23,20 @@ export class TableComponent implements OnInit {
  toggle:boolean=true;
  @Input() typeUser:string='';
  @Input() noOfCustomer:number=0;
+ @Output() content=new EventEmitter<string>();;
+ @Output() activeTable=new EventEmitter<string>();
+ 
   constructor(private service : TableService,private cdr : ChangeDetectorRef) { }
 
   ngOnInit(): void {
   this.showTable()
   }
+  sendContent() {
+    this.content.emit('foodManue');
+    this.activeTable.emit(this.isActivte)
+  }
+
+
   showTable()
   {
     this.service.showTable().subscribe({
@@ -165,6 +174,7 @@ export class TableComponent implements OnInit {
     
     console.log(this.isActivte);
     this.onToggle();
+    this.sendContent();
     
   }
 

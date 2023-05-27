@@ -37,28 +37,29 @@
           <p>Over 20 years of dedicated service to our valued customers!</p>
         </div>
       </div>
-    </div>
-    <div>
-      <app-table *ngIf="content === 'viewtable'" [typeUser]="typeUser" [noOfCustomer]="noOfCustomer"></app-table>
-    </div>
-    <div>
-      <app-add-table *ngIf="content === 'addtable'"></app-add-table>
-    </div>
-    <div>
-      <app-customerprofile *ngIf="content === 'profile'"></app-customerprofile>
-    </div>
-    <div>
-      <app-cart *ngIf="content === 'cart'"></app-cart>
-    </div>
-    <div>
-      <app-customerupdateprofile *ngIf="content === 'updateProfile'"></app-customerupdateprofile>
-    </div>
-    <div>
-      <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
-    </div>
-    <div>
-      <app-food-menu *ngIf="content === 'foodManue'"></app-food-menu>
-    </div>
+      </div>
+      <div>
+        <app-table *ngIf="content === 'viewtable'" [typeUser]="typeUser" [noOfCustomer]="noOfCustomer" (content)="receiveContent($event)" (activeTable)="receiveActiveTable($event)" ></app-table>
+      </div>
+      <div>
+        <app-add-table *ngIf="content === 'addtable'"></app-add-table>
+      </div>
+      <div>
+        <app-customerprofile *ngIf="content === 'profile'"></app-customerprofile>
+      </div>
+      <div>
+        <app-cart *ngIf="content === 'cart'" ></app-cart>
+      </div>
+      <div>
+        <app-customerupdateprofile *ngIf="content === 'updateProfile'" ></app-customerupdateprofile>
+      </div>
+      <div>
+        <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
+      </div>
+      <div>
+        <app-food-menu *ngIf="content === 'foodManue'"></app-food-menu>
+
+      </div>
     <!-- added for view -->
     <div>
       <app-manager-table-handling *ngIf="content === 'tableHandle'"></app-manager-table-handling>

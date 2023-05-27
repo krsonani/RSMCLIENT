@@ -15,10 +15,26 @@ export class DashbordComponent implements OnInit {
   typeUser:string='';
   noOfCustomer:number=4;
   surplusUsers:any;
+  activeTable:string[]=[];
+  selectFoodItem:any;
 
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
   }
+
+  receiveContent(content:string)
+  {
+    this.content=content;
+    console.log(content);
+    
+  }
+  receiveActiveTable(activeTable:string)
+  {
+    this.activeTable=[...this.activeTable,activeTable]
+    console.log("active table"+activeTable);
+  }
+
+
 
   logout() {
     sessionStorage.removeItem("jwtToken");

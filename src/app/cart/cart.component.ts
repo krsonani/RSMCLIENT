@@ -13,15 +13,7 @@ export class CartComponent implements OnInit {
 
   constructor(private service:CartService) { }
 
-  cartItems:Cart[] = [{
-    name: 'Cheese Ball',
-    price:20,
-    quantity:1
-  },{
-    name: 'Chrispy Chicken',
-    price:30,
-    quantity:1
-  }]
+  cartItems:any;
 
   orderItem: Order = {
       userid:2,
@@ -47,7 +39,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {   
     console.log("init called");
+    this.cartItems=localStorage.getItem("foodList");
+    this.cartItems=JSON.parse(this.cartItems);
+    console.log(this.cartItems);
     
+
     //calculate inital Total Price
     this.calculateTotal();
 
@@ -73,6 +69,7 @@ export class CartComponent implements OnInit {
   removeItem(item:Cart){
     item.quantity=0;
     this.calculateTotal();
+    localStorage.setItem("foodList",JSON.stringify(this.cartItems))
   }
 
 
@@ -80,6 +77,7 @@ export class CartComponent implements OnInit {
     this.service.addOrder(this.orderItem).subscribe({
       next:(res)=>{
         console.log(res);
+        localStorage.clear();
       },error:(error)=>{
         console.log(error);
       }
