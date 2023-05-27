@@ -18,6 +18,8 @@ import { CustomerupdateprofileComponent } from './customerupdateprofile/customer
 import { CartComponent } from './cart/cart.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ManagerTableHandlingComponent } from './manager-table-handling/manager-table-handling.component';
+import { ManagerAssignTableComponent } from './manager-assign-table/manager-assign-table.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     CustomerupdateprofileComponent,
     CartComponent,
     FoodMenuComponent,
+    ManagerTableHandlingComponent,
+    ManagerAssignTableComponent,
   ],
   imports: [
     BrowserModule,

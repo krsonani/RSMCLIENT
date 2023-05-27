@@ -11,6 +11,7 @@ import { ManagerFoodCrudComponent } from './manager-food-crud/manager-food-crud.
 import { CustomerupdateprofileComponent } from './customerupdateprofile/customerupdateprofile.component';
 import { CartComponent } from './cart/cart.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
+import { ManagerTableHandlingComponent } from './manager-table-handling/manager-table-handling.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path:"foodMenu",
     component:FoodMenuComponent 
+  },
+  {
+    path:"tableHandle",
+    component:ManagerTableHandlingComponent 
   }
 ];
 
