@@ -57,8 +57,7 @@
         <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
       </div>
       <div>
-        <app-food-menu *ngIf="content === 'foodManue'"></app-food-menu>
-
+        <app-food-menu *ngIf="content === 'foodManue'" [typeUser]="typeUser"></app-food-menu>
       </div>
     <!-- added for view -->
     <div>

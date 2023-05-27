@@ -54,3 +54,15 @@
 .card .card-body .card-text{
   margin: 8px;
 }
+
+/* new changes */
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.edit-button,
+.toggle-button {
+  margin-left: 5px;
+}
