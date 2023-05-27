@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cart } from './cart';
 import { CartService } from './cart.service';
 import { Order } from './order';
@@ -17,12 +17,13 @@ export class CartComponent implements OnInit {
   @Input() activeTable:string[]=[];
   @Input() userid:string='';
   @Input() cartItems:any[]=[];
+  @Output() outputCartItems=new EventEmitter();
 
   orderItem: Order = {
       userid:'',
       tableIds:[],
       foodids:[],
-      foodItem:new Map<number,number>(),
+      foodItem:{},
       totalPrice: 0
   };
 
@@ -43,11 +44,11 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {   
     console.log("init called");
     console.log(this.cartItems);
-    
+    this.outputCartItems.emit(this.cartItems);
     console.log(this.activeTable);
     //calculate inital Total Price
     this.calculateTotal();
-
+    
     //get food testing   
     
   }
@@ -58,19 +59,23 @@ export class CartComponent implements OnInit {
       
     item.quantity-=1;
     this.calculateTotal();
+    this.outputCartItems.emit(this.cartItems);
     
   }
   
   increaseQuantity(item:Cart){
     item.quantity+=1;
     this.calculateTotal();
+    this.outputCartItems.emit(this.cartItems);
   }
 
   
   removeItem(item:Cart){
     item.quantity=0;
     this.calculateTotal();
-    localStorage.setItem("foodList",JSON.stringify(this.cartItems))
+    this.cartItems.filter((cartItem)=>{ !item == cartItem })
+    console.log(this.cartItems);
+    this.outputCartItems.emit(this.cartItems);
   }
 
 
@@ -79,14 +84,16 @@ export class CartComponent implements OnInit {
     this.orderItem.tableIds=this.activeTable;
     for(let item of this.cartItems){
       this.orderItem.foodids.push(item.fid);
-      this.orderItem.foodItem.set(item.fid,item.quantity);
+      this.orderItem.foodItem[item.fid]=item.quantity;
     }
     console.log(this.orderItem);
 
+    //place the order
     this.service.addOrder(this.orderItem).subscribe({
       next:(res)=>{
         console.log(res);
-        localStorage.clear();
+        this.cartItems=[];
+        this.calculateTotal();
       },error:(error)=>{
         console.log(error);
       }
