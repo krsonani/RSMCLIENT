@@ -17,6 +17,7 @@ export class FoodMenuComponent implements OnInit {
 
   foodlist: any;
   
+  @Input() typeUser:string = '';
 
   addToCartFoods:any[] = []; 
 

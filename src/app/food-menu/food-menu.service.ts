@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,7 +12,12 @@ export class FoodMenuService {
 
   getAllFood(){
     
-    return this.http.get<any>(this.url+"/getAllFood");
+    return this.http.get<any>(this.url+"/getAllFood",{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    });
   }
 
 }

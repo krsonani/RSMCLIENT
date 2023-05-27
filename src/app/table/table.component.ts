@@ -223,24 +223,29 @@ export class TableComponent implements OnInit {
     
   }
 
-
   //ashutosh ke changes
 
   showWaitingCount : any;
   displayMsg : string = '';
   interval : any;
+  isTableAllocation = false;
 
   onClickOfFloatingIcon(){
     Swal.fire({
       title: 'Waiting Queue',
-      html: this.displayMsg
+      html: this.displayMsg,
+      willClose: ()=>{
+        if(this.isTableAllocation){
+          this.sendContent();
+        }
+      }
     });
   }
 
   checkWaitingStatus(id:string){
 
-    setInterval(()=>{
-      this.interval = this.service.checkQueueForVacancy(id).subscribe({
+    this.interval = setInterval(()=>{
+      this.service.checkQueueForVacancy(id).subscribe({
         next:(res)=>{
           console.log(res);
 
@@ -256,11 +261,14 @@ export class TableComponent implements OnInit {
             let temp = Object.values(res);
             let temp2 : any[] = temp;
             this.showWaitingCount = temp2[0];
-            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`;   
+            this.booktableIds = this.showWaitingCount;
+            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`;  
+            this.isTableAllocation = true; 
           }
         },
         error:(err)=>{
-  
+          console.log(err);
+          
         }
       });
     },500)
