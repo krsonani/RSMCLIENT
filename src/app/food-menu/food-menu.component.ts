@@ -10,6 +10,7 @@ import { FoodMenuService } from './food-menu.service';
 })
 export class FoodMenuComponent implements OnInit {
 
+  @Input() activeTable:string[]=[];
   constructor(private service : FoodMenuService, private mccs : ManagerCategoryCrudService) { }
 
   categories: any;

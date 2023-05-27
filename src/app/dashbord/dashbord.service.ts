@@ -7,11 +7,11 @@ import { Injectable } from '@angular/core';
 export class DashbordService {
 
   url:string = "http://localhost:8081"
-  constructor(private htttp:HttpClient) { }
+  constructor(private http:HttpClient) { }
 
   getCustomer()
   {
-    return this.htttp.get<any>(this.url+"/getSession",{
+    return this.http.get<any>(this.url+"/getSession",{
       headers:new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${sessionStorage.getItem("jwtToken")}`
@@ -20,7 +20,17 @@ export class DashbordService {
   }
   addtoQueue(id:string,qty:number)
   {
-    return this.htttp.get<any>(this.url+"/addToWaitingListForAnySittingTable/"+id+"/"+qty,{
+    return this.http.get<any>(this.url+"/addToWaitingListForAnySittingTable/"+id+"/"+qty,{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    })
+  }
+
+  validateJwtToken()
+  {
+    return this.http.get<any>(this.url+"/api/verifytoken",{
       headers:new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${sessionStorage.getItem("jwtToken")}`
