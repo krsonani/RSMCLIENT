@@ -30,7 +30,7 @@ export class TableComponent implements OnInit {
  @Input() typeUser:string='';
  @Input() noOfCustomer:number=0;
  @Input() userid:string='';
- @Output() content=new EventEmitter<string>();;
+ @Output() content=new EventEmitter<string>();
  @Output() activeTable=new EventEmitter<string[]>();
  
   constructor(private service : TableService,private cdr : ChangeDetectorRef) { }
