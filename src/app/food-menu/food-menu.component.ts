@@ -1,5 +1,5 @@
 import { outputAst } from '@angular/compiler';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ManagerCategoryCrudService } from '../manager-category-crud/manager-category-crud.service';
 import { FoodMenuService } from './food-menu.service';
 
@@ -10,12 +10,14 @@ import { FoodMenuService } from './food-menu.service';
 })
 export class FoodMenuComponent implements OnInit {
 
+  @Input() activeTable:string[]=[];
   constructor(private service : FoodMenuService, private mccs : ManagerCategoryCrudService) { }
 
   categories: any;
 
   foodlist: any;
   
+  @Input() typeUser:string = '';
 
   addToCartFoods:any[] = []; 
   @Output() cartItems=new EventEmitter();

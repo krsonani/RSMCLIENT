@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ManagerFoodCrud } from './manager-food-crud';
 
@@ -14,7 +14,12 @@ export class ManagerFoodCrudService {
   addNewFood(payload : ManagerFoodCrud){
     console.log(payload);
 
-    return this.http.post<any>(this.url+"/addFood",payload);
+    return this.http.post<any>(this.url+"/addFood",payload,{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    });
   }
 
 }

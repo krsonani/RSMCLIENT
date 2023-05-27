@@ -42,10 +42,10 @@
         <div class="toggle-text"> OFF </div>
     </div>
     <div *ngIf="typeUser==='MANAGER'">
-      <button class="btn btn-danger" (click)="tabelDelete()" >Delete</button>
+      <button class="btn btn-danger my-3" (click)="tabelDelete()" >Delete</button>
     </div>
     <div *ngIf="typeUser==='CUSTOMER' && !goForWaiting">
-      <button class="btn btn-success" (click)="bookTable()">bookTable</button>
+      <button class="btn btn-success my-3" (click)="bookTable()">bookTable</button>
     </div>
 
     </div>
@@ -68,7 +68,7 @@
 <div class="buttonBar" *ngIf="typeUser === 'CUSTOMER' && goForWaiting && !toShowWaitingQueuLogo ">
   <div class="buttonStyle">
     <div>
-      <button class="btn btn-warning" (click)="addTableToQueue()">WaitingQueue</button>
+      <button class="btn btn-secondary my-3" (click)="addTableToQueue()">WaitingQueue</button>
     </div>
   </div>
 </div>
@@ -85,7 +85,7 @@
     </div>
   </div>
   <button mat-fab class="floating-icon"  (click)="onClickOfFloatingIcon()">
-    <mat-icon>Queue Status</mat-icon>
+    <mat-icon class="waitQueue">Queue Status</mat-icon>
   </button>
 </div >
 

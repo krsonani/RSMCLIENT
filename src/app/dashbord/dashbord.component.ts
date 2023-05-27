@@ -18,6 +18,8 @@ export class DashbordComponent implements OnInit {
   selectFoodItem:any;
   userid:string='';
   cartItems:any;
+  interval:any = '';
+
 
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
@@ -46,6 +48,10 @@ export class DashbordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.interval = setInterval(()=>{
+      this.validateJwtToken()
+    },20000)
     this.service.getCustomer().subscribe({
       next:(res)=>{
         console.log(res);
@@ -60,19 +66,22 @@ export class DashbordComponent implements OnInit {
     })
   }
 
-  addToQueue()
+  goToViewTable()
   {
     this.content='viewtable';
-    this.service.addtoQueue(this.userid,this.noOfCustomer).subscribe({
-      next:(res)=>{
-        console.log(res);
-      },
-      error:(err)=>{
-        console.log(err);
-        
+  }
+
+  validateJwtToken()
+  {
+    this.service.validateJwtToken().subscribe({
+      next:(res)=>{console.log(res);
+      },error:(err)=>{
+        clearInterval(this.interval);
+        this.logout();console.log(err);
       }
     })
-  }
+
+    }
 
   
 

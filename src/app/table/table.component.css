@@ -16,6 +16,7 @@
     padding: 10px;
     border: 1px solid black;
     background-color: #fbfbfb;
+    border-radius: 10px;
   }
   
   .table-item__cellNa
@@ -24,12 +25,13 @@
     padding: 10px;
     border: 1px solid black;
     background-color: #c6c6c6;
+    border-radius: 10px;
 
   }
 
   .table-itemAvil :hover {
-    background-color: rgb(64, 239, 64);
-    border: 1 px solid rgb(64, 239, 64);
+    background-color: rgb(129, 129, 129);
+    border: 1 px solid rgb(129, 129, 129);
   }
 
 
@@ -150,9 +152,9 @@ a:visited{
 }
 
 .highlight {
-  background-color: rgb(64, 239, 64);
-  border: 1 px solid rgb(64, 239, 64);
-  box-shadow: .5px .5px 5px rgb(64, 239, 64) ;
+  background-color: rgb(125, 125, 125);
+  border: 1 px solid rgb(125, 125, 125);
+  box-shadow: .5px .5px 5px rgb(125, 125, 125) ;
 }
 
 .naHighlight
@@ -264,5 +266,6 @@ body {
   font-weight: bold;
   color: #555;
 }
+
 
 
