@@ -216,32 +216,55 @@ export class TableComponent implements OnInit {
     
   }
 
+
   //ashutosh ke changes
+
+  showWaitingCount : any;
+  displayMsg : string = '';
+  interval : any;
+
   onClickOfFloatingIcon(){
-    console.log("inside calling");
-    let timerInterval : any;
-    let count = 0;
     Swal.fire({
       title: 'Waiting Queue',
-      html: 'Your waiting number <b></b> ',
-      
-      didOpen:()=>{
-
-        const a : any = Swal.getHtmlContainer(); //.querySelector('b');
-        const c : any = a.querySelector('b');
-        
-        timerInterval = setInterval(() => {
-        //c.textContent = 'AAAHHH!!!';
-        c.textContent = count++;
-        console.log(c.textContent);
-        
-        }, 2000)
-      },
-      willClose: () => {
-        clearInterval(timerInterval)
-      }
+      html: this.displayMsg
     });
   }
+
+  checkWaitingStatus(id:string){
+
+    setInterval(()=>{
+      this.interval = this.service.checkQueueForVacancy(id).subscribe({
+        next:(res)=>{
+          console.log(res);
+
+          if(Object.keys(res)[0] === 'Table not found'){
+            let temp = Object.values(res);
+            let temp2 : any[] = temp;
+            this.showWaitingCount = temp2[0];
+            this.displayMsg = `Your waiting number ${ (this.showWaitingCount == undefined) ? " " : this.showWaitingCount }`;  
+            console.log(this.displayMsg);
+          }
+          else{
+            clearInterval(this.interval);
+            let temp = Object.values(res);
+            let temp2 : any[] = temp;
+            this.showWaitingCount = temp2[0];
+            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`;   
+          }
+        },
+        error:(err)=>{
+  
+        }
+      });
+    },500)
+  }
+
+//Table not found: [3]
+
+  clearCheckingWaitingStatus(){
+    clearInterval(this.interval);
+  }
+
   // yaha tak hai
   addTableToQueue()
   {
@@ -249,6 +272,7 @@ export class TableComponent implements OnInit {
     this.service.addtoQueue(this.userid,this.noOfCustomer).subscribe({
       next:(res)=>{
         console.log(res);
+        this.checkWaitingStatus(this.userid);
       },
       error:(err)=>{
         console.log(err);
