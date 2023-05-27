@@ -25,5 +25,8 @@ url = "http://localhost:8081"
     return this.http.get<any>(this.url+"/verifyNewUser/"+email)
   }
 
-
+  addManager(payload:Register)
+  {
+    return this.http.post<any>(this.url+"/addManager",payload);
+  }
 }

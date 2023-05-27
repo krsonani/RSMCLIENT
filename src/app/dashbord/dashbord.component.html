@@ -10,6 +10,7 @@
       <li (click)="content='viewtable'"><i class="fas fa-user"></i> viewtable</li>
       <!-- added for view -->
       <li (click)="content='tableHandle'"><i class="fas fa-user"></i> Wating User View</li>
+      <li (click)="content='addManager'"><i class="fas fa-user"></i> Add Manager</li>
       <li><a href="#"><i class="fas fa-trash"></i> Delete Account</a></li>
       <li><a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
@@ -63,6 +64,10 @@
     <!-- added for view -->
     <div>
       <app-manager-table-handling *ngIf="content === 'tableHandle'" [typeUser]="typeUser" (content)="receiveContent($event)"></app-manager-table-handling>
+    </div>
+
+    <div>
+      <app-register *ngIf="content === 'addManager' "   [typeUser]="typeUser"></app-register>
     </div>
   </div>
 </div>
