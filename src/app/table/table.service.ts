@@ -39,4 +39,16 @@ export class TableService {
       })
     })
   }
+
+  addtoQueue(id:string,qty:number)
+  {
+    return this.http.get<any>(this.url+"/addToWaitingListForAnySittingTable/"+id+"/"+qty,{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    })
+  }
 }
+
+

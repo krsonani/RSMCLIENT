@@ -39,7 +39,7 @@
       </div>
       </div>
       <div>
-        <app-table *ngIf="content === 'viewtable'" [typeUser]="typeUser" [noOfCustomer]="noOfCustomer" (content)="receiveContent($event)" (activeTable)="receiveActiveTable($event)" ></app-table>
+        <app-table *ngIf="content === 'viewtable'" [typeUser]="typeUser" [noOfCustomer]="noOfCustomer" (content)="receiveContent($event)" (activeTable)="receiveActiveTable($event)" [userid]="userid" ></app-table>
       </div>
       <div>
         <app-add-table *ngIf="content === 'addtable'"></app-add-table>

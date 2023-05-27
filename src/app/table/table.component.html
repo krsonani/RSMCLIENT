@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!goForWaitingToManager">
 <div class="table" >
     <div class="table-item" *ngFor="let item of tableItems"  [ngClass]="{'table-itemAvil':(item.available && (typeUser === 'CUSTOMER' && item.capacity >= noOfCustomer)) || (item.available &&  typeUser === 'MANAGER') }">
       <div class="table-item__cell" *ngIf="item.available && typeUser==='MANAGER' "  (click)="addTableIds(item.tid)" [ngClass]="{ 'highlight': isHighlighted && isActivte===item.tid}">
@@ -39,9 +39,10 @@
     <div *ngIf="typeUser==='MANAGER'">
       <button class="btn btn-danger" (click)="tabelDelete()" >Delete</button>
     </div>
-    <div *ngIf="typeUser==='CUSTOMER'">
+    <div *ngIf="typeUser==='CUSTOMER' && !goForWaiting">
       <button class="btn btn-success" (click)="bookTable()">bookTable</button>
     </div>
+
     </div>
   </div>
   <div class="buttonBar" *ngIf="showNaToggle && typeUser ==='MANAGER'">
@@ -57,6 +58,12 @@
         </label>
         <div class="toggle-text"> ON </div>
     </div>
+    </div>
+  </div>
+<div class="buttonBar" *ngIf="typeUser === 'CUSTOMER' && goForWaiting ">
+  <div class="buttonStyle">
+    <div>
+      <button class="btn btn-warning" (click)="addTableToQueue()">WaitingQueue</button>
     </div>
   </div>
 </div>

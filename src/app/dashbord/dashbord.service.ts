@@ -18,7 +18,7 @@ export class DashbordService {
       })
     })
   }
-  addtoQueue(id:number,qty:number)
+  addtoQueue(id:string,qty:number)
   {
     return this.htttp.get<any>(this.url+"/addToWaitingListForAnySittingTable/"+id+"/"+qty,{
       headers:new HttpHeaders({
