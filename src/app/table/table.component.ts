@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component,  EventEmitter,  Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { TableService } from './table.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table',
@@ -178,4 +179,31 @@ export class TableComponent implements OnInit {
     
   }
 
+  //ashutosh ke changes
+  onClickOfFloatingIcon(){
+    console.log("inside calling");
+    let timerInterval : any;
+    let count = 0;
+    Swal.fire({
+      title: 'Waiting Queue',
+      html: 'Your waiting number <b></b> ',
+      
+      didOpen:()=>{
+
+        const a : any = Swal.getHtmlContainer(); //.querySelector('b');
+        const c : any = a.querySelector('b');
+        
+        timerInterval = setInterval(() => {
+        //c.textContent = 'AAAHHH!!!';
+        c.textContent = count++;
+        console.log(c.textContent);
+        
+        }, 2000)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    });
+  }
+  // yaha tak hai
 }

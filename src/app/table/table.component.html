@@ -1,5 +1,10 @@
 <div>
 <div class="table" >
+  <!-- Ashutosh ke changes -->
+  <button mat-fab class="floating-icon" (click)="onClickOfFloatingIcon()">
+    <mat-icon>Queue Status</mat-icon>
+  </button>
+  <!-- Yaha tak hai -->
     <div class="table-item" *ngFor="let item of tableItems"  [ngClass]="{'table-itemAvil':(item.available && (typeUser === 'CUSTOMER' && item.capacity >= noOfCustomer)) || (item.available &&  typeUser === 'MANAGER') }">
       <div class="table-item__cell" *ngIf="item.available && typeUser==='MANAGER' "  (click)="addTableIds(item.tid)" [ngClass]="{ 'highlight': isHighlighted && isActivte===item.tid}">
         <p class="p-0 py-2 my-2">Tid: {{item.tid}}</p>
