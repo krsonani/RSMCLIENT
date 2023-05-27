@@ -125,6 +125,7 @@ input:checked + .slider:before {
   border-top: 1px solid rgb(214, 211, 211);
   /* position: fixed; */
   bottom: 0;
+  width: -webkit-fill-available;
   position: absolute;
   background-color: #333;
 
