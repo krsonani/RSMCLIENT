@@ -12,7 +12,7 @@ export class DashbordComponent implements OnInit {
   username: string;
   content:string='';
   typeUser:string='';
-  noOfCustomer:number=4;
+  noOfCustomer:number=2;
   surplusUsers:any;
   activeTable:string[]=[];
   selectFoodItem:any;
@@ -20,7 +20,6 @@ export class DashbordComponent implements OnInit {
   cartItems:any[]=[];
   interval:any = '';
   outputCartItems:any[]=[];
-
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
   }

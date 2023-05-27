@@ -58,7 +58,6 @@
         <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
       </div>
       <div>
-
         <app-food-menu *ngIf="content === 'foodManue'" [activeTable]="activeTable" [typeUser]="typeUser" (cartItems)="initializeCartItems($event)" [outputCartItems]="outputCartItems"></app-food-menu>
       </div>
     <!-- added for view -->
