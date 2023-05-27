@@ -43,8 +43,9 @@ export class FoodMenuComponent implements OnInit {
   addToCart(food : any){
     console.log(food);
     food.addedToCart = !food.addedToCart;
-
+    food.quantity=1;
     this.addToCartFoods = [...this.addToCartFoods, food];
+    localStorage.setItem("foodList",JSON.stringify(this.addToCartFoods))
     console.log(this.addToCartFoods);
   }
 
@@ -52,6 +53,7 @@ export class FoodMenuComponent implements OnInit {
     food.addedToCart = !food.addedToCart;
 
     this.addToCartFoods = this.addToCartFoods.filter(foodObj => food.fid != foodObj.fid);
+    localStorage.setItem("foodList",JSON.stringify(this.addToCartFoods))
     console.log(this.addToCartFoods);
   }
 
