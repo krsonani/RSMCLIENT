@@ -25,6 +25,7 @@ export class TableComponent implements OnInit {
  goForWaiting:boolean=false;
  goForWaitingToManager:boolean=false;
  count:number=0;
+ toShowWaitingQueuLogo:boolean=false;
  @Input() typeUser:string='';
  @Input() noOfCustomer:number=0;
  @Input() userid:string='';
@@ -244,6 +245,7 @@ export class TableComponent implements OnInit {
   // yaha tak hai
   addTableToQueue()
   {
+    this.toShowWaitingQueuLogo=true;
     this.service.addtoQueue(this.userid,this.noOfCustomer).subscribe({
       next:(res)=>{
         console.log(res);
