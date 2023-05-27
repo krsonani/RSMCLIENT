@@ -117,11 +117,11 @@ input:checked + .slider:before {
 }
 .buttonBar
 {
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   height: 70px;
-  width: 1150px;
+  /* width: 1150px; */
   border-top: 1px solid rgb(214, 211, 211);
   /* position: fixed; */
   bottom: 0;

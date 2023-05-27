@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ManagerCategoryCrudService } from '../manager-category-crud/manager-category-crud.service';
 import { FoodMenuService } from './food-menu.service';
 
@@ -14,8 +15,9 @@ export class FoodMenuComponent implements OnInit {
   categories: any;
 
   foodlist: any;
-
   
+
+  addToCartFoods:any[] = []; 
 
   ngOnInit(): void {
     this.mccs.getAllCategories().subscribe({
@@ -41,6 +43,18 @@ export class FoodMenuComponent implements OnInit {
   addToCart(food : any){
     console.log(food);
     food.addedToCart = !food.addedToCart;
+    food.quantity=1;
+    this.addToCartFoods = [...this.addToCartFoods, food];
+    localStorage.setItem("foodList",JSON.stringify(this.addToCartFoods))
+    console.log(this.addToCartFoods);
+  }
+
+  removeFromCart(food : any){
+    food.addedToCart = !food.addedToCart;
+
+    this.addToCartFoods = this.addToCartFoods.filter(foodObj => food.fid != foodObj.fid);
+    localStorage.setItem("foodList",JSON.stringify(this.addToCartFoods))
+    console.log(this.addToCartFoods);
   }
 
   compareCategoryName(c1: string, c2:string): boolean{
