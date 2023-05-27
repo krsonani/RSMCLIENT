@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -10,10 +10,38 @@ export class DaywiseorderService {
   constructor(private http :HttpClient) { }
   showDayWiseOrders()
   {
-      return this.http.get(this.url+"/getOrderByCurrentDate");
+      return this.http.get(this.url+"/getOrderByCurrentDate",{
+        headers:new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `${sessionStorage.getItem("jwtToken")}`
+        })
+      });
   }
+  
   getOrderByUserId(id:String){
+      return this.http.get(this.url+"/getOrderByUserId/"+id,{
+        headers:new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `${sessionStorage.getItem("jwtToken")}`
+        })
+      });
+  }
+  
+  getCustomer() {
+    return this.http.get<any>(this.url+"/getSession",{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    })
+  }
 
-      return this.http.get(this.url+"/getOrderByUserId/"+id);
+  updateBillGenerationStatus(userId:string){
+    return this.http.get(this.url+"/updateBillStatus/"+userId,{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    });
   }
 }
