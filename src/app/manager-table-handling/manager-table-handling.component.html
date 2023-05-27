@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-hover" >
   <thead>
     <tr>
       <th scope="col">SNo.</th>
@@ -16,8 +16,25 @@
       <td>{{user.key.email}}</td>
       <td>{{user.key.phoneNum}}</td>
       <td>{{user.value}}</td>
-      <td><input type="button" value="Assign Tables"> </td>
+      <td><input type="button"  value="Assign Tables" (click)="showTableContent(user.key.uids)"> </td>
     </tr>
-
   </tbody>
 </table>
+
+<div>
+  <div class="table" *ngIf="tableContent">
+      <div class="table-item" *ngFor="let item of tableItems" >
+        <div class="table-item__cellNa" (click)="addNaTableIds(item.tid)" [ngClass]="{ 'naHighlight':checkForHighlightd(item.tid)}"  >
+          <p class="p-0 py-2 my-2">Tid: {{ item.tid}}</p>
+          <p class="p-0 py-2 my-2">capacity: {{ item.capacity }}</p>
+        </div>
+  </div>
+  </div>
+</div>
+<div class="buttonBar" *ngIf="showNaToggle ">
+  <div class="buttonStyle">
+      <button class="btn btn-success" (click)="assignTables()">Assign</button>
+  </div>
+</div>
+  
+    

@@ -62,7 +62,7 @@
       </div>
     <!-- added for view -->
     <div>
-      <app-manager-table-handling *ngIf="content === 'tableHandle'"></app-manager-table-handling>
+      <app-manager-table-handling *ngIf="content === 'tableHandle'" [typeUser]="typeUser" (content)="receiveContent($event)"></app-manager-table-handling>
     </div>
   </div>
 </div>

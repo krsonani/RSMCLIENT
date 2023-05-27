@@ -24,4 +24,23 @@ export class ManagerTableHandlerService {
       })
     })
   }
+  showTable()
+  {
+    return this.http.get<any>(this.url+"/getAllTables",{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    });
+  }
+  assignTables(assignedTables:string[],uid:string)
+  {
+    return this.http.post<any>(this.url+"/handleTable/"+uid,assignedTables,{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    });
+  }
+
 }
