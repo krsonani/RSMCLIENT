@@ -22,20 +22,55 @@ export class TableComponent implements OnInit {
  previousActivte:string='';
  previousNa:string='';
  toggle:boolean=true;
+ goForWaiting:boolean=false;
+ goForWaitingToManager:boolean=false;
+ count:number=0;
  @Input() typeUser:string='';
  @Input() noOfCustomer:number=0;
+ @Input() userid:string='';
  @Output() content=new EventEmitter<string>();;
  @Output() activeTable=new EventEmitter<string>();
  
   constructor(private service : TableService,private cdr : ChangeDetectorRef) { }
 
   ngOnInit(): void {
-  this.showTable()
+  if(!this.goForWaitingWithManager())
+  {
+    this.showTable()
+  }
   }
   sendContent() {
     this.content.emit('foodManue');
     this.activeTable.emit(this.isActivte)
   }
+
+   checkingAvailibilityOfTable(tables:any[])
+   {
+     tables.map((item)=>{
+        if(item.capacity>=this.noOfCustomer && item.available ===true)
+             {
+             this,this.count= this.count+1;
+             }
+    })
+    if(this.count>0)
+    this.goForWaiting=false;
+    else
+    this.goForWaiting=true;
+
+    console.log(this.goForWaiting);
+    
+   }
+
+   goForWaitingWithManager():any
+   {
+    if(this.noOfCustomer>8)
+    {
+      this.goForWaitingToManager=true;
+      return  true;
+    }
+    else false;
+    
+   }
 
 
   showTable()
@@ -44,6 +79,7 @@ export class TableComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.tableItems=res;
+        this.checkingAvailibilityOfTable(res);
       },
       error:(err)=>{
         console.log(err);
@@ -206,4 +242,19 @@ export class TableComponent implements OnInit {
     });
   }
   // yaha tak hai
+  addTableToQueue()
+  {
+    this.service.addtoQueue(this.userid,this.noOfCustomer).subscribe({
+      next:(res)=>{
+        console.log(res);
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+  }
+
+  
+
 }
