@@ -20,6 +20,7 @@ export class FoodMenuComponent implements OnInit {
   @Input() typeUser:string = '';
 
   addToCartFoods:any[] = []; 
+  @Output() cartItems=new EventEmitter();
 
   ngOnInit(): void {
     this.mccs.getAllCategories().subscribe({
@@ -47,7 +48,7 @@ export class FoodMenuComponent implements OnInit {
     food.addedToCart = !food.addedToCart;
     food.quantity=1;
     this.addToCartFoods = [...this.addToCartFoods, food];
-    localStorage.setItem("foodList",JSON.stringify(this.addToCartFoods))
+    this.cartItems.emit(this.addToCartFoods);
     console.log(this.addToCartFoods);
   }
 
@@ -55,6 +56,9 @@ export class FoodMenuComponent implements OnInit {
     food.addedToCart = !food.addedToCart;
 
     this.addToCartFoods = this.addToCartFoods.filter(foodObj => food.fid != foodObj.fid);
+
+    //need to update this
+    this.cartItems.emit(this.addToCartFoods);
     localStorage.setItem("foodList",JSON.stringify(this.addToCartFoods))
     console.log(this.addToCartFoods);
   }

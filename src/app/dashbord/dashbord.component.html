@@ -49,7 +49,7 @@
         <app-customerprofile *ngIf="content === 'profile'"></app-customerprofile>
       </div>
       <div>
-        <app-cart *ngIf="content === 'cart'" [activeTable]="activeTable" [userid]="userid"  ></app-cart>
+        <app-cart *ngIf="content === 'cart'" [activeTable]="activeTable" [userid]="userid"  [cartItems]="cartItems"></app-cart>
       </div>
       <div>
         <app-customerupdateprofile *ngIf="content === 'updateProfile'" ></app-customerupdateprofile>
@@ -58,7 +58,8 @@
         <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
       </div>
       <div>
-        <app-food-menu *ngIf="content === 'foodManue'" [activeTable]="activeTable" [typeUser]="typeUser"></app-food-menu>
+
+        <app-food-menu *ngIf="content === 'foodManue'" [activeTable]="activeTable" [typeUser]="typeUser" (cartItems)="initializeCartItems($event)></app-food-menu>
       </div>
     <!-- added for view -->
     <div>
