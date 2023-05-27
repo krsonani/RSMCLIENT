@@ -2,6 +2,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+//ashutosh ke changes
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+//yaha tak
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -44,8 +50,12 @@ import { ManagerAssignTableComponent } from './manager-assign-table/manager-assi
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NoopAnimationsModule
-    
+    NoopAnimationsModule,
+    //ashutosh ke changes
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule
+    //yaha tak
   ],
   providers: [],
   bootstrap: [AppComponent]
