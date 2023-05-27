@@ -1,7 +1,7 @@
 <div *ngIf="!goForWaitingToManager">
 <div class="table" >
   <!-- Ashutosh ke changes -->
-  <button mat-fab class="floating-icon" (click)="onClickOfFloatingIcon()">
+  <button mat-fab class="floating-icon" *ngIf="toShowWaitingQueuLogo" (click)="onClickOfFloatingIcon()">
     <mat-icon>Queue Status</mat-icon>
   </button>
   <!-- Yaha tak hai -->
@@ -65,7 +65,7 @@
     </div>
     </div>
   </div>
-<div class="buttonBar" *ngIf="typeUser === 'CUSTOMER' && goForWaiting ">
+<div class="buttonBar" *ngIf="typeUser === 'CUSTOMER' && goForWaiting && !toShowWaitingQueuLogo ">
   <div class="buttonStyle">
     <div>
       <button class="btn btn-warning" (click)="addTableToQueue()">WaitingQueue</button>
