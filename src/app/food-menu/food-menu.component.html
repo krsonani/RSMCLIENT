@@ -20,8 +20,8 @@
                           <button class="btn btn-success"  (click)="addToCart(food)" *ngIf="!food.addedToCart  && activeTable.length !== 0">
                             <i class="fas fa-shopping-cart"> </i> Add to Cart
                           </button>
-                          <button class="btn btn-danger" (click)="removeFromCart(food)" *ngIf="food.addedToCart && && activeTable.length !== 0">
-                              <i class="fas fa-shopping-cart"></i> Added to Cart
+                          <button class="btn btn-danger" (click)="removeFromCart(food)" *ngIf="food.addedToCart && activeTable.length !== 0">
+                              <i class="fas fa-shopping-cart"></i> remove from Cart
                           </button>
                           <div>
                             <button class="btn btn-primary edit-button" *ngIf="typeUser === 'MANAGER'">

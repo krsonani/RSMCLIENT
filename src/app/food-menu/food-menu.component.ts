@@ -20,9 +20,14 @@ export class FoodMenuComponent implements OnInit {
   @Input() typeUser:string = '';
 
   addToCartFoods:any[] = []; 
+  
   @Output() cartItems=new EventEmitter();
+  @Input() outputCartItems:any[]= [];
 
   ngOnInit(): void {
+    // this.addToCartFoods=this.outputCartItems;
+    console.log(this.addToCartFoods);
+    
     this.mccs.getAllCategories().subscribe({
       next:(res)=>{
         console.log(res);
@@ -68,5 +73,10 @@ export class FoodMenuComponent implements OnInit {
       return true;
     else
       return false;
+  }
+
+  chekAddToCart(fid:string)
+  {
+      return true
   }
 }

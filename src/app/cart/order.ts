@@ -3,7 +3,7 @@ export interface Order {
     userid:string,
     tableIds:string[],
     foodids:string[],
-    foodItem:Map<number,number>,
+    foodItem:{ [ number: number]: any },
     totalPrice: number;
 
 }
