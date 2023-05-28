@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component,  EventEmitter,  Input, OnChanges, OnInit,
 import { NgControl } from '@angular/forms';
 import { TableService } from './table.service';
 import Swal from 'sweetalert2';
+import { AppService } from '../app/app.service';
 
 @Component({
   selector: 'app-table',
@@ -34,7 +35,7 @@ export class TableComponent implements OnInit {
  @Output() activeTable=new EventEmitter<string[]>();
  @Output() toShowWaitingQueuLogo =new EventEmitter<boolean>()
  
-  constructor(private service : TableService,private cdr : ChangeDetectorRef) { }
+  constructor(private service : TableService,private cdr : ChangeDetectorRef,private aapService : AppService) { }
 
   ngOnInit(): void {
   if(!this.goForWaitingWithManager())
@@ -42,6 +43,7 @@ export class TableComponent implements OnInit {
     this.showTable()
   }else
   {
+    
     this.addTableToQueue();
 
   // add waiting queue cheking function
@@ -176,6 +178,8 @@ export class TableComponent implements OnInit {
       next:(res)=>{
             console.log(res);
             this.showTable();
+            if(this.typeUser=== 'MANAGER')
+            this.aapService.sweetAlertSuccess("Table Status changed Succesfully");
             this.showToggle=false;
       },error:(err)=>{
           console.log(err);
@@ -189,6 +193,7 @@ export class TableComponent implements OnInit {
       next:(res)=>{
             console.log(res);
             this.showNaToggle=false;
+            this.aapService.sweetAlertSuccess("Table Status changed Succesfully");
             this.showTable();
             
       },error:(err)=>{
@@ -200,17 +205,35 @@ export class TableComponent implements OnInit {
 
   tabelDelete()
   {
-    this.service.deleteTable(this.isActivte).subscribe({
-      next:(res)=>{
-          console.log(res);
-          this.showToggle= false;
-          this.showTable();
-          
-      },error:(err)=>{
-          console.log(err);
-          
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteTable(this.isActivte).subscribe({
+          next:(res)=>{
+              console.log(res);
+              this.showToggle= false;
+              this.showTable();
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )             
+          },error:(err)=>{
+              console.log(err);
+              
+          }
+        })
+
       }
     })
+
 
   }
 
@@ -221,6 +244,7 @@ export class TableComponent implements OnInit {
     this.booktableIds = [...this.booktableIds, this.isActivte];
     this.onToggle();
     this.sendContent();
+    this.aapService.sweetAlertSuccess("Table is Successfully Allocated");
     
   }
 
@@ -231,7 +255,7 @@ export class TableComponent implements OnInit {
     this.service.addtoQueue(this.userid,this.noOfCustomer).subscribe({
       next:(res)=>{
         console.log(res);
-        // this.checkWaitingStatus(this.userid);
+        this.aapService.sweetAlertSuccess("Successfully Added in Waiting Queue");
       },
       error:(err)=>{
         console.log(err);

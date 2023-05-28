@@ -76,8 +76,9 @@ export class DashbordComponent implements OnInit {
 
   toShowWaitingQueuLogoSet(value:boolean)
   {
-      this.chnageContent(" ")
+  
       this. toShowWaitingQueuLogo=value;
+      this.chnageContent('');
       this.checkWaitingStatus(this.userid);
   }
 
@@ -123,7 +124,7 @@ export class DashbordComponent implements OnInit {
 
     }
 
-    
+
   showWaitingCount : any;
   displayMsg : string = '';
   isTableAllocation = false;
