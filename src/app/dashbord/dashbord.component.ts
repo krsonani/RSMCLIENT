@@ -134,7 +134,8 @@ export class DashbordComponent implements OnInit {
       html: this.displayMsg,
       willClose: ()=>{
         if(this.isTableAllocation){
-          this.chnageContent('foodManue');
+          this.toShowWaitingQueuLogo=false;
+          this.chnageContent('foodManue') 
         }
       }
     });
@@ -161,7 +162,8 @@ export class DashbordComponent implements OnInit {
             let temp2 : any[] = temp;
             this.showWaitingCount = temp2[0];
             this.activeTable = this.showWaitingCount;
-            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`;  
+            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`; 
+            this.isTableAllocation=true;
           }
         },
         error:(err)=>{

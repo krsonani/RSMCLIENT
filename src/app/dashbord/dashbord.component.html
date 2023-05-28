@@ -24,7 +24,7 @@
 
   <div class="content">
     <!-- Content Area -->
-    <button mat-fab class="floating-icon" *ngIf="toShowWaitingQueuLogo" (click)="onClickOfFloatingIcon()">
+    <button mat-fab class="floating-icon" *ngIf="toShowWaitingQueuLogo " (click)="onClickOfFloatingIcon()">
       <mat-icon>Queue Status</mat-icon>
     </button>
     <div *ngIf="content === '' && typeUser === 'CUSTOMER' " >
@@ -48,7 +48,7 @@
         </div>
       </div>
       </div>
-      <div *ngIf="toShowWaitingQueuLogo">
+      <div *ngIf="toShowWaitingQueuLogo ">
         <div class="container wel-con">
           <h1 class="px-5">Hello, Thank you for waiting  </h1>
           <p class="wel-text">Table will be allocated to you shortly by manager:</p>
