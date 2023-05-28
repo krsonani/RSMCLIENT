@@ -12,11 +12,12 @@
                 <div class="col-12 col-sm-3 col-md-4" *ngIf="compareCategoryName(category.cname, food.category.cname)">
                     <div [ngClass]="[ 'card', 'mt-2', food.available? '' : 'unavailable-card' ]" >
                       <img class="card-img-top" src="{{food.fimage}}" alt="Card image cap">
-                      <div class="card-body">
+                      <div class="card-body" >
                         <p class="card-text"> <b>{{food.fname}}</b> </p>
                         <p class="card-text"> <i>{{food.description}}</i> </p>
                         <p class="card-text">Price: {{food.price}}</p>
                         <div class="button-group">
+                          
                           <button class="btn btn-success"  (click)="addToCart(food)" *ngIf="activeTable.length !== 0 && !chekAddToCart(food)">
                             <i class="fas fa-shopping-cart"> </i> Add to Cart
                           </button>
