@@ -21,6 +21,8 @@ export class FoodMenuComponent implements OnInit {
 
   addToCartFoods:any[] = []; 
   @Output() cartItems=new EventEmitter();
+  @Output() selectFoodItem = new EventEmitter();
+  @Output() content=new EventEmitter<string>();
 
   ngOnInit(): void {
     this.mccs.getAllCategories().subscribe({
@@ -68,5 +70,15 @@ export class FoodMenuComponent implements OnInit {
       return true;
     else
       return false;
+  }
+
+  toggleFoodAvailability(food : any){
+    this.service.toggleGivenFood(food.fid).subscribe();
+    food.available = !food.available;
+  }
+
+  sendContent(foodItem : any) {
+    this.content.emit('addFood');
+    this.selectFoodItem.emit(foodItem);
   }
 }

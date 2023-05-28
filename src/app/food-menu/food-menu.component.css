@@ -33,7 +33,7 @@
 .category-container .category-foodBlock {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   padding: 10px;
 }
@@ -45,6 +45,11 @@
 .card {
     padding: 20px;
   }
+
+.unavailable-card {
+  background-color: #e2e2e2;
+  opacity: 0.8;
+}
 
 .card .card-body{
   padding-top: 8px;
