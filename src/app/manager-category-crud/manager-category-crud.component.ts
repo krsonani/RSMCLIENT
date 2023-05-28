@@ -15,7 +15,7 @@ export class ManagerCategoryCrudComponent implements OnInit{
   }
 
   errorCategoryName:string='';
-
+  responseMsg = '';
   categories: any;
 
   isCategoriesEmpty(): boolean {
@@ -25,9 +25,7 @@ export class ManagerCategoryCrudComponent implements OnInit{
   constructor(private service : ManagerCategoryCrudService) { }
 
   ngOnInit(): void {
-    this.showAllCategories();
-    console.log("inside ngOnInit");
-    
+    this.showAllCategories();    
   }
 
   onSubmit(){
@@ -38,8 +36,10 @@ export class ManagerCategoryCrudComponent implements OnInit{
         next:(res)=>{
           this.userForm.cname = '';
           this.showAllCategories();
+          this.responseMsg = res.msg;
         },
         error:(err)=>{
+          this.responseMsg = err.error.msg;
           console.log(err);
         }
       });
@@ -49,6 +49,7 @@ export class ManagerCategoryCrudComponent implements OnInit{
   validateForm():boolean {
     
     this.errorCategoryName = '';
+    this.responseMsg = '';
 
     if(this.userForm.cname.trim() === '')
       this.errorCategoryName = 'Name is required';
@@ -61,18 +62,18 @@ export class ManagerCategoryCrudComponent implements OnInit{
       return false;
   }
 
-  onClick(id : Number){
-    console.log("inside onCLick");
-    var res = this.service.removeCategoryById(id).subscribe({
-        next:(res)=>{
-          this.showAllCategories();
-        },
-        error:(err)=>{
-          console.log(err);
-        }
-      }
-    );
-  }
+  // onClick(id : Number){
+  //   console.log("inside onCLick");
+  //   var res = this.service.removeCategoryById(id).subscribe({
+  //       next:(res)=>{
+  //         this.showAllCategories();
+  //       },
+  //       error:(err)=>{
+  //         console.log(err);
+  //       }
+  //     }
+  //   );
+  // }
 
   showAllCategories(){
     this.service.getAllCategories().subscribe({

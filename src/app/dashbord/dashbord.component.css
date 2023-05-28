@@ -119,6 +119,7 @@ body {
   font-weight: bold;
   color: #555;
   font-size: 18px;
+  text-align: center;
 }
 .wel-con input[type="text"] {
   width: 100%;
@@ -143,4 +144,34 @@ body {
 .wel-con .experience p {
   font-weight: bold;
   color: #555;
+}
+
+.floating-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #2196f3; /* Change the background color as per your preference */
+  color: #fff; /* Change the icon color as per your preference */
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: normal;
+}
+
+
+.floating-icon:hover {
+  background-color: #1976d2; /* Change the hover background color as per your preference */
+}
+
+.floating-icon mat-icon {
+  padding: 0%;
+  font-size: 20px;
+  display: inline;
 }

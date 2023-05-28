@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { DashbordService } from './dashbord.service';
 
 @Component({
@@ -9,8 +10,9 @@ import { DashbordService } from './dashbord.service';
 })
 export class DashbordComponent implements OnInit {
 
+  stackStatus:string[]= [];
   username: string;
-  content:string='';
+  content:string | undefined='';
   typeUser:string='';
   noOfCustomer:number=2;
   surplusUsers:any;
@@ -19,14 +21,39 @@ export class DashbordComponent implements OnInit {
   userid:string='';
   cartItems:any[]=[]; //output from food-menu going to cart
   interval:any = '';
+
   outputCartItems:any[]=[]; //output from cart going to food menu
+
+  toShowWaitingQueuLogo:boolean=false;
+
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
   }
 
+  chnageContent(content:string)
+  {
+    this.content =content;
+    this.stackStatus.push(content);
+  }
+
+  onBack()
+  {
+    if(this.stackStatus.length!==1)
+    this.stackStatus.pop();
+    if(this.stackStatus.length===0)
+    {
+      if(this.typeUser==='CUSTOMER')
+      this.content='';
+      else
+      this.content='viewtable'
+    }else
+    this.content=this.stackStatus.pop();
+    
+  }
+
   receiveContent(content:string)
   {
-    this.content=content;
+  this.chnageContent(content)
     console.log(content);
   }
   receiveActiveTable(activeTable:string[])
@@ -50,6 +77,14 @@ export class DashbordComponent implements OnInit {
     console.log(this.cartItems);
   }
 
+  toShowWaitingQueuLogoSet(value:boolean)
+  {
+  
+      this. toShowWaitingQueuLogo=value;
+      this.chnageContent('');
+      this.checkWaitingStatus(this.userid);
+  }
+
 
 
   logout() {
@@ -59,7 +94,6 @@ export class DashbordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.interval = setInterval(()=>{
       this.validateJwtToken()
     },20000)
@@ -79,10 +113,7 @@ export class DashbordComponent implements OnInit {
     })
   }
 
-  goToViewTable()
-  {
-    this.content='viewtable';
-  }
+
 
   validateJwtToken()
   {
@@ -95,6 +126,63 @@ export class DashbordComponent implements OnInit {
     })
 
     }
+
+
+  showWaitingCount : any;
+  displayMsg : string = '';
+  isTableAllocation = false;
+
+  onClickOfFloatingIcon(){
+    Swal.fire({
+      title: 'Waiting Queue',
+      html: this.displayMsg,
+      willClose: ()=>{
+        if(this.isTableAllocation){
+          this.toShowWaitingQueuLogo=false;
+          this.chnageContent('foodManue') 
+        }
+      }
+    });
+  }
+
+  checkWaitingStatus(id:string){
+   
+   
+    this.interval = setInterval(()=>{
+      this.service.checkQueueForVacancy(id).subscribe({
+        next:(res)=>{
+          console.log(res);
+
+          if(Object.keys(res)[0] === 'Table not found'){
+            let temp = Object.values(res);
+            let temp2 : any[] = temp;
+            this.showWaitingCount = temp2[0];
+            this.displayMsg = `Your waiting number ${ (this.showWaitingCount == undefined) ? " " : this.showWaitingCount }`;  
+            console.log(this.displayMsg);
+          }
+          else{
+            clearInterval(this.interval);
+            let temp = Object.values(res);
+            let temp2 : any[] = temp;
+            this.showWaitingCount = temp2[0];
+            this.activeTable = this.showWaitingCount;
+            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`; 
+            this.isTableAllocation=true;
+          }
+        },
+        error:(err)=>{
+          console.log(err);
+          
+        }
+      });
+    },500)
+  }
+
+//Table not found: [3]
+
+  clearCheckingWaitingStatus(){
+    clearInterval(this.interval);
+  }
 
   
 

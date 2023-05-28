@@ -19,26 +19,6 @@ const routes: Routes = [
     component:RegisterComponent
   },
   {
-    path:"profile",
-    component:CustomerprofileComponent
-  },
-  {
-    path:"updateprofile",
-    component:CustomerupdateprofileComponent
-  },
-  {
-    path:"managerCategoryCrud",
-    component:ManagerCategoryCrudComponent
-  },
-  {
-    path:"managerFoodCrud",
-    component:ManagerFoodCrudComponent
-  },
-  {
-    path:"cart",
-    component:CartComponent
-  },
-  {
     path:"login",
     component:LoginComponent
   },
@@ -46,22 +26,6 @@ const routes: Routes = [
     path:"dashbord",
     component:DashbordComponent
   },
-  {
-    path:"addtable",
-    component:AddTableComponent
-  },
-  {
-    path:"dayWiseOrder",
-    component:DaywiseorderComponent
-  },
-  {
-    path:"foodMenu",
-    component:FoodMenuComponent 
-  },
-  {
-    path:"tableHandle",
-    component:ManagerTableHandlingComponent 
-  }
 ];
 
 @NgModule({

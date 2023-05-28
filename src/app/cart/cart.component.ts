@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AppService } from '../app/app.service';
 import { Cart } from './cart';
 import { CartService } from './cart.service';
 import { Order } from './order';
@@ -11,7 +12,7 @@ import { Order } from './order';
 export class CartComponent implements OnInit {
 
 
-  constructor(private service:CartService) { }
+  constructor(private service:CartService,private aapService : AppService) { }
 
   //cartItems:any;
   @Input() activeTable:string[]=[];
@@ -80,6 +81,9 @@ export class CartComponent implements OnInit {
 
     this.outputCartItems.emit(this.cartItems);
     console.log(this.outputCartItems);
+
+    this.aapService.sweetAlertError("Removed form the cart")
+
   }
 
 
@@ -100,6 +104,7 @@ export class CartComponent implements OnInit {
         console.log(this.cartItems);
         this.outputCartItems.emit(this.cartItems);
         this.calculateTotal();
+        this.aapService.sweetAlertSuccess("Order Placed")
 
       },error:(error)=>{
         console.log(error);
