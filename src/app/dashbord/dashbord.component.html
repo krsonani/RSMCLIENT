@@ -58,9 +58,14 @@
         <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
       </div>
       <div>
-
-        <app-food-menu *ngIf="content === 'foodManue'" [activeTable]="activeTable" [typeUser]="typeUser" (cartItems)="initializeCartItems($event)" [outputCartItems]="outputCartItems"></app-food-menu>
+        <app-food-menu *ngIf="content === 'foodManue'" [activeTable]="activeTable" [typeUser]="typeUser" (cartItems)="initializeCartItems($event)" (content)="receiveContent($event)" (selectFoodItem)="initializeFoodItem($event)" [outputCartItems]="outputCartItems"></app-food-menu>
       </div>
+
+      <div>
+        <app-manager-food-crud *ngIf="content === 'addFood'" [selectFoodItem]="selectFoodItem" ></app-manager-food-crud>
+
+      </div>
+
     <!-- added for view -->
     <div>
       <app-manager-table-handling *ngIf="content === 'tableHandle'" [typeUser]="typeUser" (content)="receiveContent($event)"></app-manager-table-handling>

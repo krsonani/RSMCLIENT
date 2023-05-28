@@ -19,15 +19,22 @@ export class FoodMenuComponent implements OnInit {
 
   @Input() typeUser: string = '';
 
-  addToCartFoods: any[] = [];
+  
 
-  @Output() cartItems = new EventEmitter();
-  @Input() outputCartItems: any[] = []; //from cart to food-menu
+  addToCartFoods:any[] = []; 
+  
+  @Output() cartItems=new EventEmitter();
+
+  @Output() selectFoodItem = new EventEmitter();
+  @Output() content=new EventEmitter<string>();
+  @Input() outputCartItems:any[]= [];
+
 
   ngOnInit(): void {
-    this.addToCartFoods=this.outputCartItems;
-    console.log(this.outputCartItems);
 
+     this.addToCartFoods=this.outputCartItems;
+    console.log(this.addToCartFoods);
+    
     this.mccs.getAllCategories().subscribe({
       next: (res) => {
         console.log(res);
@@ -48,16 +55,17 @@ export class FoodMenuComponent implements OnInit {
     category.expanded = !category.expanded;
   }
 
-  addToCart(food: any) {
-    food.quantity = 1;
+
+  addToCart(food : any){
+    console.log(food);
+    food.quantity=1;
     this.addToCartFoods = [...this.addToCartFoods, food];
     this.cartItems.emit(this.addToCartFoods);
   }
 
-  removeFromCart(food: any) {
 
+  removeFromCart(food : any){
     this.addToCartFoods = this.addToCartFoods.filter(foodObj => food.fid != foodObj.fid);
-
     //need to update this
     this.cartItems.emit(this.addToCartFoods);
     localStorage.setItem("foodList", JSON.stringify(this.addToCartFoods))
@@ -71,16 +79,27 @@ export class FoodMenuComponent implements OnInit {
       return false;
   }
   
-  checkFoodInCart(item: any): boolean {
-   
-    for (let cartitem of this.addToCartFoods) {
-
-      if (item.fid == cartitem.fid) {
-
-        return true;
-      }
-    }
-    return false;
+  toggleFoodAvailability(food : any){
+    this.service.toggleGivenFood(food.fid).subscribe();
+    food.available = !food.available;
   }
 
+  sendContent(foodItem : any) {
+    this.content.emit('addFood');
+    this.selectFoodItem.emit(foodItem);
+  }
+
+  chekAddToCart(food:any)
+  {
+     for( let i=0;i<this.addToCartFoods.length;i++)
+     {
+           if(this.addToCartFoods[i].fid === food.fid)
+           {
+        
+            return true;
+
+           }
+     }
+     return false;
+    }
 }

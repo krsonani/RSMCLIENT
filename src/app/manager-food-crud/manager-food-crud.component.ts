@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ManagerCategoryCrudService } from '../manager-category-crud/manager-category-crud.service';
 import { ManagerFoodCrud } from './manager-food-crud';
 import { ManagerFoodCrudService } from './manager-food-crud.service';
@@ -11,6 +11,7 @@ import { ManagerFoodCrudService } from './manager-food-crud.service';
 export class ManagerFoodCrudComponent implements OnInit {
 
   userForm : ManagerFoodCrud = {
+    fid:0,
     fname:'',
     fimage:'',
     description:'',
@@ -20,7 +21,7 @@ export class ManagerFoodCrudComponent implements OnInit {
 
   categoryList : any;
   successMsg : string = '';
-
+  @Input() selectFoodItem: any;
   errors: any={} ;
 
   constructor(private service : ManagerFoodCrudService, private mcc : ManagerCategoryCrudService) { }
@@ -34,7 +35,21 @@ export class ManagerFoodCrudComponent implements OnInit {
       error:(err)=>{
         console.log(err);
       }
-    });    
+    });   
+
+    console.log(this.selectFoodItem);
+    console.log(this.userForm);
+    console.log("before");
+    
+    this.userForm.fid = this.selectFoodItem.fid;
+    this.userForm.categoryId = this.selectFoodItem.category.cid;
+    this.userForm.description = this.selectFoodItem.description;
+    this.userForm.fimage = this.selectFoodItem.fimage;
+    this.userForm.fname = this.selectFoodItem.fname;
+    this.userForm.price = this.selectFoodItem.price;
+
+    console.log(this.userForm);
+    console.log("after");
   }
 
   onSubmit(){
@@ -45,6 +60,7 @@ export class ManagerFoodCrudComponent implements OnInit {
         next:(res)=>{
 
           this.userForm = {
+            fid:0,
             fname:'',
             fimage:'',
             description:'',
@@ -52,7 +68,7 @@ export class ManagerFoodCrudComponent implements OnInit {
             categoryId : 0
           };
           
-          this.successMsg = res.msg;
+          this.successMsg = Object.keys(this.selectFoodItem).length===0 ? "Food Added" : "Food Updated";
         },
         error:(err)=>{
           console.log(err);
@@ -64,7 +80,7 @@ export class ManagerFoodCrudComponent implements OnInit {
   validateForm(): boolean {
     
     this.errors = {};
-
+    
     console.log(this.userForm);
   
     if(this.userForm.fname.trim() === '')
