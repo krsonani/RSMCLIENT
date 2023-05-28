@@ -38,9 +38,16 @@ export class DashbordComponent implements OnInit {
     this.cartItems=cartItems;
     console.log(this.cartItems);
   }
+
+  initializeFoodItem(foodItem:any){
+    this.selectFoodItem=foodItem;
+    console.log(this.selectFoodItem);
+  }
+
   setCartItems(outputCartItems:any[]){
     this.outputCartItems = outputCartItems;
   }
+
 
 
   logout() {

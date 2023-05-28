@@ -22,7 +22,11 @@ export class FoodMenuComponent implements OnInit {
   addToCartFoods:any[] = []; 
   
   @Output() cartItems=new EventEmitter();
+
+  @Output() selectFoodItem = new EventEmitter();
+  @Output() content=new EventEmitter<string>();
   @Input() outputCartItems:any[]= [];
+
 
   ngOnInit(): void {
      this.addToCartFoods=this.outputCartItems;
@@ -69,6 +73,16 @@ export class FoodMenuComponent implements OnInit {
       return true;
     else
       return false;
+  }
+
+  toggleFoodAvailability(food : any){
+    this.service.toggleGivenFood(food.fid).subscribe();
+    food.available = !food.available;
+  }
+
+  sendContent(foodItem : any) {
+    this.content.emit('addFood');
+    this.selectFoodItem.emit(foodItem);
   }
 
   chekAddToCart(food:any)
