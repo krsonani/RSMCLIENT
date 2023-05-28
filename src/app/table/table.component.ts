@@ -224,7 +224,6 @@ export class TableComponent implements OnInit {
     
   }
 
-  // yaha tak hai
   addTableToQueue()
   {
     this.toShowWaitingQueuLogo.emit(true);
