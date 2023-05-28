@@ -1,5 +1,6 @@
 <div class="cart-container">
-    <h1>Shopping Cart</h1>
+    <h5 *ngIf="orderItem.totalPrice != 0">Your allocated Tables: {{ activeTable }}</h5>
+    <h1>Food Cart</h1>
     <table class="cart-table" *ngIf="orderItem.totalPrice != 0; else elseBlock">
         <thead>
             <tr>
@@ -21,7 +22,7 @@
                         <button (click)="increaseQuantity(item)">+</button>
                     </div>
                 </td>
-                <td>{{ item.price * item.quantity }}</td>
+                <td>{{ (item.price * item.quantity).toFixed(2) }}</td>
                 <td>
                     <button class="item-remove" (click)="removeItem(item)">Remove</button>
                 </td>

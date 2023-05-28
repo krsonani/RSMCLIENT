@@ -37,7 +37,7 @@
                 </td>
               </span>
             </span>
-            <td>Rs. {{todaysOrder.totalPrice}}</td>
+            <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
           </tr>
         </ng-container>
       </tbody>
@@ -76,7 +76,7 @@
                         </td>
                       </span>
                     </span>
-                    <td>Rs. {{todaysOrder.totalPrice}}</td>
+                    <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
                   </tr>
                 </ng-container>
 
@@ -84,7 +84,7 @@
               
             </table>
             <p>
-              Total Price : Rs. {{ currentOrdertotalPrice }}
+              Total Price : Rs. {{ currentOrdertotalPrice.toFixed(2) }}
             </p>
 
           </div>
@@ -105,7 +105,7 @@
     <h4 *ngIf="roleType=='CUSTOMER'">Past Orders</h4> <!--title to be viewed by Customer only-->
     
     <h4 *ngIf="roleType=='MANAGER'">
-      Total Transactions : Rs. {{ pastOrdertotalPrice }}
+      Total Transactions : Rs. {{ pastOrdertotalPrice.toFixed(2) }}
     </h4>
     <br>
     <table id="orders">
@@ -127,7 +127,7 @@
                 </td>
               </span>
             </span>
-            <td>Rs. {{todaysOrder.totalPrice}}</td>
+            <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
           </tr>
         </ng-container>
       </tbody>
