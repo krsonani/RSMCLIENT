@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { throwIfEmpty } from 'rxjs';
 import Swal from 'sweetalert2';
 import { AppComponent } from '../app.component';
+import { AppService } from '../app/app.service';
 import { Login } from './login';
 import { LoginService } from './login.service';
 import { OtpForm } from './otp-form';
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
   confirmpass: string = '';
   loginError: string = '';
   msgOnModal: string = '';
-  constructor(private service: LoginService, private root: Router,private appComponent: AppComponent) { }
+  constructor(private service: LoginService, private root: Router,private appservice : AppService) { }
 
   ngOnInit(): void {
   }
@@ -127,11 +128,11 @@ export class LoginComponent implements OnInit {
       this.service.forgetPassword(this.otpForm.email).subscribe({
         next: (res) => {
           console.log(res);
-        this.appComponent.sweetAlertSuccess("Otp Sent");
+        this.appservice.sweetAlertSuccess("Otp Sent");
           this.isOtpGenerated = true;
         }, error: (err) => {
           console.log(err);
-          this.appComponent.sweetAlertError("Something went wrong!!");
+          this.appservice.sweetAlertError("Something went wrong!!");
         }
       });
     }
@@ -151,7 +152,7 @@ export class LoginComponent implements OnInit {
           this.isOtpSubmitted = true;
         }, error: (err) => {
           console.log(err);
-          this.appComponent.sweetAlertError("Otp was Incorrect");
+          this.appservice.sweetAlertError("Otp was Incorrect");
         }
       });
     }
@@ -160,10 +161,10 @@ export class LoginComponent implements OnInit {
     this.service.updateUser(this.otpForm).subscribe({
       next: (res) => {
         console.log(res);
-        this.appComponent.sweetAlertSuccess("Password Changed");
+        this.appservice.sweetAlertSuccess("Password Changed");
       }, error: (err) => {
         console.log(err);
-        this.appComponent.sweetAlertError("Something went wrong");
+        this.appservice.sweetAlertError("Something went wrong");
       }
     });
   }
