@@ -1,73 +1,74 @@
 <div class="login-container">
-  <h2>Login</h2>
-  <form>
-    <div class="form-group">
-      <label for="emailId">Email:</label>
-      <input type="email" id="emailId" [(ngModel)]="loginForm.email" name="emailId" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" [(ngModel)]="loginForm.password" name="password" required>
-    </div>
-    <div class="form-group" *ngIf="loginError">
-      {{loginError}}
-    </div>
+    <h2>Login</h2>
+    <form>
+      <div class="form-group">
+        <label for="emailId">Email:</label>
+        <input type="email" id="emailId" [(ngModel)]="loginForm.email" name="emailId" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="loginForm.password" name="password" required>
+      </div>
+      <div class="form-group" *ngIf="loginError">
+        {{loginError}}
+      </div>
 
-    <button type="submit" (click)="onSubmit()">Login</button>
+      <button type="submit" class="button-primary" (click)="onSubmit()">Login</button>
 
-  </form>
+    </form>
 
 
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-    data-bs-whatever="@mdo" (click)="clearAll()" >Forget Password</button>
+    <button type="button" class="button-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      data-bs-whatever="@mdo" (click)="clearAll()">Forget Password</button>
 
-  <div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Forget Password</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div *ngIf="isOtpSubmitted==false; else elseBlock" class="mb-3">
-              <label for="message-text" class="col-form-label">Email:</label>
-              <input  type="text" name="email"  [(ngModel)]="otpForm.email" class="form-control" id="recipient-email" value="otpForm.email" (ngModelChange)="onEmailChange($event)">
-              <span class="error-message" style='color:red' *ngIf="error.email">{{ error.email }}</span>
-            </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Forget Password</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div *ngIf="isOtpSubmitted==false; else elseBlock" class="mb-3">
+                <label for="message-text" class="col-form-label">Email:</label>
+                <input  type="text" name="email"  [(ngModel)]="otpForm.email" class="form-control" id="recipient-email" value="otpForm.email" (ngModelChange)="onEmailChange($event)">
+                <span class="error-message" style='color:red' *ngIf="error.email">{{ error.email }}</span>
+              </div>
 
-           
-              <button *ngIf="isOtpSubmitted==false" (click)="onGetOtpClick()">Get OTP</button>
 
-            <div *ngIf="isOtpSubmitted!=true && isOtpGenerated==true" class="mb-3">
-              <label for="message-text" class="col-form-label">OTP:</label>
-              <input name="otp" class="form-control" id="message-text" [(ngModel)]="otpForm.otp"  (ngModelChange)="onOtpChange($event)">
-              <span class="error-message" style='color:red'  *ngIf="error.otp">{{ error.otp }}</span>
-            </div>
+              <button class="button-primary" *ngIf="isOtpSubmitted==false" (click)="onGetOtpClick()">Get OTP</button>
 
-            <ng-template #elseBlock class="mb-3">
-              <label for="message-text" class="col-form-label">Password:</label>
-              <input type="password" name="password" class="form-control" id="message-text" [(ngModel)]="otpForm.password"  (ngModelChange)="onPasswordChange($event)">
-              <span class="error-message" style='color:red' *ngIf="error.password">{{ error.password }}</span>
-            </ng-template>
+              <div *ngIf="isOtpSubmitted!=true && isOtpGenerated==true" class="mb-3">
+                <label for="message-text" class="col-form-label">OTP:</label>
+                <input name="otp" class="form-control" id="message-text" [(ngModel)]="otpForm.otp"  (ngModelChange)="onOtpChange($event)">
+                <span class="error-message" style='color:red'  *ngIf="error.otp">{{ error.otp }}</span>
+              </div>
 
-            <div *ngIf="isOtpSubmitted" class="mb-3">
-              <label for="message-text" class="col-form-label">Confirm Password:</label>
-              <input type="password" name="confirmpass" class="form-control" id="message-text"  [(ngModel)]="confirmpass"  (ngModelChange)="onConfirmPasswordChange($event)">
-              <span class="error-message" style='color:red'  *ngIf="error.otp">{{ error.confirmpass }}</span>
-            </div>
+              <ng-template #elseBlock class="mb-3">
+                <label for="message-text" class="col-form-label">Password:</label>
+                <input type="password" name="password" class="form-control" id="message-text" [(ngModel)]="otpForm.password"  (ngModelChange)="onPasswordChange($event)">
+                <span class="error-message" style='color:red' *ngIf="error.password">{{ error.password }}</span>
+              </ng-template>
 
-          </form>
-        </div>
-        <div *ngIf="isOtpGenerated" class="modal-footer">
+              <div *ngIf="isOtpSubmitted" class="mb-3">
+                <label for="message-text" class="col-form-label">Confirm Password:</label>
+                <input type="password" name="confirmpass" class="form-control" id="message-text"  [(ngModel)]="confirmpass"  (ngModelChange)="onConfirmPasswordChange($event)">
+                <span class="error-message" style='color:red'  *ngIf="error.otp">{{ error.confirmpass }}</span>
+              </div>
+
+
+            </form>
+          </div>
+          <div *ngIf="isOtpGenerated" class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button *ngIf="isOtpSubmitted==false" type="button" (click)="onOtpSubmit()" class="btn btn-primary" >
+          <button class="button-primary" *ngIf="isOtpSubmitted==false" type="button" (click)="onOtpSubmit()"  >
             Confirm OTP</button>
-            <button *ngIf="isOtpSubmitted" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" (click)="updateForgetPassUser()" class="btn btn-primary">Submit</button>
+            <button class="button-primary" *ngIf="isOtpSubmitted" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" (click)="updateForgetPassUser()">Submit</button>
+        </div>
         </div>
       </div>
     </div>
+
   </div>
-
-
-</div>

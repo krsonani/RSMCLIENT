@@ -132,7 +132,7 @@ export class LoginComponent implements OnInit {
           this.isOtpGenerated = true;
         }, error: (err) => {
           console.log(err);
-          this.appservice.sweetAlertError("Something went wrong!!");
+          this.appservice.sweetAlertError("Email Already Exist!!");
         }
       });
     }
