@@ -1,47 +1,65 @@
-﻿<div class="register-user">
-  <h2 *ngIf="typeUser!='MANAGER'">Register User</h2>
-  <h2 *ngIf="typeUser === 'MANAGER'">ADD MANAGER</h2>
-      <form>
-        <div class="form-group">
+﻿<div class="wrapper">
+  <div  *ngIf="typeUser!='MANAGER'" class="form-left">
+    <h2 class="text-uppercase">information</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
+    </p>
+    <p class="text">
+        <span>Sub Head:</span>
+        Vitae auctor eu augudsf ut. Malesuada nunc vel risus commodo viverra. Praesent elementum facilisis leo vel.
+    </p>
+    <div class="form-field">
+        <input type="submit" class="account" value="Have an Account?">
+    </div>
+</div>
+
+
+
+<form class="form-right">
+  <h2 class="text-uppercase" *ngIf="typeUser!='MANAGER'">Register User</h2>
+  <h2 class="text-uppercase" *ngIf="typeUser === 'MANAGER'">ADD MANAGER</h2>
+  <div class="row">
+        <div class="col-sm-6 mb-3 form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" [(ngModel)]="userForm.name" name="name" required />
-          <div class="error-message" *ngIf="errors.name">{{ errors.name }}</div>
+          <input class="input-field" type="text" id="name" [(ngModel)]="userForm.name" name="name" required />
+          <span class="error-message" *ngIf="errors.name">{{ errors.name }}</span>
         </div>
 
-        <div class="form-group">
+        <div class="col-sm-6 mb-3 form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" [(ngModel)]="userForm.email" name="email" required />
-          <div class="error-message" *ngIf="errors.email">{{ errors.email }}</div>
+          <input class="input-field" type="email" id="email" [(ngModel)]="userForm.email" name="email" required />
+          <span class="error-message" *ngIf="errors.email">{{ errors.email }}</span>
         </div>
 
-        <div class="form-group">
+        <div class="col-sm-6 mb-3 form-group">
           <label for="phoneNum">Phone Number</label>
-          <input type="text" id="phoneNum" [(ngModel)]="userForm.phoneNum" name="phoneNum" required />
-          <div class="error-message" *ngIf="errors.phoneNum">
+          <input class="input-field" type="text" id="phoneNum" [(ngModel)]="userForm.phoneNum" name="phoneNum" required />
+          <span class="error-message" *ngIf="errors.phoneNum">
             {{ errors.phoneNum }}
-          </div>
+          </span>
         </div>
 
-        <div class="form-group">
+        <div class="col-sm-6 mb-3 form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" [(ngModel)]="userForm.password" name="password" required />
-          <div class="error-message" *ngIf="errors.password">
+          <input class="input-field" type="password" id="password" [(ngModel)]="userForm.password" name="password" required />
+          <span class="error-message" *ngIf="errors.password">
             {{ errors.password }}
-          </div>
+          </span>
         </div>
-        <div class="form-group">
+        <div class="col-sm-6 mb-3 form-group">
           <label for="confirmPassword">ConfirmPassword</label>
-          <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required />
-          <div class="error-message" *ngIf="errors.confirmPassword">
+          <input class="input-field" type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+          <span class="error-message" *ngIf="errors.confirmPassword">
             {{ errors.confirmPassword }}
-          </div>
+          </span>
         </div>
-        <div class="form-group" *ngIf="confirmOtp">
+        <div class="col-sm-6 mb-3 form-group" *ngIf="confirmOtp">
           <label for="confirmOtp">ConfirmOtp</label>
-          <input type="text" id="confirmOtp" [(ngModel)]="userForm.otp" name="confirmOtp" required />
+          <input class="input-field" type="text" id="confirmOtp" [(ngModel)]="userForm.otp" name="confirmOtp" required />
         </div>
-        <button (click)="sendOtp()" *ngIf="typeUser !='MANAGER'">Send-Otp</button>
-        <div class="form-group" *ngIf="errorOtp">{{errorOtp}}</div>
-        <button type="submit" (click)="onSubmit()">Register</button>
+        <button class="button-cs" (click)="sendOtp()" *ngIf="typeUser !='MANAGER'">Send-Otp</button>
+        <span class="col-sm-6 mb-3 form-group" *ngIf="errorOtp">{{errorOtp}}</span>
+        <button class="button-cs" type="submit" (click)="onSubmit()">Register</button>
+      </div>
       </form>
 </div>

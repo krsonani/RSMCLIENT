@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { throwIfEmpty } from 'rxjs';
+import Swal from 'sweetalert2';
+import { AppComponent } from '../app.component';
 import { Login } from './login';
 import { LoginService } from './login.service';
 import { OtpForm } from './otp-form';
+
 
 @Component({
   selector: 'app-login',
@@ -20,13 +23,14 @@ export class LoginComponent implements OnInit {
   otpForm: OtpForm = {
     name: 'boyplamber', email: '', phoneNum: '9876543210', password: '', otp: ''
   }
-  isOtpSubmitted:boolean=false;
-  isOtpGenerated:boolean=false;
+  isOtpSubmitted: boolean = false;
+  isOtpGenerated: boolean = false;
 
   error: any = {};
-  confirmpass:string='';
+  confirmpass: string = '';
   loginError: string = '';
-  constructor(private service: LoginService, private root: Router) { }
+  msgOnModal: string = '';
+  constructor(private service: LoginService, private root: Router,private appComponent: AppComponent) { }
 
   ngOnInit(): void {
   }
@@ -39,32 +43,21 @@ export class LoginComponent implements OnInit {
         this.root.navigate(["/dashbord"])
       }, error: (err) => {
         console.log(err);
-        this.loginError = "Invelid Credential"
-
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Invalid Credentials',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     });
   }
 
-
-  onGetOtpClick() {
-   if (this.isValidEmail(this.otpForm.email)) {
-      this.service.forgetPassword(this.otpForm.email).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.isOtpGenerated=true;
-        }, error: (err) => {
-          console.log(err);
-        }
-      });
-    }
-    else {
-      this.error.email = "Invalid Email";
-    }
-  }
-
-
   onEmailChange(str: string) {
-    if (!this.isValidEmail(str)) {
+    if (str.length == 0)
+      this.error.email = ""
+    else if (!this.isValidEmail(str)) {
       this.error.email = "Invalid Email";
     }
     else {
@@ -72,7 +65,9 @@ export class LoginComponent implements OnInit {
     }
   }
   onOtpChange(str: string) {
-    if (!this.isValidOtp(str)) {
+    if (str.length == 0)
+      this.error.otp = ""
+    else if (!this.isValidOtp(str)) {
       this.error.otp = "OTP Format is not correct";
     }
     else {
@@ -88,9 +83,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onConfirmPasswordChange(str: string)
-  {
-    
+  onConfirmPasswordChange(str: string) {
+
     if (this.confirmpass.trim() === '') {
       this.error.confirmpass = 'Confirm Password is required';
     } else if (this.confirmpass.trim() !== this.otpForm.password.trim()) {
@@ -110,10 +104,10 @@ export class LoginComponent implements OnInit {
     this.error.otp = "";
     this.otpForm.email = "";
     this.otpForm.otp = "";
-    this.otpForm.password="";
-    this.confirmpass="";
-    this.isOtpSubmitted=false;
-    this.isOtpGenerated=false;
+    this.otpForm.password = "";
+    this.confirmpass = "";
+    this.isOtpSubmitted = false;
+    this.isOtpGenerated = false;
   }
 
 
@@ -127,15 +121,37 @@ export class LoginComponent implements OnInit {
     const otpRegex = /^\d{6}$/gm;
     return otpRegex.test(otp);
   }
+
+  onGetOtpClick() {
+    if (this.isValidEmail(this.otpForm.email)) {
+      this.service.forgetPassword(this.otpForm.email).subscribe({
+        next: (res) => {
+          console.log(res);
+        this.appComponent.sweetAlertSuccess("Otp Sent");
+          this.isOtpGenerated = true;
+        }, error: (err) => {
+          console.log(err);
+          this.appComponent.sweetAlertError("Something went wrong!!");
+        }
+      });
+    }
+    else {
+      this.error.email = "Invalid Email";
+    }
+  }
+
+
+
   otp: String = '';
   onOtpSubmit() {
     if (this.isValidOtp(this.otpForm.otp) && this.isValidEmail(this.otpForm.email)) {
       this.service.validateOtp(this.otpForm).subscribe({
         next: (res) => {
           console.log(res);
-          this.isOtpSubmitted=true;
+          this.isOtpSubmitted = true;
         }, error: (err) => {
           console.log(err);
+          this.appComponent.sweetAlertError("Otp was Incorrect");
         }
       });
     }
@@ -144,9 +160,12 @@ export class LoginComponent implements OnInit {
     this.service.updateUser(this.otpForm).subscribe({
       next: (res) => {
         console.log(res);
+        this.appComponent.sweetAlertSuccess("Password Changed");
       }, error: (err) => {
         console.log(err);
+        this.appComponent.sweetAlertError("Something went wrong");
       }
     });
   }
+
 }
