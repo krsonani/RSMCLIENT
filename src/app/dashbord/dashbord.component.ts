@@ -66,6 +66,12 @@ export class DashbordComponent implements OnInit {
   initializeFoodItem(foodItem:any){
     this.selectFoodItem=foodItem;
     console.log(this.selectFoodItem);
+    console.log("initializeFoodItem");
+  }
+
+  resetFoodItem(content:string){
+    this.content = content;
+    this.selectFoodItem = false;
   }
 
   setCartItems(outputCartItems:any[]){
@@ -130,19 +136,25 @@ export class DashbordComponent implements OnInit {
 
   onClickOfFloatingIcon(){
     Swal.fire({
-      title: 'Waiting Queue',
+      title: 'Waiting Queue Status',
+      html: this.displayMsg
+    });
+  }
+
+  onAllocationOfTableAlert(){
+    Swal.fire({
+      title: 'Table Status',
       html: this.displayMsg,
       willClose: ()=>{
         if(this.isTableAllocation){
-          this.toShowWaitingQueuLogo=false;
-          this.chnageContent('foodManue') 
+          this.chnageContent('foodManue');
         }
       }
     });
   }
 
+
   checkWaitingStatus(id:string){
-   
    
     this.interval = setInterval(()=>{
       this.service.checkQueueForVacancy(id).subscribe({
@@ -162,8 +174,10 @@ export class DashbordComponent implements OnInit {
             let temp2 : any[] = temp;
             this.showWaitingCount = temp2[0];
             this.activeTable = this.showWaitingCount;
-            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`; 
+            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`;
+            this.onAllocationOfTableAlert();
             this.isTableAllocation=true;
+            this.toShowWaitingQueuLogo=false;
           }
         },
         error:(err)=>{

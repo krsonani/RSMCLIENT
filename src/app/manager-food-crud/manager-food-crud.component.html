@@ -1,5 +1,7 @@
 <div class="food-registration">
-  <h2>Add New Food</h2>
+  <h2 *ngIf="!selectFoodItem" type="submit">Add New Food</h2>
+  <h2 *ngIf="selectFoodItem" type="submit">Update Food</h2>
+  
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="foodName">Food Name:</label>
