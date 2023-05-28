@@ -67,6 +67,8 @@ export class DashbordComponent implements OnInit {
         this.userid=res.uids;
         this.username=res.name;
         this.typeUser=res.role.type;
+        if(this.typeUser=== 'MANAGER')
+        this.content='viewtable';
         console.log(this.typeUser);
         
       },error:(err)=>{
