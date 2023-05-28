@@ -232,7 +232,7 @@ export class TableComponent implements OnInit {
 
   onClickOfFloatingIcon(){
     Swal.fire({
-      title: 'Waiting Queue',
+      title: 'Waiting Queue Status',
       html: this.displayMsg,
       willClose: ()=>{
         if(this.isTableAllocation){
@@ -262,13 +262,12 @@ export class TableComponent implements OnInit {
             let temp2 : any[] = temp;
             this.showWaitingCount = temp2[0];
             this.booktableIds = this.showWaitingCount;
-            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`;  
+            this.displayMsg = `Assigned Tables are: ${this.showWaitingCount}`;  
             this.isTableAllocation = true; 
           }
         },
         error:(err)=>{
           console.log(err);
-          
         }
       });
     },500)

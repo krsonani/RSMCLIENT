@@ -17,15 +17,15 @@
                         <p class="card-text"> <i>{{food.description}}</i> </p>
                         <p class="card-text">Price: {{food.price}}</p>
                         <div class="button-group">
-                          
-                          <button class="btn btn-success"  (click)="addToCart(food)" *ngIf="activeTable.length !== 0 && !chekAddToCart(food)">
-                            <i class="fas fa-shopping-cart"> </i> Add to Cart
-                          </button>
-
-                          <button class="btn btn-danger" (click)="removeFromCart(food)" *ngIf=" activeTable.length !== 0 && chekAddToCart(food)  ">
-                              <i class="fas fa-shopping-cart"></i> Remove from Cart
-
-                          </button>
+                          <div *ngIf="food.available">
+                            <button class="btn btn-success"  (click)="addToCart(food)" *ngIf="activeTable.length !== 0 && !chekAddToCart(food)">
+                              <i class="fas fa-shopping-cart"> </i> Add to Cart
+                            </button>
+  
+                            <button class="btn btn-danger" (click)="removeFromCart(food)" *ngIf=" activeTable.length !== 0 && chekAddToCart(food)  ">
+                                <i class="fas fa-shopping-cart"></i> Remove from Cart
+                            </button>
+                          </div>
                           <div>
                             <button class="btn btn-primary edit-button" *ngIf="typeUser === 'MANAGER'" (click)="sendContent(food)">
                               <i class="fas fa-edit"></i>
