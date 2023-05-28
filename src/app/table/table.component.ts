@@ -224,9 +224,6 @@ export class TableComponent implements OnInit {
     
   }
 
-  //ashutosh ke changes
-
-
   // yaha tak hai
   addTableToQueue()
   {

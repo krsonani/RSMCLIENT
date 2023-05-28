@@ -11,6 +11,9 @@
         <div class="error" *ngIf="errorCategoryName">
           {{ errorCategoryName }}
         </div>
+        <div [ngClass]="[ (responseMsg==='Category Added') ? 'success' : 'error']" *ngIf="responseMsg">
+          {{ responseMsg }}
+        </div>
     </form>
 
     <br/>
@@ -21,14 +24,13 @@
           <tr>
             <th>SNo</th>
             <th>Category Name</th>
-            <th>Remove Category</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let category of categories; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ category.cname }}</td>
-            <td><button (click)="onClick(category.cid)">Remove</button></td>
+            <!-- <td><button (click)="onClick(category.cid)">Remove</button></td> -->
           </tr>
         </tbody>
       </table>
