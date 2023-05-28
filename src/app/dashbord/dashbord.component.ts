@@ -12,12 +12,14 @@ export class DashbordComponent implements OnInit {
   username: string;
   content:string='';
   typeUser:string='';
-  noOfCustomer:number=4;
+  noOfCustomer:number=2;
   surplusUsers:any;
   activeTable:string[]=[];
   selectFoodItem:any;
   userid:string='';
-
+  cartItems:any[]=[]; //output from food-menu going to cart
+  interval:any = '';
+  outputCartItems:any[]=[];
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
   }
@@ -32,6 +34,19 @@ export class DashbordComponent implements OnInit {
     this.activeTable=activeTable;
     console.log(activeTable);
   }
+  initializeCartItems(cartItems:any[]){
+    this.cartItems=cartItems;
+    console.log(this.cartItems);
+  }
+
+  initializeFoodItem(foodItem:any){
+    this.selectFoodItem=foodItem;
+    console.log(this.selectFoodItem);
+  }
+
+  setCartItems(outputCartItems:any[]){
+    this.outputCartItems = outputCartItems;
+  }
 
 
 
@@ -42,6 +57,10 @@ export class DashbordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.interval = setInterval(()=>{
+      this.validateJwtToken()
+    },20000)
     this.service.getCustomer().subscribe({
       next:(res)=>{
         console.log(res);
@@ -56,19 +75,22 @@ export class DashbordComponent implements OnInit {
     })
   }
 
-  addToQueue()
+  goToViewTable()
   {
     this.content='viewtable';
-    this.service.addtoQueue(this.userid,this.noOfCustomer).subscribe({
-      next:(res)=>{
-        console.log(res);
-      },
-      error:(err)=>{
-        console.log(err);
-        
+  }
+
+  validateJwtToken()
+  {
+    this.service.validateJwtToken().subscribe({
+      next:(res)=>{console.log(res);
+      },error:(err)=>{
+        clearInterval(this.interval);
+        this.logout();console.log(err);
       }
     })
-  }
+
+    }
 
   
 

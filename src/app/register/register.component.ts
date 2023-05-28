@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { Register } from './register';
@@ -11,6 +11,7 @@ import { RegisterService } from './register.service';
 })
 export class RegisterComponent implements OnInit {
   @Input() typeUser = '';
+  @Output() content = new EventEmitter<string>();
   userForm: Register = {
     name: '',
     email: '',
@@ -34,10 +35,13 @@ export class RegisterComponent implements OnInit {
       if (this.typeUser === 'MANAGER') {
         this.service.addManager(this.userForm).subscribe({
           next:(res)=>{
-            console.log(res);       // we should add something like toastify here...
+
+            console.log(res);  
             this.clearForm();
             this.confirmPassword='';
             this.appComponent.sweetAlertSuccess("Manager Added")
+            this.content.emit("addManager")     
+            
           },
           error:(err)=>{
             console.log(err);

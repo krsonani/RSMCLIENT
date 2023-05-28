@@ -42,7 +42,9 @@
 
     <div *ngIf="successMsg" class="success-msg">{{successMsg}}</div>
 
-    <button type="submit">Add Food</button>
+    <button *ngIf="!selectFoodItem" type="submit">Add Food</button>
+    <button *ngIf="selectFoodItem" type="submit">Update Food</button>
+
   </form>
 </div>
 

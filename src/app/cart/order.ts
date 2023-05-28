@@ -1,9 +1,9 @@
 export interface Order {
 
-    userid:number,
-    tableIds:Array<number>,
-    foodids:Array<number>,
-    foodItem:Object,
+    userid:string,
+    tableIds:string[],
+    foodids:string[],
+    foodItem:{ [ number: number]: any },
     totalPrice: number;
 
 }

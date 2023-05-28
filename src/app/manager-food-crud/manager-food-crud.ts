@@ -1,4 +1,5 @@
 export interface ManagerFoodCrud {
+    fid:number;
     fname:string;
     fimage:string;
     description:string;
