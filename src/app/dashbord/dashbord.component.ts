@@ -12,15 +12,14 @@ export class DashbordComponent implements OnInit {
   username: string;
   content:string='';
   typeUser:string='';
-  noOfCustomer:number=4;
+  noOfCustomer:number=2;
   surplusUsers:any;
   activeTable:string[]=[];
   selectFoodItem:any;
   userid:string='';
-  cartItems:any;
+  cartItems:any[]=[];
   interval:any = '';
-
-
+  outputCartItems:any[]=[];
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
   }
@@ -39,10 +38,17 @@ export class DashbordComponent implements OnInit {
     this.cartItems=cartItems;
     console.log(this.cartItems);
   }
+
   initializeFoodItem(foodItem:any){
     this.selectFoodItem=foodItem;
     console.log(this.selectFoodItem);
   }
+
+  setCartItems(outputCartItems:any[]){
+    this.outputCartItems = outputCartItems;
+  }
+
+
 
   logout() {
     sessionStorage.removeItem("jwtToken");

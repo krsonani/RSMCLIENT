@@ -49,7 +49,7 @@
         <app-customerprofile *ngIf="content === 'profile'"></app-customerprofile>
       </div>
       <div>
-        <app-cart *ngIf="content === 'cart'" [activeTable]="activeTable" [userid]="userid"  [cartItems]="cartItems"></app-cart>
+        <app-cart *ngIf="content === 'cart'" [activeTable]="activeTable" [userid]="userid"  [cartItems]="cartItems" (outputCartItems)="setCartItems($event)"></app-cart>
       </div>
       <div>
         <app-customerupdateprofile *ngIf="content === 'updateProfile'" ></app-customerupdateprofile>
@@ -58,11 +58,12 @@
         <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>
       </div>
       <div>
-        <app-food-menu *ngIf="content === 'foodManue'" [activeTable]="activeTable" [typeUser]="typeUser" (cartItems)="initializeCartItems($event)" (content)="receiveContent($event)" (selectFoodItem)="initializeFoodItem($event)"></app-food-menu>
+        <app-food-menu *ngIf="content === 'foodManue'" [activeTable]="activeTable" [typeUser]="typeUser" (cartItems)="initializeCartItems($event)" (content)="receiveContent($event)" (selectFoodItem)="initializeFoodItem($event)" [outputCartItems]="outputCartItems"></app-food-menu>
       </div>
 
       <div>
         <app-manager-food-crud *ngIf="content === 'addFood'" [selectFoodItem]="selectFoodItem" ></app-manager-food-crud>
+
       </div>
 
     <!-- added for view -->
