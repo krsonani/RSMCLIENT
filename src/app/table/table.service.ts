@@ -50,15 +50,7 @@ export class TableService {
     })
   }
 
-  checkQueueForVacancy(id:string)
-  {
-    return this.http.get<any>(this.url+"/isAnyTableVacantNow/"+id,{
-      headers:new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `${sessionStorage.getItem("jwtToken")}`
-      })
-    })
-  }
+
 }
 
 

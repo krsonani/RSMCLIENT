@@ -32,7 +32,10 @@ export class FoodMenuComponent implements OnInit {
 
   ngOnInit(): void {
 
-     this.addToCartFoods=this.outputCartItems;
+    this.addToCartFoods=this.outputCartItems;
+    this.cartItems.emit(this.addToCartFoods);
+    
+    console.log(this.outputCartItems);
     console.log(this.addToCartFoods);
     
     this.mccs.getAllCategories().subscribe({
