@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { Register } from './register';
 import { RegisterService } from './register.service';
 
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
   errors: any = {};
   errorOtp: string = '';
 
-  constructor(private service: RegisterService, private rout: Router) { }
+  constructor(private service: RegisterService, private rout: Router,private appComponent:AppComponent) { }
   ngOnInit(): void {
     console.log(this.typeUser);
   }
@@ -34,10 +35,13 @@ export class RegisterComponent implements OnInit {
         this.service.addManager(this.userForm).subscribe({
           next:(res)=>{
             console.log(res);       // we should add something like toastify here...
-            
+            this.clearForm();
+            this.confirmPassword='';
+            this.appComponent.sweetAlertSuccess("Manager Added")
           },
           error:(err)=>{
             console.log(err);
+            this.appComponent.sweetAlertError("Email Already Exist");
             
           }
         });
@@ -46,15 +50,12 @@ export class RegisterComponent implements OnInit {
         this.service.addUser(this.userForm).subscribe({
           next: (res) => {
             console.log(res);
-            if (res.status === "201") {
-              this.rout.navigate(["/login"]);
-            }
-            else {
-              this.errorOtp = "Wrong Otp";
-            }
+            this.appComponent.sweetAlertSuccess("Registered");
+            this.rout.navigate(["/login"]);
           },
           error: (err) => {
             console.log(err);
+            this.appComponent.sweetAlertError("Wrong Otp");
 
           }
         });
@@ -69,16 +70,18 @@ export class RegisterComponent implements OnInit {
         this.service.sendOtp(this.userForm.email).subscribe({
           next: (res) => {
             console.log(res);
-
+            this.confirmOtp = true;
+            this.appComponent.sweetAlertSuccess("Otp Sent");
           },
           error: (err) => {
             console.log(err);
+            this.appComponent.sweetAlertError("Email Already Exist");
 
           }
         });
         console.log(this.userForm.email);
 
-        this.confirmOtp = true;
+        
       }
 
     }
@@ -144,7 +147,15 @@ export class RegisterComponent implements OnInit {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
   }
-
+  clearForm() {
+    this.userForm = {
+      name: '',
+      email: '',
+      phoneNum: '',
+      password: '',
+      otp: '',
+    };
+  }
 }
 
 
