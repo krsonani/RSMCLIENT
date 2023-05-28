@@ -73,6 +73,7 @@ export class DashbordComponent implements OnInit {
 
   setCartItems(outputCartItems:any[]){
     this.outputCartItems = outputCartItems;
+
     this.cartItems=outputCartItems;
     console.log(this.cartItems);
   }
@@ -83,6 +84,7 @@ export class DashbordComponent implements OnInit {
       this. toShowWaitingQueuLogo=value;
       this.chnageContent('');
       this.checkWaitingStatus(this.userid);
+
   }
 
 
