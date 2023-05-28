@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ManagerCategoryCrudService } from '../manager-category-crud/manager-category-crud.service';
 import { ManagerFoodCrud } from './manager-food-crud';
 import { ManagerFoodCrudService } from './manager-food-crud.service';
@@ -22,6 +22,7 @@ export class ManagerFoodCrudComponent implements OnInit {
   categoryList : any;
   successMsg : string = '';
   @Input() selectFoodItem: any;
+  @Output() content=new EventEmitter<string>();
   errors: any={} ;
 
   constructor(private service : ManagerFoodCrudService, private mcc : ManagerCategoryCrudService) { }
@@ -41,12 +42,15 @@ export class ManagerFoodCrudComponent implements OnInit {
     console.log(this.userForm);
     console.log("before");
     
-    this.userForm.fid = this.selectFoodItem.fid;
-    this.userForm.categoryId = this.selectFoodItem.category.cid;
-    this.userForm.description = this.selectFoodItem.description;
-    this.userForm.fimage = this.selectFoodItem.fimage;
-    this.userForm.fname = this.selectFoodItem.fname;
-    this.userForm.price = this.selectFoodItem.price;
+    if(Object.keys(this.selectFoodItem).length!==0){
+      
+      this.userForm.fid = this.selectFoodItem.fid;
+      this.userForm.categoryId = this.selectFoodItem.category.cid;
+      this.userForm.description = this.selectFoodItem.description;
+      this.userForm.fimage = this.selectFoodItem.fimage;
+      this.userForm.fname = this.selectFoodItem.fname;
+      this.userForm.price = this.selectFoodItem.price;
+    }
 
     console.log(this.userForm);
     console.log("after");
@@ -69,6 +73,12 @@ export class ManagerFoodCrudComponent implements OnInit {
           };
           
           this.successMsg = Object.keys(this.selectFoodItem).length===0 ? "Food Added" : "Food Updated";
+
+          if(Object.keys(this.selectFoodItem).length!==0){
+            console.log("before emitting");
+            this.content.emit('foodManue');
+          }
+
         },
         error:(err)=>{
           console.log(err);

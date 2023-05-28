@@ -83,8 +83,7 @@
       </div>
 
       <div>
-        <app-manager-food-crud *ngIf="content === 'addFood'" [selectFoodItem]="selectFoodItem" ></app-manager-food-crud>
-
+        <app-manager-food-crud *ngIf="content === 'addFood'" [selectFoodItem]="selectFoodItem" (content)="resetFoodItem($event)"></app-manager-food-crud>
       </div>
 
     <!-- added for view -->
@@ -96,9 +95,6 @@
     </div>
     <div>
       <app-manager-category-crud *ngIf="content === 'addcatrgory'"> </app-manager-category-crud>
-    </div>
-    <div>
-      <app-manager-food-crud *ngIf="content === 'addfood'" ></app-manager-food-crud>
     </div>
   </div>
 </div>
