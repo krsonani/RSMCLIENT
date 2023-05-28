@@ -6,10 +6,12 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    display: inline;
 }
 .error-message{
   color: red;
   font-size: x-small;
+  display: block;
 }
 .wrapper{
     max-width: 850px;
@@ -82,7 +84,7 @@
 }
 
 .wrapper .form-right h2{
-    color: #3786bd;
+    color: #333;
 }
 
 .wrapper .form-right label{
@@ -90,12 +92,12 @@
     font-size: 15px;
     color: #666;
     display: block;
-    margin-bottom: 8px;
+    margin-top: 6px;
 }
 
 .wrapper .form-right .input-field{
-    width: 100%;
-    padding: 10px 15px;
+    width: 85%;
+    padding: 4px 8px;
     border: 1px solid #e5e5e5;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -226,7 +228,7 @@
 
 /* CSS */
 .button-cs {
-  background-color: #1a70b5;
+  background-color: #333;
   border-radius: 18px;
   border-style: none;
   box-sizing: border-box;
@@ -251,7 +253,8 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   width: 56%;
-  margin: 3px;
+  margin: -4px;
+    margin-top: 12px;
 }
 
 .button-cs:hover,
