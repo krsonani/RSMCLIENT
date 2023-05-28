@@ -46,6 +46,7 @@ export class DashbordComponent implements OnInit {
 
   setCartItems(outputCartItems:any[]){
     this.outputCartItems = outputCartItems;
+    this.cartItems = this.outputCartItems;
   }
 
 
