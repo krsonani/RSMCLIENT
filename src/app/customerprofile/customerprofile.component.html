@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="profile-container">
 </div>
 <section class="vh-100" style="background-color: #dfe0e2;">
@@ -8,11 +9,10 @@
             <div class="row g-0">
               <div class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                <img src=""
-                  alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                <img src="../../assets/profile.jpg"
+                  alt="Avatar" class="img-fluid my-5" style="width: 100px;border-radius: 55%;" />
                 <h5 >{{userProfile.name}}</h5>
                 <p>{{ role }}</p>
-                <i class="far fa-edit mb-5"></i>
               </div>
               <div class="col-md-8">
                 <div class="card-body p-5">
@@ -21,11 +21,11 @@
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
                     <div class="col-6 mb-3">
-                      <h5>Email</h5>
+                      <h5><i class="fa fa-envelope" style="font-size:24px"></i> Email</h5>
                       <p class="text-muted">{{userProfile.email}}</p>
                     </div>
                     <div class="col-6 mb-3">
-                      <h5>Phone</h5>
+                      <h5><i class="fa-solid fa-phone fa-shake" style="color: #030303;"></i> Phone</h5>
                     <p class="text-muted">{{userProfile.phoneNum}}</p>
                     </div>
                 </div>

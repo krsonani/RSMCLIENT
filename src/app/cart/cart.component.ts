@@ -75,11 +75,11 @@ export class CartComponent implements OnInit {
   removeItem(item:Cart){
     item.quantity=0;
     this.calculateTotal();
+    
+    this.cartItems = this.cartItems.filter((cartItem)=> item !== cartItem )
 
-    this.cartItems = this.cartItems.filter((cartItem)=>{ item !== cartItem })
-
-    console.log(this.cartItems);
     this.outputCartItems.emit(this.cartItems);
+    console.log(this.outputCartItems);
   }
 
 

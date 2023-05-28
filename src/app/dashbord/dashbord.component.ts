@@ -19,7 +19,7 @@ export class DashbordComponent implements OnInit {
   userid:string='';
   cartItems:any[]=[]; //output from food-menu going to cart
   interval:any = '';
-  outputCartItems:any[]=[];
+  outputCartItems:any[]=[]; //output from cart going to food menu
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
   }
