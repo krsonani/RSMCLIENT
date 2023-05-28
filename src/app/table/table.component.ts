@@ -25,13 +25,14 @@ export class TableComponent implements OnInit {
  goForWaiting:boolean=false;
  goForWaitingToManager:boolean=false;
  count:number=0;
- toShowWaitingQueuLogo:boolean=false;
+ toShowWaitingQueu:boolean=true;
  booktableIds:string[]=[];
  @Input() typeUser:string='';
  @Input() noOfCustomer:number=0;
  @Input() userid:string='';
  @Output() content=new EventEmitter<string>();
  @Output() activeTable=new EventEmitter<string[]>();
+ @Output() toShowWaitingQueuLogo =new EventEmitter<boolean>()
  
   constructor(private service : TableService,private cdr : ChangeDetectorRef) { }
 
@@ -223,70 +224,15 @@ export class TableComponent implements OnInit {
     
   }
 
-  //ashutosh ke changes
-
-  showWaitingCount : any;
-  displayMsg : string = '';
-  interval : any;
-  isTableAllocation = false;
-
-  onClickOfFloatingIcon(){
-    Swal.fire({
-      title: 'Waiting Queue Status',
-      html: this.displayMsg,
-      willClose: ()=>{
-        if(this.isTableAllocation){
-          this.sendContent();
-        }
-      }
-    });
-  }
-
-  checkWaitingStatus(id:string){
-
-    this.interval = setInterval(()=>{
-      this.service.checkQueueForVacancy(id).subscribe({
-        next:(res)=>{
-          console.log(res);
-
-          if(Object.keys(res)[0] === 'Table not found'){
-            let temp = Object.values(res);
-            let temp2 : any[] = temp;
-            this.showWaitingCount = temp2[0];
-            this.displayMsg = `Your waiting number ${ (this.showWaitingCount == undefined) ? " " : this.showWaitingCount }`;  
-            console.log(this.displayMsg);
-          }
-          else{
-            clearInterval(this.interval);
-            let temp = Object.values(res);
-            let temp2 : any[] = temp;
-            this.showWaitingCount = temp2[0];
-            this.booktableIds = this.showWaitingCount;
-            this.displayMsg = `Assigned Tables are: ${this.showWaitingCount}`;  
-            this.isTableAllocation = true; 
-          }
-        },
-        error:(err)=>{
-          console.log(err);
-        }
-      });
-    },500)
-  }
-
-//Table not found: [3]
-
-  clearCheckingWaitingStatus(){
-    clearInterval(this.interval);
-  }
-
   // yaha tak hai
   addTableToQueue()
   {
-    this.toShowWaitingQueuLogo=true;
+    this.toShowWaitingQueuLogo.emit(true);
+    this.toShowWaitingQueu=false;
     this.service.addtoQueue(this.userid,this.noOfCustomer).subscribe({
       next:(res)=>{
         console.log(res);
-        this.checkWaitingStatus(this.userid);
+        // this.checkWaitingStatus(this.userid);
       },
       error:(err)=>{
         console.log(err);

@@ -167,105 +167,11 @@ a:visited{
 
 /* ashutosh ke changes */
 
-.floating-icon {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #2196f3; /* Change the background color as per your preference */
-  color: #fff; /* Change the icon color as per your preference */
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  white-space: normal;
-}
 
-
-.floating-icon:hover {
-  background-color: #1976d2; /* Change the hover background color as per your preference */
-}
-
-.floating-icon mat-icon {
-  padding: 0%;
-  font-size: 20px;
-  display: inline;
-}
 
 /* yaha tak */
 
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 800px;
-  margin-top: 70px;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.wel-con h1 {
-  text-align: center;
-  color: #333;
-}
-
-.wel-con p {
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.wel-con .form-group {
-  margin-bottom: 20px;
-}
-
-.wel-con label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.wel-text
-{
-  font-weight: bold;
-  color: #555;
-  font-size: 18px;
-  text-align: center;
-}
-.wel-con input[type="text"] {
-  width: 100%;
-  padding: 10px;
-}
-
-.wel-con .quote {
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.wel-con .quote p {
-  font-style: italic;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #777;
-}
-
-.wel-con .experience {
-  text-align: center;
-}
-
-.wel-con .experience p {
-  font-weight: bold;
-  color: #555;
-}
 
 
 

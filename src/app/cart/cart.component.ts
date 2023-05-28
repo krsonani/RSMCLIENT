@@ -60,6 +60,8 @@ export class CartComponent implements OnInit {
     item.quantity-=1;
     this.calculateTotal();
     this.outputCartItems.emit(this.cartItems);
+    console.log(this.cartItems);
+    
     
   }
   
@@ -95,7 +97,10 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartItems=[];
+        console.log(this.cartItems);
+        this.outputCartItems.emit(this.cartItems);
         this.calculateTotal();
+
       },error:(error)=>{
         console.log(error);
       }
