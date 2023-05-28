@@ -17,7 +17,7 @@ export class DashbordComponent implements OnInit {
   activeTable:string[]=[];
   selectFoodItem:any;
   userid:string='';
-  cartItems:any[]=[];
+  cartItems:any[]=[]; //output from food-menu going to cart
   interval:any = '';
   outputCartItems:any[]=[];
 

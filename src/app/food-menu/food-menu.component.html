@@ -12,15 +12,15 @@
                 <div class="col-12 col-sm-6 col-md-4" *ngIf="compareCategoryName(category.cname, food.category.cname)">
                     <div class="card mt-2">
                       <img class="card-img-top" src="{{food.fimage}}" alt="Card image cap">
-                      <div class="card-body">
+                      <div class="card-body" >
                         <p class="card-text"> <b>{{food.fname}}</b> </p>
                         <p class="card-text"> <i>{{food.description}}</i> </p>
                         <p class="card-text">Price: {{food.price}}</p>
                         <div class="button-group">
-                          <button class="btn btn-success"  (click)="addToCart(food)" *ngIf="!food.addedToCart  && activeTable.length !== 0">
+                          <button class="btn btn-success"  (click)="addToCart(food)" *ngIf="activeTable.length !== 0 && !checkFoodInCart(food)">
                             <i class="fas fa-shopping-cart"> </i> Add to Cart
                           </button>
-                          <button class="btn btn-danger" (click)="removeFromCart(food)" *ngIf="food.addedToCart && activeTable.length !== 0">
+                          <button class="btn btn-danger" (click)="removeFromCart(food)" *ngIf="activeTable.length !== 0 && checkFoodInCart(food)">
                               <i class="fas fa-shopping-cart"></i> remove from Cart
                           </button>
                           <div>

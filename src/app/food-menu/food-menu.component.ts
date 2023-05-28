@@ -10,73 +10,77 @@ import { FoodMenuService } from './food-menu.service';
 })
 export class FoodMenuComponent implements OnInit {
 
-  @Input() activeTable:string[]=[];
-  constructor(private service : FoodMenuService, private mccs : ManagerCategoryCrudService) { }
+  @Input() activeTable: string[] = [];
+  constructor(private service: FoodMenuService, private mccs: ManagerCategoryCrudService) { }
 
   categories: any;
 
   foodlist: any;
-  
-  @Input() typeUser:string = '';
 
-  addToCartFoods:any[] = []; 
-  
-  @Output() cartItems=new EventEmitter();
-  @Input() outputCartItems:any[]= [];
+  @Input() typeUser: string = '';
+
+  addToCartFoods: any[] = [];
+
+  @Output() cartItems = new EventEmitter();
+  @Input() outputCartItems: any[] = []; //from cart to food-menu
 
   ngOnInit(): void {
-    // this.addToCartFoods=this.outputCartItems;
-    console.log(this.addToCartFoods);
-    
+    this.addToCartFoods=this.outputCartItems;
+    console.log(this.outputCartItems);
+
     this.mccs.getAllCategories().subscribe({
-      next:(res)=>{
+      next: (res) => {
         console.log(res);
         this.categories = res;
       }
     });
 
     this.service.getAllFood().subscribe({
-      next:(res)=>{
+      next: (res) => {
         console.log(res);
         this.foodlist = res;
       }
     })
   }
 
-  toggleCategory(category : any){
+  toggleCategory(category: any) {
     console.log(category);
     category.expanded = !category.expanded;
   }
 
-  addToCart(food : any){
-    console.log(food);
-    food.addedToCart = !food.addedToCart;
-    food.quantity=1;
+  addToCart(food: any) {
+    food.quantity = 1;
     this.addToCartFoods = [...this.addToCartFoods, food];
     this.cartItems.emit(this.addToCartFoods);
-    console.log(this.addToCartFoods);
   }
 
-  removeFromCart(food : any){
-    food.addedToCart = !food.addedToCart;
+  removeFromCart(food: any) {
 
     this.addToCartFoods = this.addToCartFoods.filter(foodObj => food.fid != foodObj.fid);
 
     //need to update this
     this.cartItems.emit(this.addToCartFoods);
-    localStorage.setItem("foodList",JSON.stringify(this.addToCartFoods))
+    localStorage.setItem("foodList", JSON.stringify(this.addToCartFoods))
     console.log(this.addToCartFoods);
   }
 
-  compareCategoryName(c1: string, c2:string): boolean{
-    if(c1===c2)
+  compareCategoryName(c1: string, c2: string): boolean {
+    if (c1 === c2)
       return true;
     else
       return false;
   }
+  
+  checkFoodInCart(item: any): boolean {
+   
+    for (let cartitem of this.addToCartFoods) {
 
-  chekAddToCart(fid:string)
-  {
-      return true
+      if (item.fid == cartitem.fid) {
+
+        return true;
+      }
+    }
+    return false;
   }
+
 }
