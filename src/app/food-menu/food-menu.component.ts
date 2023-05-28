@@ -1,5 +1,6 @@
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AppService } from '../app/app.service';
 import { ManagerCategoryCrudService } from '../manager-category-crud/manager-category-crud.service';
 import { FoodMenuService } from './food-menu.service';
 
@@ -11,7 +12,7 @@ import { FoodMenuService } from './food-menu.service';
 export class FoodMenuComponent implements OnInit {
 
   @Input() activeTable: string[] = [];
-  constructor(private service: FoodMenuService, private mccs: ManagerCategoryCrudService) { }
+  constructor(private service: FoodMenuService, private mccs: ManagerCategoryCrudService,private aapService :AppService) { }
 
   categories: any;
 
@@ -32,7 +33,10 @@ export class FoodMenuComponent implements OnInit {
 
   ngOnInit(): void {
 
-     this.addToCartFoods=this.outputCartItems;
+    this.addToCartFoods=this.outputCartItems;
+    this.cartItems.emit(this.addToCartFoods);
+    
+    console.log(this.outputCartItems);
     console.log(this.addToCartFoods);
     
     this.mccs.getAllCategories().subscribe({
@@ -61,6 +65,7 @@ export class FoodMenuComponent implements OnInit {
     food.quantity=1;
     this.addToCartFoods = [...this.addToCartFoods, food];
     this.cartItems.emit(this.addToCartFoods);
+    this.aapService.sweetAlertSuccess("Successfully added to cart")
   }
 
 
@@ -70,6 +75,7 @@ export class FoodMenuComponent implements OnInit {
     this.cartItems.emit(this.addToCartFoods);
     localStorage.setItem("foodList", JSON.stringify(this.addToCartFoods))
     console.log(this.addToCartFoods);
+    this.aapService.sweetAlertSuccess("Successfully removed from cart")
   }
 
   compareCategoryName(c1: string, c2: string): boolean {
@@ -82,6 +88,7 @@ export class FoodMenuComponent implements OnInit {
   toggleFoodAvailability(food : any){
     this.service.toggleGivenFood(food.fid).subscribe();
     food.available = !food.available;
+    this.aapService.sweetAlertSuccess("Successfully Changed the food status")
   }
 
   sendContent(foodItem : any) {

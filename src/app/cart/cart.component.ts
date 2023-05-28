@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AppService } from '../app/app.service';
 import { Cart } from './cart';
 import { CartService } from './cart.service';
 import { Order } from './order';
@@ -11,7 +12,7 @@ import { Order } from './order';
 export class CartComponent implements OnInit {
 
 
-  constructor(private service:CartService) { }
+  constructor(private service:CartService,private aapService : AppService) { }
 
   //cartItems:any;
   @Input() activeTable:string[]=[];
@@ -60,6 +61,8 @@ export class CartComponent implements OnInit {
     item.quantity-=1;
     this.calculateTotal();
     this.outputCartItems.emit(this.cartItems);
+    console.log(this.cartItems);
+    
     
   }
   
@@ -73,13 +76,13 @@ export class CartComponent implements OnInit {
   removeItem(item:Cart){
     item.quantity=0;
     this.calculateTotal();
-  
-    this.cartItems = this.cartItems.filter((cartItem)=>{ 
-     return item.fid != cartItem.fid 
-    })
-
-    console.log(this.cartItems);
+    
+    this.cartItems = this.cartItems.filter((cartItem)=> item !== cartItem )
     this.outputCartItems.emit(this.cartItems);
+    console.log(this.outputCartItems);
+
+    this.aapService.sweetAlertError("Removed form the cart")
+
   }
 
 
@@ -97,7 +100,11 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartItems=[];
+        console.log(this.cartItems);
+        this.outputCartItems.emit(this.cartItems);
         this.calculateTotal();
+        this.aapService.sweetAlertSuccess("Order Placed")
+
       },error:(error)=>{
         console.log(error);
       }

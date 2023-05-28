@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component,  EventEmitter,  Input, OnChanges, OnInit,
 import { NgControl } from '@angular/forms';
 import { TableService } from './table.service';
 import Swal from 'sweetalert2';
+import { AppService } from '../app/app.service';
 
 @Component({
   selector: 'app-table',
@@ -25,15 +26,16 @@ export class TableComponent implements OnInit {
  goForWaiting:boolean=false;
  goForWaitingToManager:boolean=false;
  count:number=0;
- toShowWaitingQueuLogo:boolean=false;
+ toShowWaitingQueu:boolean=true;
  booktableIds:string[]=[];
  @Input() typeUser:string='';
  @Input() noOfCustomer:number=0;
  @Input() userid:string='';
  @Output() content=new EventEmitter<string>();
  @Output() activeTable=new EventEmitter<string[]>();
+ @Output() toShowWaitingQueuLogo =new EventEmitter<boolean>()
  
-  constructor(private service : TableService,private cdr : ChangeDetectorRef) { }
+  constructor(private service : TableService,private cdr : ChangeDetectorRef,private aapService : AppService) { }
 
   ngOnInit(): void {
   if(!this.goForWaitingWithManager())
@@ -41,6 +43,7 @@ export class TableComponent implements OnInit {
     this.showTable()
   }else
   {
+    
     this.addTableToQueue();
 
   // add waiting queue cheking function
@@ -175,6 +178,8 @@ export class TableComponent implements OnInit {
       next:(res)=>{
             console.log(res);
             this.showTable();
+            if(this.typeUser=== 'MANAGER')
+            this.aapService.sweetAlertSuccess("Table Status changed Succesfully");
             this.showToggle=false;
       },error:(err)=>{
           console.log(err);
@@ -188,6 +193,7 @@ export class TableComponent implements OnInit {
       next:(res)=>{
             console.log(res);
             this.showNaToggle=false;
+            this.aapService.sweetAlertSuccess("Table Status changed Succesfully");
             this.showTable();
             
       },error:(err)=>{
@@ -199,17 +205,35 @@ export class TableComponent implements OnInit {
 
   tabelDelete()
   {
-    this.service.deleteTable(this.isActivte).subscribe({
-      next:(res)=>{
-          console.log(res);
-          this.showToggle= false;
-          this.showTable();
-          
-      },error:(err)=>{
-          console.log(err);
-          
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteTable(this.isActivte).subscribe({
+          next:(res)=>{
+              console.log(res);
+              this.showToggle= false;
+              this.showTable();
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )             
+          },error:(err)=>{
+              console.log(err);
+              
+          }
+        })
+
       }
     })
+
 
   }
 
@@ -220,74 +244,18 @@ export class TableComponent implements OnInit {
     this.booktableIds = [...this.booktableIds, this.isActivte];
     this.onToggle();
     this.sendContent();
+    this.aapService.sweetAlertSuccess("Table is Successfully Allocated");
     
   }
 
-  //ashutosh ke changes
-
-  showWaitingCount : any;
-  displayMsg : string = '';
-  interval : any;
-  isTableAllocation = false;
-
-  onClickOfFloatingIcon(){
-    Swal.fire({
-      title: 'Waiting Queue',
-      html: this.displayMsg,
-      willClose: ()=>{
-        if(this.isTableAllocation){
-          this.sendContent();
-        }
-      }
-    });
-  }
-
-  checkWaitingStatus(id:string){
-
-    this.interval = setInterval(()=>{
-      this.service.checkQueueForVacancy(id).subscribe({
-        next:(res)=>{
-          console.log(res);
-
-          if(Object.keys(res)[0] === 'Table not found'){
-            let temp = Object.values(res);
-            let temp2 : any[] = temp;
-            this.showWaitingCount = temp2[0];
-            this.displayMsg = `Your waiting number ${ (this.showWaitingCount == undefined) ? " " : this.showWaitingCount }`;  
-            console.log(this.displayMsg);
-          }
-          else{
-            clearInterval(this.interval);
-            let temp = Object.values(res);
-            let temp2 : any[] = temp;
-            this.showWaitingCount = temp2[0];
-            this.booktableIds = this.showWaitingCount;
-            this.displayMsg = `Your table/s assigned are ${this.showWaitingCount}`;  
-            this.isTableAllocation = true; 
-          }
-        },
-        error:(err)=>{
-          console.log(err);
-          
-        }
-      });
-    },500)
-  }
-
-//Table not found: [3]
-
-  clearCheckingWaitingStatus(){
-    clearInterval(this.interval);
-  }
-
-  // yaha tak hai
   addTableToQueue()
   {
-    this.toShowWaitingQueuLogo=true;
+    this.toShowWaitingQueuLogo.emit(true);
+    this.toShowWaitingQueu=false;
     this.service.addtoQueue(this.userid,this.noOfCustomer).subscribe({
       next:(res)=>{
         console.log(res);
-        this.checkWaitingStatus(this.userid);
+        this.aapService.sweetAlertSuccess("Successfully Added in Waiting Queue");
       },
       error:(err)=>{
         console.log(err);
