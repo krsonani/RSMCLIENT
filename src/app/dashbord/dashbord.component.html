@@ -73,7 +73,7 @@
         <app-cart *ngIf="content === 'cart'" [activeTable]="activeTable" [userid]="userid"  [cartItems]="cartItems" (outputCartItems)="setCartItems($event)"></app-cart>
       </div>
       <div>
-        <app-customerupdateprofile *ngIf="content === 'updateProfile'" ></app-customerupdateprofile>
+        <app-customerupdateprofile *ngIf="content === 'updateProfile'" (content)="receiveContent($event)" ></app-customerupdateprofile>
       </div>
       <div>
         <app-daywiseorder *ngIf="content === 'order'"></app-daywiseorder>

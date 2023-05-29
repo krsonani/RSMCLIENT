@@ -6,11 +6,11 @@
       </div>
       <div [ngClass]="[ category.expanded ? 'category-foodBlock' : 'category-foodNone']">
         <div class="row">
-            <div *ngFor="let food of foodlist" >
-                <div *ngIf="compareCategoryName(category.cname, food.category.cname)"  >
-                    <div class="col-sm-6 col-md-4 col-lg-3">
+            <ng-container *ngFor="let food of foodlist" >
+                <div class="col-sm-6 col-md-4 col-lg-3"  *ngIf="compareCategoryName(category.cname, food.category.cname)"  >
+              
                         <div [ngClass]="[ 'card', 'mt-2', food.available? '' : 'unavailable-card' ]" >
-                          <img class="card-img-top" src="{{food.fimage}}" alt="Card image cap">
+                          <img class="card-img-top" style="    width: 104%; height: 180px;" src="{{food.fimage}}" alt="Card image cap">
                           <div class="card-body" >
                             <h5 class="card-title"> {{food.fname}} </h5>
                             <p class="card-text"> <i>{{food.description}}</i> </p>
@@ -37,10 +37,10 @@
                             </div>
                             </div>
                         </div>
-                    </div>
+          
                 </div>
                 
-            </div>
+            </ng-container>
         </div>
       </div>
     </div>

@@ -29,45 +29,51 @@ export class LoginComponent implements OnInit {
 
   error: any = {};
   confirmpass: string = '';
-  loginError: string = '';
   msgOnModal: string = '';
-  constructor(private service: LoginService, private root: Router,private appservice : AppService) { }
+  constructor(private service: LoginService, private route: Router,private appservice : AppService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.service.coustomerLogin(this.loginForm).subscribe({
-      next: (res) => {
-        console.log(res);
-        sessionStorage.setItem("jwtToken", "Bearer " + res.jwtToken);
-        this.root.navigate(["/dashbord"])
-      }, error: (err) => {
-        console.log(err);
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Invalid Credentials',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    });
+      if(this.onEmailChange(this.loginForm.email) && this.onPasswordChange(this.loginForm.password)){
+      this.service.coustomerLogin(this.loginForm).subscribe({
+        next: (res) => {
+          console.log(res);
+          sessionStorage.setItem("jwtToken", "Bearer " + res.jwtToken);
+          this.route.navigate(["/dashbord"])
+        }, error: (err) => {
+          console.log(err);
+        this.appservice.sweetAlertError("Invalid Credentidals");
+        
+        }
+      });
+    }
+    
+  }
+  onSignUp()
+  {
+    this.route.navigate(["/register"])
   }
 
-  onEmailChange(str: string) {
-    if (str.length == 0)
-      this.error.email = ""
+  onEmailChange(str: string):boolean {
+
+    if (str.length == 0){
+      this.error.email = "Email is required"
+      return false;
+    }
     else if (!this.isValidEmail(str)) {
       this.error.email = "Invalid Email";
+      return false;
     }
     else {
       this.error.email = "";
+      return true;
     }
   }
   onOtpChange(str: string) {
     if (str.length == 0)
-      this.error.otp = ""
+      this.error.otp = "Otp is required"
     else if (!this.isValidOtp(str)) {
       this.error.otp = "OTP Format is not correct";
     }
@@ -75,12 +81,20 @@ export class LoginComponent implements OnInit {
       this.error.otp = "";
     }
   }
-  onPasswordChange(str: string) {
-    if (!this.isValidPassword(str)) {
-      this.error.password = "Password should be in propper format";
+  onPasswordChange(str: string):boolean {
+
+    if (str.length == 0){
+      this.error.password = "password is required";
+      return false;
+    }
+    
+    else if (!this.isValidPassword(str)) {
+      this.error.password = "Password should contain atleast @,numerics & alphabets";
+      return false;
     }
     else {
       this.error.password = "";
+      return true;
     }
   }
 
@@ -168,5 +182,6 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
 
 }
