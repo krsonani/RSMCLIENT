@@ -1,26 +1,31 @@
-<div class="profile-container">
-    <table class="profile-table">
-        <tr class="welcome">
-            <h1 >Welcome! {{ userProfile.name }}</h1>
-        </tr>
-        <tr>
-            <td class="profile-td"> <label for="name">Name</label></td>
-            <td class="profile-td"> <input class="profile-input" name="name" [(ngModel)]="userProfile.name" ></td>
-        </tr>
-        <tr>
-            <td class="profile-td"> <label for="email">Email</label></td>
-            <td class="profile-td"> <input class="profile-input" name="email" [(ngModel)]="userProfile.email" disabled></td>
-        </tr>
-        <tr>
-            <td class="profile-td"> <label for="phoneNum">Phone No</label></td>
-            <td class="profile-td"> <input class="profile-input" name="phoneNum" [(ngModel)]="userProfile.phoneNum"></td>
-        </tr>
-        <tr>
-            <button class="update-button" type="button" (click)="handleUpdate()">Update Profile</button>
-        </tr>
-        <!-- Just to detect error can be removed later -->
-        <div *ngIf="fetchError" >
-            {{fetchError}}
+<div class="wrapper">
+    <div class="form-right">
+        <h2 class="text-uppercase">Welcome! {{ previousName }}</h2>
+        <div class="row">
+            <div class="col-sm-6 mb-3 form-group">
+              <label for="name">Name</label>
+               <input (ngModelChange)="onNameChange($event)" class="input-field" name="name" [(ngModel)]="userProfile.name">
+               <span class="error-message" style='color:red' *ngIf="error.name">{{ error.name }}</span>
+            </div>
+            <div class="col-sm-6 mb-3 form-group">
+                 <label for="email">Email</label>
+                 <input class="input-field" name="email" value="{{userProfile.email}}"
+                        disabled>
+            </div>
+            <div class="col-sm-6 mb-3 form-group">
+                 <label for="phoneNum">Phone No</label>
+                <input (ngModelChange)="onPhoneNumChange($event)" class="input-field" name="phoneNum" [(ngModel)]="userProfile.phoneNum">
+                <span class="error-message" style='color:red' *ngIf="error.phone">{{ error.phone }}</span>
+            </div>
+            <div class="col-sm-6 mb-3 form-group">
+                <button class="button-cs" type="button" (click)="handleUpdate()">Update Profile</button>
+            </div>
+            <!-- Just to detect error can be removed later -->
+            <div class="col-sm-6 mb-3 form-group">
+            <span class="error-message" *ngIf="fetchError">
+                {{fetchError}}
+            </span>
         </div>
-    </table>
+        </div>
+    </div>
 </div>
