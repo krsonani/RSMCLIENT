@@ -80,6 +80,9 @@ export class ManagerFoodCrudComponent implements OnInit {
             this.content.emit('foodManue');
             this.appserv.sweetAlertSuccess("Updation successfull!");
           }
+          else{
+            this.appserv.sweetAlertSuccess("Food Added Successfully!");
+          }
 
         },
         error:(err)=>{
