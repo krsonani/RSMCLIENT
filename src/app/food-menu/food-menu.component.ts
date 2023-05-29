@@ -27,7 +27,6 @@ export class FoodMenuComponent implements OnInit {
   @Output() content=new EventEmitter<string>();
   @Input() outputCartItems:any[]= [];
 
-
   ngOnInit(): void {
 
     this.addToCartFoods=this.outputCartItems;
