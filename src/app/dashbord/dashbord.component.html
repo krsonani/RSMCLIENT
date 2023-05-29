@@ -6,20 +6,20 @@
       <div class="col-1" (click)="onBack()" ><i class="fas fa-arrow-left fa-2x py-3 changeHover"></i> </div> 
     </div>
     <ul>
-      <li (click)="content=''" *ngIf="typeUser === 'CUSTOMER'" class="changeHover"><i class="fa fa-home"></i> Home</li>
-      <li (click)="chnageContent('profile')" class="changeHover"><i class="fas fa-user"></i> Profile</li>
-      <li (click)="chnageContent('order')" class="changeHover" ><i class="fas fa-history  "></i> Order History</li>
-      <li (click)="chnageContent('cart')" *ngIf="typeUser === 'CUSTOMER'" class="changeHover"><i class="fas fa-shopping-cart"></i> Cart</li>
-      <li (click)="chnageContent('foodManue')" class="changeHover"><i class="fas fa-utensils"></i> Food Menu</li>
-      <li (click)="chnageContent('updateProfile')" class="changeHover"><i class="fas fa-user-edit"></i> Update Profile</li>
-      <li (click)="chnageContent('addtable')" *ngIf="typeUser === 'MANAGER'" class="changeHover"><i class="fas fa-plus"></i> Addtable</li>
-      <li (click)="chnageContent('viewtable')" *ngIf="typeUser === 'MANAGER'"  class="changeHover"><i class="fas fa-eye"></i> View Table</li>
-      <li (click)="chnageContent('addcatrgory')" *ngIf="typeUser === 'MANAGER'" class="changeHover"><i class="fas fa-plus"></i> Add Category</li>
-      <li (click)="chnageContent('addFood')" *ngIf="typeUser === 'MANAGER'" class="changeHover"><i class="fas fa-plus"></i> Add Food</li>
+      <li (click)="content=''" [ngClass]="{ 'active': content===''}" *ngIf="typeUser === 'CUSTOMER'" class="changeHover hover-list"><i class="fa fa-home"></i> Home</li>
+      <li (click)="chnageContent('profile')" [ngClass]="{ 'active': content==='profile'}" class="changeHover hover-list"><i class="fas fa-user"></i> Profile</li>
+      <li (click)="chnageContent('order')" [ngClass]="{ 'active': content==='order'}" class="changeHover hover-list" ><i class="fas fa-history"></i> Order History</li>
+      <li (click)="chnageContent('cart')" [ngClass]="{ 'active': content==='cart'}" *ngIf="typeUser === 'CUSTOMER'" class="changeHover hover-list"><i class="fas fa-shopping-cart"></i> Cart</li>
+      <li (click)="chnageContent('foodManue')" [ngClass]="{ 'active': content==='foodManue'}" class="changeHover hover-list"><i class="fas fa-utensils"></i> Food Menu</li>
+      <li (click)="chnageContent('updateProfile')" [ngClass]="{ 'active': content==='updateProfile'}" class="changeHover hover-list"><i class="fas fa-user-edit"></i> Update Profile</li>
+      <li (click)="chnageContent('addtable')" [ngClass]="{ 'active': content==='addTable'}" *ngIf="typeUser === 'MANAGER'" class="changeHover hover-list"><i class="fas fa-plus"></i> Addtable</li>
+      <li (click)="chnageContent('viewtable')" [ngClass]="{ 'active': content==='viewtable'}" *ngIf="typeUser === 'MANAGER'"  class="changeHover hover-list"><i class="fas fa-eye"></i> View Table</li>
+      <li (click)="chnageContent('addcatrgory')" [ngClass]="{ 'active': content==='addcatrgory'}" *ngIf="typeUser === 'MANAGER'" class="changeHover hover-list"><i class="fas fa-plus"></i> Add Category</li>
+      <li (click)="chnageContent('addFood')" [ngClass]="{ 'active': content==='addFood'}" *ngIf="typeUser === 'MANAGER'" class="changeHover hover-list"><i class="fas fa-plus"></i> Add Food</li>
       <!-- added for view -->
-      <li (click)="chnageContent('tableHandle')" class="changeHover"  *ngIf="typeUser === 'MANAGER'"><i class="fas fa-hourglass-half"></i> Wating Queue</li>
-      <li (click)="chnageContent('addManager')" class="changeHover" *ngIf="typeUser === 'MANAGER'"><i class="fas fa-user-edit"></i> Add Manager</li>
-      <li class="changeHover"><a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      <li (click)="chnageContent('tableHandle')" [ngClass]="{ 'active': content==='tableHandle'}" class="changeHover hover-list"  *ngIf="typeUser === 'MANAGER'"><i class="fas fa-hourglass-half"></i> Wating Queue</li>
+      <li (click)="chnageContent('addManager')" [ngClass]="{ 'active': content==='addManager'}" class="changeHover hover-list" *ngIf="typeUser === 'MANAGER'"><i class="fas fa-user-edit"></i> Add Manager</li>
+      <li class="changeHover hover-list"><a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
   </div>
 
