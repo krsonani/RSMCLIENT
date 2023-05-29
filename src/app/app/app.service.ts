@@ -13,7 +13,7 @@ export class AppService {
       position: 'top-right',
       iconColor: 'white',
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2000,
       timerProgressBar: true,
       customClass: {
         popup: 'colored-toast'
@@ -30,7 +30,7 @@ sweetAlertError(message:string): void {
     position: 'top-right',
     iconColor: 'white',
     showConfirmButton: false,
-    timer: 1500,
+    timer: 3000,
     timerProgressBar: true,
     customClass: {
       popup: 'colored-toast'

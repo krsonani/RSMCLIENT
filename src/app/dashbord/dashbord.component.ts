@@ -105,6 +105,9 @@ export class DashbordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    if(sessionStorage.getItem("jwtToken")===null)
+    this.rout.navigate(['/'])
     this.interval = setInterval(()=>{
       this.validateJwtToken()
     },20000)

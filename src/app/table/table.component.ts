@@ -123,6 +123,7 @@ export class TableComponent implements OnInit {
   {
     this.showToggle=!this.showToggle;
     this.isNaHighlighted=false;
+    this.showNaToggle=false;
   }else
   {
     this.showToggle =true;
@@ -139,6 +140,7 @@ export class TableComponent implements OnInit {
   {
     this.showNaToggle=!this.showNaToggle;
     this.isHighlighted=false;
+    this.showToggle =false;
   }else
   {
     this.showNaToggle =true;
@@ -255,6 +257,7 @@ export class TableComponent implements OnInit {
       },
       error:(err)=>{
         console.log(err);
+        this.aapService.sweetAlertSuccess("You are Allready Added in waiting queue");
         
       }
     })
