@@ -25,7 +25,7 @@ import { CartComponent } from './cart/cart.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ManagerTableHandlingComponent } from './manager-table-handling/manager-table-handling.component';
-import { ManagerAssignTableComponent } from './manager-assign-table/manager-assign-table.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { ManagerAssignTableComponent } from './manager-assign-table/manager-assi
     CartComponent,
     FoodMenuComponent,
     ManagerTableHandlingComponent,
-    ManagerAssignTableComponent,
+    LandingpageComponent,
   ],
   imports: [
     BrowserModule,
