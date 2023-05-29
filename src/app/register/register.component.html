@@ -1,8 +1,8 @@
 ﻿<div class="wrapper">
   <div  *ngIf="typeUser!='MANAGER'" class="form-left">
-    <h2 class="text-uppercase">information</h2>
+    <h2 class="text-uppercase">Restaurant Service Management</h2>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
+      <img src="https://www.posist.com/restaurant-times/wp-content/uploads/2015/12/7-Effective-Restaurant-Inventory-Management-Techniques-That-You-Must-Know.jpg" width="400" height="250" alt="Girl in a jacket" >
     </p>
     <p class="text">
         <span>Sub Head:</span>
@@ -56,8 +56,12 @@
         <div class="col-sm-6 mb-3 form-group" *ngIf="confirmOtp">
           <label for="confirmOtp">ConfirmOtp</label>
           <input class="input-field" type="text" id="confirmOtp" [(ngModel)]="userForm.otp" name="confirmOtp" required />
+          <span class="error-message" *ngIf="errors.otp">
+            {{ errors.otp }}
+          </span>
         </div>
-        <button class="button-cs" (click)="sendOtp()" *ngIf="typeUser !='MANAGER'">Send-Otp</button>
+        <button class="button-cs" (click)="sendOtp()" *ngIf="typeUser !='MANAGER' && !toggleToResend" >Send-Otp</button>
+        <button class="button-cs" (click)="sendOtp()" *ngIf="typeUser !='MANAGER' && toggleToResend" >Resend-Otp</button>
         <span class="col-sm-6 mb-3 form-group" *ngIf="errorOtp">{{errorOtp}}</span>
         <button class="button-cs" type="submit" (click)="onSubmit()">Register</button>
       </div>

@@ -27,7 +27,7 @@
     <button mat-fab class="floating-icon" *ngIf="toShowWaitingQueuLogo " (click)="onClickOfFloatingIcon()">
       <mat-icon>Queue Status</mat-icon>
     </button>
-    <div *ngIf="content === '' && typeUser === 'CUSTOMER' " >
+    <div *ngIf="content === '' && typeUser === 'CUSTOMER' && !toShowWaitingQueuLogo " >
       <!-- <label name="noOfCustomer">Enter the no. of Customer</label>
         <input  type="text" name="noOfCustomer" [(ngModel)]="noOfCustomer">
         <button (click)="content='viewtable'">submit</button> -->
@@ -48,7 +48,7 @@
         </div>
       </div>
       </div>
-      <div *ngIf="toShowWaitingQueuLogo ">
+      <div *ngIf="toShowWaitingQueuLogo && content === '' ">
         <div class="container wel-con">
           <h1 class="px-5">Hello, Thank you for waiting  </h1>
           <p class="wel-text">Table will be allocated to you shortly by manager:</p>
@@ -60,7 +60,6 @@
         </div>
       </div >
       </div>
-
       <div>
         <app-table *ngIf="content === 'viewtable'" [typeUser]="typeUser" [noOfCustomer]="noOfCustomer" (content)="receiveContent($event)" (activeTable)="receiveActiveTable($event)" [userid]="userid" (toShowWaitingQueuLogo)="toShowWaitingQueuLogoSet($event)"  ></app-table>
       </div>

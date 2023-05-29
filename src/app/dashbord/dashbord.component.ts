@@ -21,8 +21,11 @@ export class DashbordComponent implements OnInit {
   userid:string='';
   cartItems:any[]=[]; //output from food-menu going to cart
   interval:any = '';
-  outputCartItems:any[]=[];
+
+  outputCartItems:any[]=[]; //output from cart going to food menu
+
   toShowWaitingQueuLogo:boolean=false;
+
   constructor(private service : DashbordService,private rout : Router) {
     this.username = ''; // Replace with the logged-in user's name
   }
@@ -76,15 +79,18 @@ export class DashbordComponent implements OnInit {
 
   setCartItems(outputCartItems:any[]){
     this.outputCartItems = outputCartItems;
+
     this.cartItems=outputCartItems;
     console.log(this.cartItems);
   }
 
   toShowWaitingQueuLogoSet(value:boolean)
   {
-      this.chnageContent(" ")
+  
       this. toShowWaitingQueuLogo=value;
+      this.chnageContent('');
       this.checkWaitingStatus(this.userid);
+
   }
 
 
@@ -129,7 +135,7 @@ export class DashbordComponent implements OnInit {
 
     }
 
-    
+
   showWaitingCount : any;
   displayMsg : string = '';
   isTableAllocation = false;

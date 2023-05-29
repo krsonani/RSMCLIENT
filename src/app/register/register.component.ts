@@ -21,10 +21,12 @@ export class RegisterComponent implements OnInit {
     otp: '',
 
   }
+  toggleToResend:boolean=false;
   confirmPassword: String = '';
   confirmOtp: boolean = false;
   errors: any = {};
   errorOtp: string = '';
+  checkRegisterClick:boolean=false;
 
   constructor(private service: RegisterService, private rout: Router,private appservice:AppService) { }
   ngOnInit(): void {
@@ -32,6 +34,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.checkRegisterClick=true;
     if (this.validateForm()) {
       if (this.typeUser === 'MANAGER') {
         this.service.addManager(this.userForm).subscribe({
@@ -77,11 +80,11 @@ export class RegisterComponent implements OnInit {
             console.log(res);
             this.confirmOtp = true;
             this.appservice.sweetAlertSuccess("Otp Sent");
+            this.changeToResend();
           },
           error: (err) => {
             console.log(err);
             this.appservice.sweetAlertError("Email Already Exist");
-
           }
         });
         console.log(this.userForm.email);
@@ -121,8 +124,9 @@ export class RegisterComponent implements OnInit {
       } else if (this.confirmPassword.trim() !== this.userForm.password.trim()) {
         this.errors.confirmPassword = 'Confirm Password is not matching';
       }
-      if (this.userForm.otp.trim() === '' && this.confirmOtp !== false) {
+      if (this.userForm.otp.trim() === '' && this.confirmOtp !== false && this.checkRegisterClick) {
         this.errors.otp = 'Otp is required';
+        this.checkRegisterClick=false;
       }
 
       if (Object.keys(this.errors).length === 0) {
@@ -164,6 +168,10 @@ export class RegisterComponent implements OnInit {
   navigateToLogin()
   {
     this.rout.navigate(["/login"]);
+  }
+  changeToResend()
+  {
+    this.toggleToResend=true;
   }
 }
 

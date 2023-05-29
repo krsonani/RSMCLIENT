@@ -18,15 +18,18 @@ export class CustomerprofileComponent implements OnInit {
     phoneNum: '',
   }
 
+  role:string="";
+
   fetchError:string = "";
 
   ngOnInit(): void {
       this.service.getCustomer().subscribe({
         next:(res)=>{
-          // console.log(res);
+          console.log(res);
           this.userProfile.name = res.name;
           this.userProfile.email = res.email;
           this.userProfile.phoneNum = res.phoneNum;
+          this.role= res.role.type;
           // console.log(this.userProfile);
         },error:(error)=>{
           console.log(error);
