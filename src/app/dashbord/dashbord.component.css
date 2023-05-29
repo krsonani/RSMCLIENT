@@ -181,3 +181,15 @@ body {
   font-size: 20px;
   display: inline;
 }
+
+.hover-list:hover{
+  background-color: #777;
+  padding:7px;
+  border-radius: 10px;
+}
+
+.active{
+  background-color: #777;
+  padding:7px;
+  border-radius: 10px;
+}

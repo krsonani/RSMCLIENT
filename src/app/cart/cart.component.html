@@ -1,43 +1,4 @@
 <div class="cart-container">
-    <!-- <div class="page-heading">
-        <p class="table-content" *ngIf="orderItem.totalPrice != 3">Your allocated Tables: {{ activeTable }}</p>
-        <span *ngIf="orderItem.totalPrice != 3">--------------------------------------</span>
-        <h3 *ngIf="orderItem.totalPrice != 3">Food Cart</h3>
-    </div>
-    <table class="cart-table" *ngIf="orderItem.totalPrice != 3;">
-        <thead>
-            <tr class="cart-heading">
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody *ngFor="let item of cartItems">
-            <tr class="cart-items">
-                <td>Name</td>
-                <td>product</td>
-                <td>
-                    <div class="quantity-container">
-                        <button [ngClass]="{ 'disabled-button': item.quantity === 1}"
-                            (click)="decreaseQuantity(item)">-</button>
-                        <button type="text" disabled>2</button>
-                        <button (click)="increaseQuantity(item)">+</button>
-                    </div>
-                </td>
-                <td>price</td>
-                <td>
-                    <button class="item-remove" (click)="removeItem(item)">Remove</button>
-                </td>
-            </tr>
-        </tbody>
-        <div class="cart-summary">
-            <p>Total Price: Rs. price </p>
-            <button (click)="placeOrder()">Place Order</button>
-        </div>
-    </table> -->
-
     <!-- actual one : above one for testing -->
     
     <div class="page-heading">
@@ -75,7 +36,7 @@
         </tbody>
         <div class="cart-summary">
             <p>Total Price: Rs. {{ orderItem.totalPrice.toFixed(2) }} </p>
-            <button (click)="placeOrder()">Place Order</button>
+            <button class="btn btn-success" (click)="placeOrder()">Place Order</button>
         </div>
     </table>
     <ng-template #elseBlock>

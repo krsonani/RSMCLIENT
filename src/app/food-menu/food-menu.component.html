@@ -1,46 +1,52 @@
 <div class="category-container">
-    <div *ngFor="let category of categories" class="category">
-      <div class="category-header" (click)="toggleCategory(category)">
-        <h2>{{ category.cname }}</h2>
-        <span [class.expanded]="category.expanded">+</span>
-      </div>
-      <div [ngClass]="[ category.expanded ? 'category-foodBlock' : 'category-foodNone']">
-        <div class="row">
-            <ng-container *ngFor="let food of foodlist" >
-                <div class="col-sm-6 col-md-4 col-lg-3"  *ngIf="compareCategoryName(category.cname, food.category.cname)"  >
-              
-                        <div [ngClass]="[ 'card', 'mt-2', food.available? '' : 'unavailable-card' ]" >
-                          <img class="card-img-top" style="    width: 104%; height: 180px;" src="{{food.fimage}}" alt="Card image cap">
-                          <div class="card-body" >
-                            <h5 class="card-title"> {{food.fname}} </h5>
-                            <p class="card-text"> <i>{{food.description}}</i> </p>
-                            <p class="card-text">Price: {{food.price}}</p>
-                            <div class="button-group">
-                              <div *ngIf="food.available">
-                                <button class="btn btn-success"  (click)="addToCart(food)" *ngIf="activeTable.length !== 0 && !chekAddToCart(food)">
-                                  <i class="fas fa-shopping-cart"> </i> Add to Cart
-                                </button>
-      
-                                <button class="btn btn-danger" (click)="removeFromCart(food)" *ngIf=" activeTable.length !== 0 && chekAddToCart(food)  ">
-                                    <i class="fas fa-shopping-cart"></i> Remove from Cart
-                                </button>
-                              </div>
-                              <div>
-                                <button class="btn btn-primary edit-button" *ngIf="typeUser === 'MANAGER'" (click)="sendContent(food)">
-                                  <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-secondary toggle-button" (click)="toggleFoodAvailability(food)" *ngIf="typeUser === 'MANAGER'">
-                                  <i [ngClass]="[ 'fas', food.available? 'fa-toggle-on' : 'fa-toggle-off']"></i>
-                                </button>
-    
-                              </div>
-                            </div>
-                            </div>
-                        </div>
-          
+  <h1 class="page-heading">Book Table To Add To Cart</h1>
+  <div *ngFor="let category of categories" class="category">
+    <div class="category-header" (click)="toggleCategory(category)">
+      <h2>{{ category.cname }}</h2>
+      <span [class.expanded]="category.expanded">+</span>
+    </div>
+    <div class="flex-container" [ngClass]="[ category.expanded ? 'category-foodBlock' : 'category-foodNone']">
+      <div class="row">
+        <ng-container *ngFor="let food of foodlist">
+          <div class="cards-container" *ngIf="compareCategoryName(category.cname, food.category.cname)">
+
+            <div class="mt-2 custom-card" [ngClass]="[food.available? '' : 'unavailable-card' ]">
+              <img class="card-img-top image" style="width: 104%; height: 180px;" src="{{food.fimage}}"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title title"> {{food.fname}} </h5>
+                <p class="card-text"> <i>{{food.description}}</i> </p>
+                <p class="card-text text-price">Price: Rs. {{food.price}}</p>
+                <div class="button-group">
+                  <div *ngIf="food.available">
+                    <button class="btn btn-success" (click)="addToCart(food)"
+                      *ngIf="activeTable.length !== 0 && !chekAddToCart(food)">
+                      <i class="fas fa-shopping-cart"> </i> Add to Cart
+                    </button>
+
+                    <button class="btn btn-danger" (click)="removeFromCart(food)"
+                      *ngIf=" activeTable.length !== 0 && chekAddToCart(food)  ">
+                      <i class="fas fa-shopping-cart"></i> Remove from Cart
+                    </button>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary edit-button" *ngIf="typeUser === 'MANAGER'"
+                      (click)="sendContent(food)">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-secondary toggle-button" (click)="toggleFoodAvailability(food)"
+                      *ngIf="typeUser === 'MANAGER'">
+                      <i [ngClass]="[ 'fas', food.available? 'fa-toggle-on' : 'fa-toggle-off']"></i>
+                    </button>
+
+                  </div>
                 </div>
-                
-            </ng-container>
-        </div>
+              </div>
+            </div>
+
+          </div>
+
+        </ng-container>
       </div>
     </div>
+  </div>
