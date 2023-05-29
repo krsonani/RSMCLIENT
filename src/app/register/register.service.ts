@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Register } from './register';
 
@@ -27,6 +27,11 @@ url = "http://localhost:8081"
 
   addManager(payload:Register)
   {
-    return this.http.post<any>(this.url+"/addManager",payload);
+    return this.http.post<any>(this.url+"/addManager",payload,{
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${sessionStorage.getItem("jwtToken")}`
+      })
+    });
   }
 }

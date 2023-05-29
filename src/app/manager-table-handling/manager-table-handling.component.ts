@@ -28,12 +28,13 @@ export class ManagerTableHandlingComponent implements OnInit {
     this.getSurplusUsers();
     this.interval = setInterval(()=>{
       this.getSurplusUsers();
-    },600000)
+    },30000)
     
   }
   interval:any;
   getSurplusUsers() {
-
+     console.log("called");
+     
     this.service.getSurplusUsers().subscribe({
       next: (res) => {
         console.log(res);

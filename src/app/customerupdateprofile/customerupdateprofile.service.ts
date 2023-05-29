@@ -20,7 +20,7 @@ export class CustomerupdateprofileService {
   }
 
   updateCustomerProfile(payload: Updateprofile) {
-    return this.http.put(this.url + '/updateUser', payload, {
+    return this.http.put<any>(this.url + '/updateUser', payload, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${sessionStorage.getItem("jwtToken")}`

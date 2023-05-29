@@ -22,7 +22,7 @@ export class FoodMenuService {
 
   toggleGivenFood(id : number){
 
-    return this.http.put<any>(this.url+"/toggleFoodAvailability/"+id,{
+    return this.http.get<any>(this.url+"/toggleFoodAvailability/"+id,{
       headers:new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `${sessionStorage.getItem("jwtToken")}`
