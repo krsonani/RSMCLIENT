@@ -12,8 +12,15 @@ import { CustomerupdateprofileComponent } from './customerupdateprofile/customer
 import { CartComponent } from './cart/cart.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { ManagerTableHandlingComponent } from './manager-table-handling/manager-table-handling.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 const routes: Routes = [
+  {
+    path:"",
+    component:LandingpageComponent
+
+
+  },
   {
     path:"register",
     component:RegisterComponent

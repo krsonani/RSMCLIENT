@@ -220,11 +220,7 @@ export class TableComponent implements OnInit {
               console.log(res);
               this.showToggle= false;
               this.showTable();
-              Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )             
+              this.aapService.sweetAlertError("Table is deleted")           
           },error:(err)=>{
               console.log(err);
               

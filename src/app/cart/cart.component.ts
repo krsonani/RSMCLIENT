@@ -81,7 +81,6 @@ export class CartComponent implements OnInit {
 
     console.log(this.cartItems);
     this.outputCartItems.emit(this.cartItems);
-    this.aapService.sweetAlertError("Removed form the cart")
   }
 
 

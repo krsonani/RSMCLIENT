@@ -1,0 +1,262 @@
+
+.main-ldpage {
+    overflow: hidden;
+  }
+  
+  .hero-section-ldpage {
+    background-image: url("https://wallpapercave.com/wp/wp4289147.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-container-ldpage {
+    max-width: 800px;
+    text-align: center;
+  }
+  
+  .hero-container-ldpage h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .hero-container-ldpage p {
+    font-size: 24px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+  
+  .form-ldpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .trackNumber-ldpage {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    margin-right: 10px;
+    width: 300px;
+  }
+  
+  .trackbtn-ldpage {
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .trackbtn-ldpage:hover {
+    background-color: #303f9f;
+  }
+  
+  .features-section-ldpage {
+    background-color: #f5f5f5;
+    padding: 80px 0;
+  }
+  
+  .features-section-ldpage h2 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .container-ldpage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .row-ldpage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .col-ldpage {
+    flex-basis: 30%;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .col-ldpage i {
+    font-size: 50px;
+    color: #3f51b5;
+    margin-bottom: 20px;
+  }
+  
+  .col-ldpage h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .col-ldpage p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #555;
+  }
+  
+  /* Mobile view styles */
+  
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+  
+    .hero-section-ldpage {
+      height: auto;
+      min-height: 600px;
+      padding: 60px 20px;
+    }
+  
+    .hero-content-ldpage {
+      text-align: center;
+    }
+  
+    .hero-content-ldpage h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+  
+    .hero-content-ldpage p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+  
+    .form-ldpage {
+      margin-top: 40px;
+    }
+  
+    .form-ldpage label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+  
+    .trackNumber-ldpage {
+      width: 100%;
+    }
+  
+    .trackbtn-ldpage {
+      margin-top: 20px;
+      width: 100%;
+    }
+  
+    .features-section-ldpage {
+      padding: 60px 20px;
+    }
+  
+    .features-section-ldpageh2 {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+  
+    .col-ldpage {
+      flex-basis: 100%;
+      margin-bottom: 60px;
+    }
+  
+    .col-ldpage h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+  
+    .col-ldpage p {
+      font-size: 16px;
+    }
+  
+    .container-ldpage {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #e5e5e5;
+  }
+  
+  .footer .container {
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .text-muted {
+    color: #777;
+  }
+  
+  .contact-us {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .contact-us ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  footer h3 {
+    font-size: 18px;
+  }
+  
+  footer p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  footer ul li {
+    margin-bottom: 10px;
+  }
+  
+  footer ul li a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  footer ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      height: 8px;
+    }
+  
+    .footer .container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  }
+  
+  

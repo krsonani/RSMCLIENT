@@ -88,7 +88,6 @@ export class FoodMenuComponent implements OnInit {
   toggleFoodAvailability(food : any){
     this.service.toggleGivenFood(food.fid).subscribe();
     food.available = !food.available;
-    this.aapService.sweetAlertSuccess("Successfully Changed the food status")
   }
 
   sendContent(foodItem : any) {
