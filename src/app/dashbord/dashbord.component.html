@@ -8,23 +8,21 @@
     <ul>
       <li (click)="content=''" *ngIf="typeUser === 'CUSTOMER'" class="changeHover"><i class="fa fa-home"></i> Home</li>
       <li (click)="chnageContent('profile')" class="changeHover"><i class="fas fa-user"></i> Profile</li>
-      <li (click)="chnageContent('order')" class="changeHover" ><i class="fas fa-history  "></i> Order History</li>
-      <li (click)="chnageContent('cart')" *ngIf="typeUser === 'CUSTOMER'" class="changeHover"><i class="fas fa-shopping-cart"></i> Cart</li>
-      <li (click)="chnageContent('foodManue')" class="changeHover"><i class="fas fa-utensils"></i> Food Menu</li>
-      <li (click)="chnageContent('updateProfile')" class="changeHover"><i class="fas fa-user-edit"></i> Update Profile</li>
-      <li (click)="chnageContent('addtable')" *ngIf="typeUser === 'MANAGER'" class="changeHover"><i class="fas fa-plus"></i> Addtable</li>
+      <li (click)="chnageContent('tableHandle')" class="changeHover"  *ngIf="typeUser === 'MANAGER'"><i class="fas fa-hourglass-half"></i> Wating Queue</li>
       <li (click)="chnageContent('viewtable')" *ngIf="typeUser === 'MANAGER'"  class="changeHover"><i class="fas fa-eye"></i> View Table</li>
+      <li (click)="chnageContent('foodManue')" class="changeHover"><i class="fas fa-utensils"></i> Food Menu</li>
+      <li (click)="chnageContent('cart')" *ngIf="typeUser === 'CUSTOMER'" class="changeHover"><i class="fas fa-shopping-cart"></i> Cart</li>
+      <li (click)="chnageContent('order')" class="changeHover" ><i class="fas fa-history  "></i> Order History</li>
+      <li (click)="chnageContent('addtable')" *ngIf="typeUser === 'MANAGER'" class="changeHover"><i class="fas fa-plus"></i> Addtable</li>
       <li (click)="chnageContent('addcatrgory')" *ngIf="typeUser === 'MANAGER'" class="changeHover"><i class="fas fa-plus"></i> Add Category</li>
       <li (click)="chnageContent('addFood')" *ngIf="typeUser === 'MANAGER'" class="changeHover"><i class="fas fa-plus"></i> Add Food</li>
-      <!-- added for view -->
-      <li (click)="chnageContent('tableHandle')" class="changeHover"  *ngIf="typeUser === 'MANAGER'"><i class="fas fa-hourglass-half"></i> Wating Queue</li>
+      <li (click)="chnageContent('updateProfile')" class="changeHover"><i class="fas fa-user-edit"></i> Update Profile</li>
       <li (click)="chnageContent('addManager')" class="changeHover" *ngIf="typeUser === 'MANAGER'"><i class="fas fa-user-edit"></i> Add Manager</li>
       <li class="changeHover"><a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
   </div>
 
   <div class="content">
-    <!-- Content Area -->
     <button mat-fab class="floating-icon" *ngIf="toShowWaitingQueuLogo " (click)="onClickOfFloatingIcon()">
       <mat-icon>Queue Status</mat-icon>
     </button>
