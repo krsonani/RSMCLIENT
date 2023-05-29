@@ -5,94 +5,132 @@
 
 </head>
 
-<body>
-  <div *ngIf="roleType=='MANAGER'">
-    <h1 style="text-align:center;">Todays Orders</h1>
-    <h4 style="text-align:center;"> DATE :{{ now }}</h4>
-  </div>
-  <div *ngIf="roleType=='CUSTOMER'">
-    <h1 style="text-align:center;">Your Order History</h1>
+<body class="body">
+  <div class="page-heading">
+    <div *ngIf="roleType=='MANAGER'">
+      <h2 style="text-align:center;">Todays Orders</h2>
+      <h5 style="text-align:center;"> DATE :{{ now }}</h5>
+    </div>
+    <div *ngIf="roleType=='CUSTOMER'">
+      <h2 style="text-align:center;">Your Order History</h2>
+    </div>
   </div>
 
   <br />
 
-  <div *ngIf="roleType=='CUSTOMER' && currentOrdertotalPrice">
-    <h4>Orders Pending Bill Generation</h4>
-    <table id="orders">
-      <thead>
-        <tr>
-          <th>OrderId</th>
-          <th>Orders</th>
-          <th>SubTotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let todaysOrder of todaysOrders;let i = index">
-          <tr *ngIf="todaysOrder.billGenerated == false">
-            <td>{{todaysOrder.oid}}</td>
-            <span *ngFor="let foodquantity of todaysOrder.foodMap | keyvalue; let i = index">
-              <span *ngFor="let foodname of todaysOrder.foodList; let j = index">
-                <td *ngIf="i==j">
-                  {{foodquantity.value}}x {{foodname.fname}},
-                </td>
-              </span>
-            </span>
-            <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
+  <div class="order-body"> <!--contains all the elements in the page-->
+    <div *ngIf="roleType=='CUSTOMER' && currentOrdertotalPrice">
+      <h4>Orders Pending Bill Generation</h4>
+      <table id="orders">
+        <thead class="table-header">
+          <tr>
+            <th>OrderId</th>
+            <th>Orders</th>
+            <th>SubTotal</th>
           </tr>
-        </ng-container>
-      </tbody>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bill">
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let todaysOrder of todaysOrders;let i = index">
+            <tr *ngIf="todaysOrder.billGenerated == false">
+              <td>{{todaysOrder.oid}}</td>
+              <span *ngFor="let foodquantity of todaysOrder.foodMap | keyvalue; let i = index">
+                <span *ngFor="let foodname of todaysOrder.foodList; let j = index">
+                  <td *ngIf="i==j">
+                    {{foodquantity.value}}x {{foodname.fname}},
+                  </td>
+                </span>
+              </span>
+              <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#bill">
         Generate Bill
       </button>
-    </table>
-  </div>
+    </div>
+    <br>
+    <!-- Orders with Bill Already Generated -->
+    <div>
+      <h4 *ngIf="roleType=='CUSTOMER'">Past Orders</h4>
+      <!--title to be viewed by Customer only-->
 
-  <!--BILL Modal -->
-  <div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Order Slip</h5>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <table class="table" style="border: 1px solid #8d8a8a;">
-              <thead class="thead-dark">
-                <tr>
-                  <th>OrderId</th>
-                  <th>Orders</th>
-                  <th>SubTotal</th>
-                </tr>
-              </thead>
-              <tbody>
-                <ng-container *ngFor="let todaysOrder of todaysOrders;let i = index">
-                  <tr *ngIf="todaysOrder.billGenerated == false">
-                    <td>{{todaysOrder.oid}}</td>
-                    <span *ngFor="let foodquantity of todaysOrder.foodMap | keyvalue; let i = index">
-                      <span *ngFor="let foodname of todaysOrder.foodList; let j = index">
-                        <td *ngIf="i==j">
-                          {{foodquantity.value}}x {{foodname.fname}},
-                        </td>
-                      </span>
-                    </span>
-                    <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
-                  </tr>
-                </ng-container>
+      <h4 *ngIf="roleType=='MANAGER'">
+        Total Transactions : Rs. {{ pastOrdertotalPrice.toFixed(2) }}
+      </h4>
+      <table id="orders">
+        <thead>
+          <tr class="table-header">
+            <th>OrderId</th>
+            <th>Orders</th>
+            <th>SubTotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let todaysOrder of todaysOrders;let i = index">
+            <tr *ngIf="todaysOrder.billGenerated == true">
+              <td>{{todaysOrder.oid}}</td>
+              <span *ngFor="let foodquantity of todaysOrder.foodMap | keyvalue; let i = index">
+                <span *ngFor="let foodname of todaysOrder.foodList; let j = index">
+                  <td *ngIf="i==j">
+                    {{foodquantity.value}}x {{foodname.fname}},
+                  </td>
+                </span>
+              </span>
+              <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
 
-              </tbody>
-              
-            </table>
-            <p>
-              Total Price : Rs. {{ currentOrdertotalPrice.toFixed(2) }}
-            </p>
-
+    <!--RECEIPT Modal -->
+    <div class="modal fade newmodal" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Order Receipt</h5>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- need to set a sweetalert when Pay button is clicked -->
-          <button type="button" class="btn btn-primary" (click)="billPayed()" data-dismiss="modal">Pay</button>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table" style="border: 1px solid #8d8a8a;">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>OrderId</th>
+                    <th>Orders</th>
+                    <th>SubTotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let todaysOrder of todaysOrders;let i = index">
+                    <tr *ngIf="todaysOrder.billGenerated == false">
+                      <td>{{todaysOrder.oid}}</td>
+                      <span *ngFor="let foodquantity of todaysOrder.foodMap | keyvalue; let i = index">
+                        <span *ngFor="let foodname of todaysOrder.foodList; let j = index">
+                          <td *ngIf="i==j">
+                            {{foodquantity.value}}x {{foodname.fname}},
+                          </td>
+                        </span>
+                      </span>
+                      <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
+                    </tr>
+                  </ng-container>
+
+                </tbody>
+
+              </table>
+              <p>
+                Total Price : Rs. {{ currentOrdertotalPrice.toFixed(2) }}
+              </p>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <!-- need to set a sweetalert when Pay button is clicked -->
+            <button type="button" class="btn btn-success" (click)="billPayed()" data-dismiss="modal">Pay</button>
+          </div>
         </div>
       </div>
     </div>
@@ -100,39 +138,6 @@
 
   <br />
 
-  <!-- Orders with Bill Already Generated -->
-  <div>
-    <h4 *ngIf="roleType=='CUSTOMER'">Past Orders</h4> <!--title to be viewed by Customer only-->
-    
-    <h4 *ngIf="roleType=='MANAGER'">
-      Total Transactions : Rs. {{ pastOrdertotalPrice.toFixed(2) }}
-    </h4>
-    <br>
-    <table id="orders">
-      <thead>
-        <tr>
-          <th>OrderId</th>
-          <th>Orders</th>
-          <th>SubTotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let todaysOrder of todaysOrders;let i = index">
-          <tr *ngIf="todaysOrder.billGenerated == true">
-            <td>{{todaysOrder.oid}}</td>
-            <span *ngFor="let foodquantity of todaysOrder.foodMap | keyvalue; let i = index">
-              <span *ngFor="let foodname of todaysOrder.foodList; let j = index">
-                <td *ngIf="i==j">
-                  {{foodquantity.value}}x {{foodname.fname}},
-                </td>
-              </span>
-            </span>
-            <td>Rs. {{todaysOrder.totalPrice.toFixed(2)}}</td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
-  </div>
 
 
 </body>

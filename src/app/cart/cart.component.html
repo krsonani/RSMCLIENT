@@ -1,9 +1,53 @@
 <div class="cart-container">
-    <h5 *ngIf="orderItem.totalPrice != 0">Your allocated Tables: {{ activeTable }}</h5>
-    <h1>Food Cart</h1>
+    <!-- <div class="page-heading">
+        <p class="table-content" *ngIf="orderItem.totalPrice != 3">Your allocated Tables: {{ activeTable }}</p>
+        <span *ngIf="orderItem.totalPrice != 3">--------------------------------------</span>
+        <h3 *ngIf="orderItem.totalPrice != 3">Food Cart</h3>
+    </div>
+    <table class="cart-table" *ngIf="orderItem.totalPrice != 3;">
+        <thead>
+            <tr class="cart-heading">
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of cartItems">
+            <tr class="cart-items">
+                <td>Name</td>
+                <td>product</td>
+                <td>
+                    <div class="quantity-container">
+                        <button [ngClass]="{ 'disabled-button': item.quantity === 1}"
+                            (click)="decreaseQuantity(item)">-</button>
+                        <button type="text" disabled>2</button>
+                        <button (click)="increaseQuantity(item)">+</button>
+                    </div>
+                </td>
+                <td>price</td>
+                <td>
+                    <button class="item-remove" (click)="removeItem(item)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+        <div class="cart-summary">
+            <p>Total Price: Rs. price </p>
+            <button (click)="placeOrder()">Place Order</button>
+        </div>
+    </table> -->
+
+    <!-- actual one : above one for testing -->
+    
+    <div class="page-heading">
+        <p class="table-content" *ngIf="orderItem.totalPrice != 0">Your allocated Tables: {{ activeTable }}</p>
+        <span *ngIf="orderItem.totalPrice != 0">--------------------------------------</span>
+        <h1 *ngIf="orderItem.totalPrice != 0">Food Cart</h1>
+    </div>
     <table class="cart-table" *ngIf="orderItem.totalPrice != 0; else elseBlock">
         <thead>
-            <tr>
+            <tr class="cart-heading">
                 <th>Product</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -17,7 +61,8 @@
                 <td>{{ item.price }}</td>
                 <td>
                     <div class="quantity-container">
-                        <button [ngClass]="{ 'disabled-button': item.quantity === 1}" (click)="decreaseQuantity(item)">-</button>
+                        <button [ngClass]="{ 'disabled-button': item.quantity === 1}"
+                            (click)="decreaseQuantity(item)">-</button>
                         <button type="text" disabled>{{ item.quantity }}</button>
                         <button (click)="increaseQuantity(item)">+</button>
                     </div>
@@ -29,11 +74,16 @@
             </tr>
         </tbody>
         <div class="cart-summary">
-            <p>Total Price: Rs. {{ orderItem.totalPrice.toFixed(2) }}   </p>
+            <p>Total Price: Rs. {{ orderItem.totalPrice.toFixed(2) }} </p>
             <button (click)="placeOrder()">Place Order</button>
         </div>
     </table>
     <ng-template #elseBlock>
-        <h2>Cart is Empty</h2>
+        <div class="cart-content">
+            <img class="empty-cart-img" src="../../assets/empty-cart.png">
+            <h3 style="font-weight: 800;">Your cart is hungry for deliciousness!</h3>
+            <p class="quote">Explore our mouthwatering menu and discover a world of flavors that will satisfy your cravings.</p>
+            <input type="button" class="btn btn-success" value="Return to Food Menu">
+        </div>
     </ng-template>
 </div>

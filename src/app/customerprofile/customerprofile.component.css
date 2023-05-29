@@ -4,7 +4,7 @@
       
       /* background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1)) */
       /* background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1)) */
-      box-shadow: 7px 0px 7px rgb(12, 12, 21);
+      box-shadow: 4px 0px 7px rgb(12, 12, 21);
   }
 
   .gradient-custom1 {
@@ -12,6 +12,6 @@
     
     /* background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1)) */
     /* background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1)) */
-    box-shadow: 7px 0px 7px rgb(12, 12, 21);
+    box-shadow: 4px 4px 11px rgb(12, 12, 21);
 }
     
