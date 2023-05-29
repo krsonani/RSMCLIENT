@@ -20,8 +20,6 @@ export class FoodMenuComponent implements OnInit {
 
   @Input() typeUser: string = '';
 
-  
-
   addToCartFoods:any[] = []; 
   
   @Output() cartItems=new EventEmitter();
