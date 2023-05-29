@@ -1,6 +1,6 @@
 <div class="food-registration">
-  <h2 *ngIf="!selectFoodItem" type="submit">Add New Food</h2>
-  <h2 *ngIf="selectFoodItem" type="submit">Update Food</h2>
+  <h2 *ngIf="isSelectFoodItemEmpty" type="submit">Add New Food</h2>
+  <h2 *ngIf="!isSelectFoodItemEmpty" type="submit">Update Food</h2>
   
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -32,6 +32,7 @@
       </div>
     </div>
     <div class="form-group">
+      <h6 *ngIf="isCategoryListEmpty" class="error" > Please add Category before adding Food! </h6>
       <label for="foodCategory">Category:</label>
       <select id="foodCategory" name="foodCategory" [(ngModel)]="userForm.categoryId" required>
         <!-- <option value="">Select Category</option> -->
@@ -43,9 +44,9 @@
     </div>
 
     <div *ngIf="successMsg" class="success-msg">{{successMsg}}</div>
-
-    <button *ngIf="!selectFoodItem" type="submit">Add Food</button>
-    <button *ngIf="selectFoodItem" type="submit">Update Food</button>
+    <button *ngIf="isSelectFoodItemEmpty" type="submit" class="btn btn-success">Add Food</button>
+    <button *ngIf="!isSelectFoodItemEmpty" type="submit" class="btn btn-success">Update Food</button>
+    <button *ngIf="!isSelectFoodItemEmpty" (click)="updationCancel()" class="btn btn-danger cancel-button">Cancel</button>
 
   </form>
 </div>

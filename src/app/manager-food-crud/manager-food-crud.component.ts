@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AppService } from '../app/app.service';
 import { ManagerCategoryCrudService } from '../manager-category-crud/manager-category-crud.service';
 import { ManagerFoodCrud } from './manager-food-crud';
 import { ManagerFoodCrudService } from './manager-food-crud.service';
@@ -20,27 +21,31 @@ export class ManagerFoodCrudComponent implements OnInit {
   }
 
   categoryList : any;
+  isCategoryListEmpty:boolean = false;
   successMsg : string = '';
   @Input() selectFoodItem: any;
+  isSelectFoodItemEmpty : boolean = false;
   @Output() content=new EventEmitter<string>();
   errors: any={} ;
 
-  constructor(private service : ManagerFoodCrudService, private mcc : ManagerCategoryCrudService) { }
+  constructor(private service : ManagerFoodCrudService, private mcc : ManagerCategoryCrudService,  private appserv : AppService) { }
 
   ngOnInit(): void {
+
+    console.log("selectFoodItem inside ngOnInit ");
+    console.log(this.selectFoodItem);
+    
+    this.isSelectFoodItemEmpty = Object.keys(this.selectFoodItem).length===0;
+    
     this.mcc.getAllCategories().subscribe({
       next:(res)=>{
         this.categoryList = res;
-        console.log(res);
+        this.isCategoryListEmpty = !this.categoryList || this.categoryList.length === 0;
       },
       error:(err)=>{
         console.log(err);
       }
     });   
-
-    console.log(this.selectFoodItem);
-    console.log(this.userForm);
-    console.log("before");
     
     if(Object.keys(this.selectFoodItem).length!==0){
       
@@ -51,9 +56,6 @@ export class ManagerFoodCrudComponent implements OnInit {
       this.userForm.fname = this.selectFoodItem.fname;
       this.userForm.price = this.selectFoodItem.price;
     }
-
-    console.log(this.userForm);
-    console.log("after");
   }
 
   onSubmit(){
@@ -75,8 +77,8 @@ export class ManagerFoodCrudComponent implements OnInit {
           this.successMsg = Object.keys(this.selectFoodItem).length===0 ? "Food Added" : "Food Updated";
 
           if(Object.keys(this.selectFoodItem).length!==0){
-            console.log("before emitting");
             this.content.emit('foodManue');
+            this.appserv.sweetAlertSuccess("Updation successfull!");
           }
 
         },
@@ -118,8 +120,8 @@ export class ManagerFoodCrudComponent implements OnInit {
       return false;
   }
 
-  onClick(id : Number){
-    console.log("inside onCLick");
+  updationCancel(){
+    this.content.emit('foodManue');
   }
 
 }
