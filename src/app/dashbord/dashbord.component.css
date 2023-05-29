@@ -75,6 +75,11 @@
 .dashboard-container .fa-sign-out-alt:before {
   content: '\f2f5';
 }
+
+.changeHover
+{
+  cursor: pointer;
+}
 /* 
 welcome page */
 
@@ -150,7 +155,7 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #2196f3; /* Change the background color as per your preference */
+  background-color: #333; /* Change the background color as per your preference */
   color: #fff; /* Change the icon color as per your preference */
   border: none;
   border-radius: 50%;
@@ -167,7 +172,8 @@ body {
 
 
 .floating-icon:hover {
-  background-color: #1976d2; /* Change the hover background color as per your preference */
+  background-color: #333; 
+  box-shadow: 1px 1px 10px black;/* Change the hover background color as per your preference */
 }
 
 .floating-icon mat-icon {

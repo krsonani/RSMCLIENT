@@ -8,7 +8,8 @@ import { DaywiseorderService } from './daywiseorder.service';
 })
 export class DaywiseorderComponent implements OnInit {
 
-  todaysOrders: any;
+  todaysOrders: any=[];
+  sortedIrder:any[]=[];
   roleType: string = '';
   userId: string = '';
   now: string = '';
@@ -52,7 +53,9 @@ export class DaywiseorderComponent implements OnInit {
             next: (res) => {
               console.log(res);
               this.todaysOrders = res;
-              for (let item of this.todaysOrders) {
+              this.sortedIrder =this.todaysOrders;
+              this.sortedIrder.sort((a:any,b:any)=> b.oid -a.oid)
+              for (let item of this.sortedIrder) {
                 if (item.billGenerated == true) {
                   this.pastOrdertotalPrice += item.totalPrice;
                 }
@@ -70,7 +73,9 @@ export class DaywiseorderComponent implements OnInit {
             next: (res) => {
               console.log(res);
               this.todaysOrders = res;
-              for (let item of this.todaysOrders) {
+              this.sortedIrder =this.todaysOrders;
+              this.sortedIrder.sort((a:any,b:any)=> b.oid -a.oid)
+              for (let item of this.sortedIrder) {
                 if (item.billGenerated == false) {
                   this.currentOrdertotalPrice += item.totalPrice;
                 }

@@ -1,5 +1,7 @@
 import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { VirtualTimeScheduler } from 'rxjs';
+import { AppService } from '../app/app.service';
 import { ManagerTableHandlerService } from './manager-table-handler.service';
 
 @Component({
@@ -17,14 +19,21 @@ export class ManagerTableHandlingComponent implements OnInit {
   tableItems: any[] = [];
   isNaActivte: string[] = [];
   showNaToggle: boolean = false;
-  selectedUserId:string='';
+  selectedUserId:any;
+  totalTableCap:number=0;
 
-  constructor(private service: ManagerTableHandlerService) { }
+  constructor(private service: ManagerTableHandlerService, private appservice :AppService) { }
 
   ngOnInit(): void {
     this.getSurplusUsers();
+    this.interval = setInterval(()=>{
+      this.getSurplusUsers();
+    },600000)
+    
   }
+  interval:any;
   getSurplusUsers() {
+
     this.service.getSurplusUsers().subscribe({
       next: (res) => {
         console.log(res);
@@ -51,9 +60,10 @@ export class ManagerTableHandlingComponent implements OnInit {
 
       }
     });
+
   }
-  showTableContent(uid:string) {
-    this.selectedUserId=uid;
+  showTableContent(user:any) {
+    this.selectedUserId=user;
     this.tableContent = true;
     this.showTable();
   }
@@ -104,20 +114,43 @@ export class ManagerTableHandlingComponent implements OnInit {
   }
 
   assignTables() {
-    this.service.assignTables(this.isNaActivte,this.selectedUserId).subscribe({
-      next: (res) => {
-        console.log(res);
-        console.log("Tables Assigned");
-        this.getSurplusUsers();
-        this.tableContent = false;
-        this.isNaActivte=[];
-        this.showNaToggle = false;
-      },
-      error:(err)=>{
-        console.log(err);
-        
-      }
-    });
+    this.tableItems.map((item)=>{
+     if(this.isNaActivte.includes(item.tid))
+     {
+      console.log(this.tableItems);
+      console.log(this.isNaActivte);
+      console.log(item.capacity);
+      this.totalTableCap=this.totalTableCap+item.capacity;
+     }
+    })
+    console.log(this.totalTableCap);
+    console.log(this.listOfUsers.get(this.selectedUserId));
+    
+    if(this.listOfUsers.get(this.selectedUserId)<= this.totalTableCap)
+    {
+      console.log(this.selectedUserId);
+      
+      this.service.assignTables(this.isNaActivte,this.selectedUserId.uids).subscribe({
+        next: (res) => {
+          console.log(res);
+          console.log("Tables Assigned");
+          this.getSurplusUsers();
+          this.tableContent = false;
+          this.isNaActivte=[];
+          this.showNaToggle = false;
+          this.appservice.sweetAlertSuccess("Table allocated")
+        },
+        error:(err)=>{
+          console.log(err);
+          
+        }
+      });
+    }else
+    {
+      this.totalTableCap=0;
+      this.appservice.sweetAlertError("Total capacity of tables allocated should be more then no of people")
+    }
+ 
   }
 
 

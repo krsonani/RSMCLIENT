@@ -1,8 +1,8 @@
 <div *ngIf="!goForWaitingToManager">
+  <div *ngIf="typeUser==='CUSTOMER'" class="tableHeading mx-3 mt-4"><p class="py-2 px-4 text">Select Table for booking</p></div>
+  <div *ngIf="typeUser==='MANAGER'" class="tableHeading mx-3 mt-4"><p class="py-2 px-4 ">Manage Table </p></div>
 <div class="table" >
-  <!-- Ashutosh ke changes -->
-
-  <!-- Yaha tak hai -->
+  
     <div class="table-item" *ngFor="let item of tableItems"  [ngClass]="{'table-itemAvil':(item.available && (typeUser === 'CUSTOMER' && item.capacity >= noOfCustomer)) || (item.available &&  typeUser === 'MANAGER') }">
       <div class="table-item__cell" *ngIf="item.available && typeUser==='MANAGER' "  (click)="addTableIds(item.tid)" [ngClass]="{ 'highlight': isHighlighted && isActivte===item.tid}">
         <p class="p-0 py-2 my-2">Tid: {{item.tid}}</p>
@@ -28,7 +28,7 @@
 </div>
   <div class="buttonBar" *ngIf="showToggle">  
     <div class="buttonStyle">
-      <div class="pricebar-toggle" *ngIf="typeUser==='MANAGER'">
+      <div class="pricebar-toggle pt-3" *ngIf="typeUser==='MANAGER'">
         <div class="toggle-text"> ON </div>
         <label class="switch">
           <input type="checkbox" />
@@ -40,17 +40,17 @@
         <div class="toggle-text"> OFF </div>
     </div>
     <div *ngIf="typeUser==='MANAGER'">
-      <button class="btn btn-danger my-3" (click)="tabelDelete()" >Delete</button>
+      <button class="btn btn-danger mt-2" (click)="tabelDelete()" >Delete</button>
     </div>
     <div *ngIf="typeUser==='CUSTOMER' && !goForWaiting ">
-      <button class="btn btn-success my-3" (click)="bookTable()">bookTable</button>
+      <button class="btn btn-success mt-2" (click)="bookTable()">bookTable</button>
     </div>
 
     </div>
   </div>
   <div class="buttonBar" *ngIf="showNaToggle && typeUser ==='MANAGER'">
     <div class="buttonStyle">
-      <div class="pricebar-toggle" >
+      <div class="pricebar-toggle pt-3" >
         <div class="toggle-text"> OFF </div>
         <label class="switch">
           <input type="checkbox" />
@@ -66,7 +66,7 @@
 <div class="buttonBar" *ngIf="typeUser === 'CUSTOMER' && goForWaiting && toShowWaitingQueu">
   <div class="buttonStyle">
     <div>
-      <button class="btn btn-secondary my-3" (click)="addTableToQueue()">WaitingQueue</button>
+      <button class="btn btn-secondary mt-2" (click)="addTableToQueue()">WaitingQueue</button>
     </div>
   </div>
 </div>
