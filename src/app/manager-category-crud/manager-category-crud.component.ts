@@ -53,7 +53,7 @@ export class ManagerCategoryCrudComponent implements OnInit{
 
     if(this.userForm.cname.trim() === '')
       this.errorCategoryName = 'Name is required';
-    else if(!(/^[A-Z]+[a-z]*$/.test(this.userForm.cname)))
+    else if(!(/^[A-Z]+[A-Za-z\s]*$/.test(this.userForm.cname)))
       this.errorCategoryName = 'Please provide only alphabets';
     
     if(this.errorCategoryName.length === 0)

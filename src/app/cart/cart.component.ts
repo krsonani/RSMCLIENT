@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   @Input() userid:string='';
   @Input() cartItems:any[]=[]; //input from food-menu 
   @Output() outputCartItems=new EventEmitter();
+  @Output() content= new EventEmitter();
 
   orderItem: Order = {
       userid:'',
@@ -105,5 +106,8 @@ export class CartComponent implements OnInit {
       }
     })
   }
-
+  redirectToFoodMenu()
+  {
+    this.content.emit('foodManue');
+  }
 }

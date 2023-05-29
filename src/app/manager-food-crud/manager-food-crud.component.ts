@@ -80,6 +80,9 @@ export class ManagerFoodCrudComponent implements OnInit {
             this.content.emit('foodManue');
             this.appserv.sweetAlertSuccess("Updation successfull!");
           }
+          else{
+            this.appserv.sweetAlertSuccess("Food Added Successfully!");
+          }
 
         },
         error:(err)=>{
@@ -97,7 +100,7 @@ export class ManagerFoodCrudComponent implements OnInit {
   
     if(this.userForm.fname.trim() === '')
       this.errors.fname = 'Name is required';
-    else if(!(/^[A-Z]+[a-z/s]*$/.test(this.userForm.fname)))
+    else if(!(/^[A-Z]+[A-Za-z\s]*$/.test(this.userForm.fname)))
       this.errors.fname = 'Please provide a valid name';
 
     if(this.userForm.fimage.trim() === '')

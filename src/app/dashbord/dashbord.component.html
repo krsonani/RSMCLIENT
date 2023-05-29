@@ -24,7 +24,6 @@
   </div>
 
   <div class="content">
-    <!-- Content Area -->
     <button mat-fab class="floating-icon" *ngIf="toShowWaitingQueuLogo " (click)="onClickOfFloatingIcon()">
       <mat-icon>Queue Status</mat-icon>
     </button>
@@ -71,7 +70,7 @@
         <app-customerprofile *ngIf="content === 'profile'"></app-customerprofile>
       </div>
       <div>
-        <app-cart *ngIf="content === 'cart'" [activeTable]="activeTable" [userid]="userid"  [cartItems]="cartItems" (outputCartItems)="setCartItems($event)"></app-cart>
+        <app-cart *ngIf="content === 'cart'" [activeTable]="activeTable" [userid]="userid"  [cartItems]="cartItems" (outputCartItems)="setCartItems($event)" (content)="receiveContent($event)"></app-cart>
       </div>
       <div>
         <app-customerupdateprofile *ngIf="content === 'updateProfile'" (content)="receiveContent($event)" ></app-customerupdateprofile>

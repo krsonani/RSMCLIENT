@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+import { AppService } from '../app/app.service';
 import { DaywiseorderService } from './daywiseorder.service';
 
 @Component({
@@ -16,7 +18,7 @@ export class DaywiseorderComponent implements OnInit {
   currentOrdertotalPrice: number = 0;
   pastOrdertotalPrice: number = 0;
 
-  constructor(private service: DaywiseorderService) { }
+  constructor(private service: DaywiseorderService,private appservice:AppService) { }
 
   ngOnInit(): void {
 
@@ -30,9 +32,32 @@ export class DaywiseorderComponent implements OnInit {
     // console.log("chal rha hai");
     this.service.updateBillGenerationStatus(this.userId).subscribe({
       next: (res) => {
-        console.log(res);
-        this.getOrderHistory();
-        this.currentOrdertotalPrice=0;
+       
+          let timerInterval: NodeJS.Timer;
+      
+           Swal.fire({
+            title: 'Processing',
+            html: 'Please Wait...',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+                timerInterval = setInterval(() => {
+                }, 100);
+            },
+            willClose: () => {
+              Swal.fire(
+                'Payment Done!',
+                'Thank you for savoring the flavors of our cuisine and making memories at our table.',
+                'success'
+              )
+              clearInterval(timerInterval);
+              console.log(res);
+              this.getOrderHistory();
+              this.currentOrdertotalPrice=0;
+            }
+          })
+       
       }, error: (err) => {
         console.log(err);
       }

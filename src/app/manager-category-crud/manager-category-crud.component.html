@@ -1,39 +1,45 @@
-<div class="addCategory">
-    <h2>Add New Category</h2>
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
+<div class="wrapper">
+    
+    <form (ngSubmit)="onSubmit()" class="form-right">
+        <div class="col-sm-6 mb-3 form-group">
+          <h2>Add New Category</h2>
           <label for="categoryName">Category Name:</label>
-          <div class="input-container">
-            <input id="categoryName" type="text" name="categoryName" [(ngModel)]="userForm.cname" required>
-            <button type="submit">Add</button>
-          </div>
+        
+            <input class="col-sm-6 mb-3 form-group" class="input-field" id="categoryName" type="text" name="categoryName" [(ngModel)]="userForm.cname" required>
+            <button class="button-cs" type="submit">Add</button>
         </div>
-        <div class="error" *ngIf="errorCategoryName">
-          {{ errorCategoryName }}
+        <div  class="col-sm-6 mb-3 form-group" >
+          <span class="error-message" *ngIf="errorCategoryName">
+            {{ errorCategoryName }}
+        </span>
+          
         </div>
-        <div [ngClass]="[ (responseMsg==='Category Added') ? 'success' : 'error']" *ngIf="responseMsg">
-          {{ responseMsg }}
+        <div  class="col-sm-6 mb-3 form-group"  [ngClass]="[ (responseMsg==='Category Added') ? 'success' : 'error']" >
+          <span class="error-message" *ngIf="responseMsg">
+            {{ responseMsg }}
+        </span>
         </div>
     </form>
 
     <br/>
-    <!-- conditional rendering working -->
-    <div *ngIf="!isCategoriesEmpty()">
-      <table class="category-table">
-        <thead>
-          <tr>
-            <th>SNo</th>
-            <th>Category Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let category of categories; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ category.cname }}</td>
-            <!-- <td><button (click)="onClick(category.cid)">Remove</button></td> -->
-          </tr>
-        </tbody>
-      </table>
-    </div>
+   
 
+</div>
+ <!-- conditional rendering working -->
+ <div *ngIf="!isCategoriesEmpty()">
+  <table class="category-table">
+    <thead>
+      <tr>
+        <th>SNo</th>
+        <th>Category Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ category.cname }}</td>
+        <!-- <td><button (click)="onClick(category.cid)">Remove</button></td> -->
+      </tr>
+    </tbody>
+  </table>
 </div>
