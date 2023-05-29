@@ -1,5 +1,5 @@
-@import '~@fortawesome/fontawesome-free/css/all.css';
-/* 
+ @import '~@fortawesome/fontawesome-free/css/all.css';
+
 .category-container {
   width: 100%;
 }
@@ -31,8 +31,8 @@
 }
 
 .category-container .category-foodBlock {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
   justify-content: center;
   align-items: flex-start;
   padding: 10px;
@@ -58,10 +58,9 @@
 
 .card .card-body .card-text{
   margin: 8px;
-} */
+}
 
-/* new changes */
-/* .button-group {
+.button-group {
   display: flex;
   justify-content: center;
   margin-top: 10px;
@@ -70,62 +69,4 @@
 .edit-button,
 .toggle-button {
   margin-left: 5px;
-} */
-
-/*New wale niche*/
-@import '~@fortawesome/fontawesome-free/css/all.css';
-
-.category-container {
-  width: 100%;
-}
-
-.category-container .category {
-  margin-bottom: 10px;
-}
-
-.category-container .category-header {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  background-color: lightgray;
-  padding: 10px;
-}
-
-.category-container .category-header h2 {
-  margin: 0;
-  flex-grow: 1;
-}
-
-.category-container .category-header span {
-  font-size: 20px;
-  transition: transform 0.3s;
-}
-
-.category-container .category-header span.expanded {
-  transform: rotate(45deg);
-}
-
-.category-container .category-foodBlock {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 10px;
-}
-
-.category-container .category-foodNone {
-  display: none;
-}
-
-.card {
-    padding: 20px;
-  }
-
-.card .card-body{
-  padding-top: 8px;
-  padding-bottom: 0px;
-}
-
-.card .card-body .card-text{
-  margin: 8px;
 }
