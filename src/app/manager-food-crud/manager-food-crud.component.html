@@ -1,53 +1,54 @@
-<div class="food-registration">
-  <h2 *ngIf="isSelectFoodItemEmpty" type="submit">Add New Food</h2>
-  <h2 *ngIf="!isSelectFoodItemEmpty" type="submit">Update Food</h2>
-  
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="foodName">Food Name:</label>
-      <input id="foodName" type="text" name="foodName" [(ngModel)]="userForm.fname" required>
-      <div class="error" *ngIf="errors.fname">
-        {{ errors.fname }}
+<div class="wrapper">
+  <div class="form-right">
+    <h2 *ngIf="isSelectFoodItemEmpty" type="submit">Add New Food</h2>
+    <h2 *ngIf="!isSelectFoodItemEmpty" type="submit">Update Food</h2>
+
+    <form class="row" (ngSubmit)="onSubmit()">
+      <div class="col-sm-6 mb-3 form-group">
+        <label for="foodName">Food Name:</label>
+        <input id="foodName" class="input-field" type="text" name="foodName" [(ngModel)]="userForm.fname" required>
+        <span class="error-message" style='color:red' *ngIf="errors.fname">
+          {{ errors.fname }}
+        </span>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="foodImage">Food Image:</label>
-      <input id="foodImage" type="text" name="foodImage" [(ngModel)]="userForm.fimage" required>
-      <div class="error" *ngIf="errors.fimage">
-        {{ errors.fimage }}
+      <div class="col-sm-6 mb-3 form-group">
+        <label for="foodImage">Food Image:</label>
+        <input id="foodImage" class="input-field" type="text" name="foodImage" [(ngModel)]="userForm.fimage" required>
+        <span class="error-message" style='color:red' *ngIf="errors.fimage">
+          {{ errors.fimage }}
+        </span>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="foodDescription">Food Description:</label>
-      <textarea id="foodDescription" name="foodDescription" [(ngModel)]="userForm.description" required></textarea>
-      <div class="error" *ngIf="errors.description">
-        {{ errors.description }}
+      <div class="col-sm-6 mb-3 form-group">
+        <label for="foodDescription">Food Description:</label>
+        <textarea class="input-field" id="foodDescription" name="foodDescription" [(ngModel)]="userForm.description" required></textarea>
+        <span class="error-message" style='color:red' *ngIf="errors.description">
+          {{ errors.description }}
+        </span>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="foodPrice">Price:</label>
-      <input id="foodPrice" type="number" name="foodPrice" min="1" [(ngModel)]="userForm.price" required>
-      <div class="error" *ngIf="errors.price">
-        {{ errors.price }}
+      <div class="col-sm-6 mb-3 form-group">
+        <label for="foodPrice">Price:</label>
+        <input id="foodPrice" class="input-field" type="number" name="foodPrice" min="1" [(ngModel)]="userForm.price" required>
+        <span class="error-message" style='color:red' *ngIf="errors.price">
+          {{ errors.price }}
+        </span>
       </div>
-    </div>
-    <div class="form-group">
-      <h6 *ngIf="isCategoryListEmpty" class="error" > Please add Category before adding Food! </h6>
-      <label for="foodCategory">Category:</label>
-      <select id="foodCategory" name="foodCategory" [(ngModel)]="userForm.categoryId" required>
-        <!-- <option value="">Select Category</option> -->
+      <div class="form-group">
+        <h6 *ngIf="isCategoryListEmpty" class="error"> Please add Category before adding Food! </h6>
+        <label for="foodCategory">Category:</label>
+        <select id="foodCategory"  class="input-field" name="foodCategory" [(ngModel)]="userForm.categoryId" required>
+          <!-- <option value="">Select Category</option> -->
           <option *ngFor="let category of categoryList" [value]="category.cid">{{category.cname}}</option>
-      </select>
-      <div class="error" *ngIf="errors.cid">
-        {{ errors.cid }}
+        </select>
+        <span class="error-message" style='color:red' *ngIf="errors.cid">
+          {{ errors.cid }}
+        </span>
       </div>
-    </div>
+      
+      <button *ngIf="isSelectFoodItemEmpty" type="submit" class="button-cs">Add Food</button>
+      <button *ngIf="!isSelectFoodItemEmpty" type="submit" class="button-cs">Update Food</button>
+      <button *ngIf="!isSelectFoodItemEmpty" (click)="updationCancel()"
+      class="button-cs">Cancel</button>
 
-    <div *ngIf="successMsg" class="success-msg">{{successMsg}}</div>
-    <button *ngIf="isSelectFoodItemEmpty" type="submit" class="btn btn-success">Add Food</button>
-    <button *ngIf="!isSelectFoodItemEmpty" type="submit" class="btn btn-success">Update Food</button>
-    <button *ngIf="!isSelectFoodItemEmpty" (click)="updationCancel()" class="btn btn-danger cancel-button">Cancel</button>
-
-  </form>
+    </form>
+  </div>
 </div>
-

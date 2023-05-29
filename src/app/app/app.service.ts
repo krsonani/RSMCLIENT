@@ -42,4 +42,6 @@ sweetAlertError(message:string): void {
   });
   
 }
+
+
 }

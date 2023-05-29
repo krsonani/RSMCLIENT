@@ -17,20 +17,23 @@
 
             <input class="form__input" type="email" id="emailId" [(ngModel)]="loginForm.email" name="emailId"
               placeholder="Email" (ngModelChange)="onEmailChange($event)" required>
-              <span class="error-message" style='color:red; font-size: x-small;' *ngIf="error.email">{{ error.email }}</span>
+             
           </div>
           <div class="row">
 
             <input class="form__input" type="password" id="password" [(ngModel)]="loginForm.password" name="password"
               placeholder="Password" (ngModelChange)="onPasswordChange($event)" required>
-              <span class="error-message" style='color:red;font-size: x-small;' *ngIf="error.password">{{ error.password }}</span>
+             
           </div>
 
           <div class="row">
             <input class="btn" class="inp mt-3" type="submit" (click)="onSubmit()" value="Login">
           </div>
           <div class="row">
-            <input class="btn" class="inp mt-1" type="button" (click)=" onSignUp()" value="Sign Up" >
+            <input class="btn" class="inp mt-1" type="button" (click)=" onSignUp()" value="Register" >
+          </div>
+          <div class="row" *ngIf="loginError">
+            <span class="error-message" style='color:red;font-size: x-small;' >{{loginError}}</span>
           </div>
         </form>
         <a class="anch mb-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
   isOtpSubmitted: boolean = false;
   isOtpGenerated: boolean = false;
-
+  loginError:string='';
   error: any = {};
   confirmpass: string = '';
   msgOnModal: string = '';
@@ -36,7 +36,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-      if(this.onEmailChange(this.loginForm.email) && this.onPasswordChange(this.loginForm.password)){
+      if(this.loginForm.email.length==0){
+      this.loginError='Email is required';
+    }
+    else if(this.loginForm.password.length==0)
+    {
+      this.loginError='Password is required';
+    }
+    else{
       this.service.coustomerLogin(this.loginForm).subscribe({
         next: (res) => {
           console.log(res);
@@ -57,7 +64,7 @@ export class LoginComponent implements OnInit {
   }
 
   onEmailChange(str: string):boolean {
-
+    this.loginError="";
     if (str.length == 0){
       this.error.email = "Email is required"
       return false;
@@ -82,7 +89,7 @@ export class LoginComponent implements OnInit {
     }
   }
   onPasswordChange(str: string):boolean {
-
+    this.loginError="";
     if (str.length == 0){
       this.error.password = "password is required";
       return false;
@@ -100,9 +107,9 @@ export class LoginComponent implements OnInit {
 
   onConfirmPasswordChange(str: string) {
 
-    if (this.confirmpass.trim() === '') {
+    if (str.trim() === '') {
       this.error.confirmpass = 'Confirm Password is required';
-    } else if (this.confirmpass.trim() !== this.otpForm.password.trim()) {
+    } else if (str.trim() !== this.otpForm.password.trim()) {
       this.error.confirmpass = 'Confirm Password is not matching';
     }
   }
@@ -146,7 +153,7 @@ export class LoginComponent implements OnInit {
           this.isOtpGenerated = true;
         }, error: (err) => {
           console.log(err);
-          this.appservice.sweetAlertError("Email Already Exist!!");
+          this.appservice.sweetAlertError("User has not Registered!!");
         }
       });
     }
