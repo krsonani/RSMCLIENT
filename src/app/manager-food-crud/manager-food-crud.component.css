@@ -28,7 +28,7 @@ select {
   color: red;
 }
 
-.food-registration button {
+.food-registration .success {
   margin-top: 12px;
   padding: 8px 16px;
   background-color: #4CAF50;
@@ -38,14 +38,14 @@ select {
   cursor: pointer;
 }
 
-.food-registration button:hover {
-  background-color: #45a049;
-}
-
 .food-registration .success-msg
 {
   color: green;
   text-align: center;
   font-size: 16px;
   font-weight: 600;
+}
+
+.food-registration .cancel-button{
+  margin-left: 8px !important;
 }

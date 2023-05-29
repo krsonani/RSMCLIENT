@@ -17,7 +17,7 @@ export class DashbordComponent implements OnInit {
   noOfCustomer:number=2;
   surplusUsers:any;
   activeTable:string[]=[];
-  selectFoodItem:any;
+  selectFoodItem:any = {};
   userid:string='';
   cartItems:any[]=[]; //output from food-menu going to cart
   interval:any = '';
@@ -32,6 +32,9 @@ export class DashbordComponent implements OnInit {
 
   chnageContent(content:string)
   {
+    if(this.content==="addFood"){
+      this.selectFoodItem = {};
+    }
     this.content =content;
     this.stackStatus.push(content);
   }
@@ -74,7 +77,7 @@ export class DashbordComponent implements OnInit {
 
   resetFoodItem(content:string){
     this.content = content;
-    this.selectFoodItem = false;
+    this.selectFoodItem = {};
   }
 
   setCartItems(outputCartItems:any[]){
@@ -151,6 +154,7 @@ export class DashbordComponent implements OnInit {
     Swal.fire({
       title: 'Table Status',
       html: this.displayMsg,
+      allowOutsideClick:false,
       willClose: ()=>{
         if(this.isTableAllocation){
           this.chnageContent('foodManue');
