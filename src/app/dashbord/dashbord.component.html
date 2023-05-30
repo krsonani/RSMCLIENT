@@ -15,7 +15,8 @@
       <li (click)="chnageContent('order')" [ngClass]="{ 'active': content==='order'}" class="changeHover hover-list" ><i class="fas fa-history"></i> Order History</li>
       <li (click)="chnageContent('addtable')" [ngClass]="{ 'active': content==='addTable'}" *ngIf="typeUser === 'MANAGER'" class="changeHover hover-list"><i class="fas fa-plus"></i> Addtable</li>
       <li (click)="chnageContent('addcatrgory')" [ngClass]="{ 'active': content==='addcatrgory'}" *ngIf="typeUser === 'MANAGER'" class="changeHover hover-list"><i class="fas fa-plus"></i> Add Category</li>
-      <li (click)="chnageContent('addFood')" [ngClass]="{ 'active': content==='addFood'}" *ngIf="typeUser === 'MANAGER'" class="changeHover hover-list"><i class="fas fa-plus"></i> Add Food</li>
+      <li (click)="chnageContent('addFood')" [ngClass]="{ 'active': content==='addFood'}" *ngIf="typeUser === 'MANAGER' && !onUpdateFood()" class="changeHover hover-list"><i class="fas fa-plus"></i> Update Food</li>
+      <li (click)="chnageContent('addFood')" [ngClass]="{ 'active': content==='addFood'}" *ngIf="typeUser === 'MANAGER' && onUpdateFood()" class="changeHover hover-list"><i class="fas fa-plus"></i> Add Food</li>
       <!-- added for view -->
       <li (click)="chnageContent('updateProfile')" [ngClass]="{ 'active': content==='updateProfile'}" class="changeHover hover-list"><i class="fas fa-user-edit"></i> Update Profile</li>
       <li (click)="chnageContent('addManager')" [ngClass]="{ 'active': content==='addManager'}" class="changeHover hover-list" *ngIf="typeUser === 'MANAGER'"><i class="fas fa-user-edit"></i> Add Manager</li>

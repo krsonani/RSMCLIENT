@@ -39,6 +39,13 @@ export class DashbordComponent implements OnInit {
     this.stackStatus.push(content);
   }
 
+  onUpdateFood()
+  {
+    if(Object.keys(this.selectFoodItem).length===0)
+      return true;
+    return false;
+  }
+
   onBack()
   {
     if(this.stackStatus.length!==1)

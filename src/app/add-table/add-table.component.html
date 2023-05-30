@@ -1,20 +1,22 @@
-<div class="add-table-form">
+<div class="wrapper">
+  <div class="form-right">
+  <form class="row" (ngSubmit)="onSubmit()">
     <h2>Add Table</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="quantity">Quantity: </label>
-        <input class="form-input" type="text" id="quantity" name="quantity" [(ngModel)]="addTable.quantity" required>
-      </div>
-      <div class="form-group d-flex">
-        <label for="capacity">Capacity: </label>
-        <select id="capacity"  class="form-select" [(ngModel)]="addTable.capacity" name="capacity" required>
-            <option>2</option>
-            <option>4</option>
-            <option>8</option>
-        </select>
-      </div>
-      <div *ngIf="msg" class="success-msg">{{msg}}</div>
-      <button type="submit">Add</button>
-    </form>
-  </div>
-  
+    <div class="col-sm-6 mb-3 form-group">
+      <label for="quantity">Quantity: </label>
+      <input class="input-field" type="text" id="quantity" name="quantity" [(ngModel)]="addTable.quantity" required>
+    </div>
+     <div class="col-sm-6 mb-3 form-group">
+      <label for="capacity">Capacity: </label>
+      <select id="capacity"class="input-field" [(ngModel)]="addTable.capacity" name="capacity" required>
+        <option>2</option>
+        <option>4</option>
+        <option>8</option>
+      </select>
+    </div>
+    <div  class="col-sm-6 mb-3 form-group">
+      <span class="error-message" style='color:green' *ngIf="msg">{{msg}}</span></div>
+    <button class="button-cs" type="submit">Add</button>
+  </form>
+</div>
+</div>
