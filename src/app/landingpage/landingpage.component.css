@@ -2,9 +2,17 @@
 .main-ldpage {
     overflow: hidden;
   }
+
+  /* added later */
+  /* .bar-style{
+    box-shadow: 10px 10px 10px #777;
+    position: fixed;
+    width: -webkit-fill-available;
+  } */
   
   .hero-section-ldpage {
-    background-image: url("https://wallpapercave.com/wp/wp4289147.jpg");
+    background-image: url("../../assets/hero-img4.jpeg");
+    /* margin-top: 52px; added later */
     background-size: cover;
     background-position: center;
     height: 92vh;
@@ -66,7 +74,7 @@
   
   .features-section-ldpage {
     background-color: #f5f5f5;
-    padding: 80px 0;
+    padding: 30px 0;
   }
   
   .features-section-ldpage h2 {

@@ -17,10 +17,11 @@
     max-width: 539px;
     background-color: #fff;
     border-radius: 10px;
+    border: 1px solid #b3b3b3;
     position: relative;
     display: flex;
     margin: 15px auto;
-    box-shadow: 0 8px 20px 0px #1f1f1f1a;
+    box-shadow: 0 8px 20px 0px #221e1e6b;
     overflow: hidden;
 }
 

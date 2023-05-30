@@ -13,15 +13,21 @@
   font-size: x-small;
   display: block;
 }
+
+.img{
+    margin-top: 20px;
+    border-radius: 10px;
+}
 .wrapper{
     max-width: 850px;
     background-color: #fff;
     border-radius: 10px;
     position: relative;
     display: flex;
-    margin: 15px auto;
-    box-shadow: 0 8px 20px 0px #1f1f1f1a;
+    margin: 60px auto;
+    box-shadow: 10px 8px 20px 0px #7a2e2e1a;
     overflow: hidden;
+    border: 0.1px solid #cfcece;
 }
 
 .wrapper .form-left{

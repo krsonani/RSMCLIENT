@@ -21,6 +21,7 @@
 
 .dashboard-container .sidebar li {
   margin-bottom: 10px;
+  transition: 0.2s;
 }
 
 .dashboard-container .sidebar a {
@@ -186,6 +187,7 @@ body {
   background-color: #777;
   padding:7px;
   border-radius: 10px;
+  
 }
 
 .active{
