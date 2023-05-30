@@ -4,6 +4,10 @@
   padding-left: 90px;
  
 }
+.header{
+  background-color: #c6c6c6;
+  border-bottom: 1px solid black;
+}
 
 .table-view {
   width: 100%;

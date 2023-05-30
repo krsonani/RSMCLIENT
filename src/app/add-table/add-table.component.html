@@ -2,11 +2,11 @@
     <h2>Add Table</h2>
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="quantity">Quantity:</label>
+        <label for="quantity">Quantity: </label>
         <input class="form-input" type="text" id="quantity" name="quantity" [(ngModel)]="addTable.quantity" required>
       </div>
       <div class="form-group d-flex">
-        <label for="capacity">Capacity:</label>
+        <label for="capacity">Capacity: </label>
         <select id="capacity"  class="form-select" [(ngModel)]="addTable.capacity" name="capacity" required>
             <option>2</option>
             <option>4</option>

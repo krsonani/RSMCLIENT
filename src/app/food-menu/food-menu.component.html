@@ -1,5 +1,6 @@
 <div class="category-container">
-  <h1 class="page-heading">Book Table To Add To Cart</h1>
+  <h1 class="page-heading" *ngIf="typeUser === 'CUSTOMER'">Book Table To Add To Cart</h1>
+  <h1 class="page-heading" *ngIf="typeUser === 'MANAGER'">Update Food Menu And Availability</h1>
   <div *ngFor="let category of categories" class="category">
     <div class="category-header" (click)="toggleCategory(category)">
       <h2>{{ category.cname }}</h2>
